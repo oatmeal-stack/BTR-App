@@ -27,7 +27,7 @@ import { AppShell } from "@/components/layout/AppShell";
 import { SkinProvider } from "@/components/theme/SkinProvider";
 import { SAMPLE_BOOKS } from "@/data/sampleBooks";
 import { LibraryProvider } from "@/hooks/useLibrary";
-import { PasscodeRequiredError } from "@/lib/passcode";
+import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
 import { LocalBookRepository } from "@/repositories/LocalBookRepository";
 import { memoryStorage } from "./helpers";
 
@@ -43,6 +43,7 @@ class SharedRepo extends LocalBookRepository {
     return this.open;
   }
   async unlock(code: string) {
+    if (code === "spam") throw new LockedOutError();
     this.open = code === "letmein";
     return this.open;
   }
@@ -92,6 +93,16 @@ describe("passcode on the shared library", () => {
 
     await user.click(screen.getByRole("button", { name: /Lock/ }));
     expect(await screen.findByRole("button", { name: "Unlock" })).toBeInTheDocument();
+  });
+
+  it("says so when too many wrong tries have locked sign-in", async () => {
+    const user = userEvent.setup();
+    nav.path = "/profile/";
+    renderApp(<ProfilePage />);
+    await user.type(await screen.findByLabelText("Passcode", { selector: "input" }), "spam");
+    await user.click(screen.getByRole("button", { name: "Unlock" }));
+    expect(await screen.findByText("Too many wrong tries. Wait a while, then try again.")).toBeInTheDocument();
+    expect(screen.queryByText("That passcode isn't right.")).toBeNull();
   });
 
   it("undoes a change made while locked and points to Profile", async () => {

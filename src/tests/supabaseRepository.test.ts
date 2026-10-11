@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { PGlite } from "@electric-sql/pglite";
 import { pgcrypto } from "@electric-sql/pglite/contrib/pgcrypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
+import { LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
 import { SupabaseBookRepository, type Db } from "@/repositories/SupabaseBookRepository";
 
 /**
@@ -55,7 +55,7 @@ function makeDb(): Db {
           const call = `select * from ${fn}(${keys.map((k, i) => `${k} => $${i + 1}`).join(", ")})`;
           const r = await pg.query<Record<string, unknown>>(call, keys.map((k) => args[k]));
           const rows = plain(r.rows) as Record<string, unknown>[];
-          const data = fn === "check_code" ? rows[0].check_code : fn === "list_notes" ? rows : fn === "add_note" ? rows[0] : null;
+          const data = fn === "login" ? rows[0].login : fn === "list_notes" ? rows : fn === "add_note" ? rows[0] : null;
           return { data, error: null };
         } catch (e) {
           return fail(e);
@@ -133,13 +133,29 @@ describe("the passcode", () => {
     expect(repo.hasPasscode()).toBe(false);
   });
 
-  it("remembers the right passcode, and lock forgets it", async () => {
+  it("remembers a login token (never the passcode), and lock forgets it and signs out", async () => {
     const store = memoryStore();
     const repo = new SupabaseBookRepository(makeDb(), store);
     expect(await repo.unlock(CODE)).toBe(true);
     expect(repo.hasPasscode()).toBe(true);
+    const token = store.get()!;
+    expect(token).not.toBe(CODE);
     repo.lock();
     expect(repo.hasPasscode()).toBe(false);
+    await new Promise((r) => setTimeout(r, 50)); // the sign-out is sent in the background
+    // That token is dead on the server too: putting it back doesn't unlock anything.
+    const again = new SupabaseBookRepository(makeDb(), memoryStore(token));
+    await expect(again.setStatus("bk-dune-herbert", "read")).rejects.toBeInstanceOf(PasscodeRequiredError);
+  });
+
+  it("reports a lockout after too many wrong tries, and recovers", async () => {
+    await pg.exec("delete from login_failures");
+    const repo = new SupabaseBookRepository(makeDb(), memoryStore());
+    for (let i = 0; i < 5; i++) expect(await repo.unlock("nope")).toBe(false);
+    await expect(repo.unlock("nope")).rejects.toBeInstanceOf(LockedOutError);
+    await expect(repo.unlock(CODE)).rejects.toBeInstanceOf(LockedOutError); // even the right one
+    await pg.exec("delete from login_failures");
+    expect(await repo.unlock(CODE)).toBe(true);
   });
 
   it("refuses every change while locked, and changes nothing", async () => {

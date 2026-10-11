@@ -8,7 +8,8 @@
 -- Who can do what:
 --   * Anyone with the site link can READ the books and their lists.
 --   * Nobody can write directly to a table.
---   * Every change goes through a function below that checks your passcode.
+--   * Every change goes through a function below that checks a login token. You get a token by
+--     signing in with your passcode (login), which allows only a few wrong tries before it locks.
 --   * Private notes are not readable by the public at all, only through list_notes(passcode).
 
 create extension if not exists pgcrypto with schema extensions;
@@ -52,6 +53,19 @@ create table if not exists book_notes (
   updated_at timestamptz not null default now()
 );
 
+-- Wrong passcode tries (so guessing can be stopped) and signed-in devices. Only the functions below
+-- touch these; nobody can read them.
+create table if not exists login_failures (
+  id bigint generated always as identity primary key,
+  at timestamptz not null default now()
+);
+
+create table if not exists app_sessions (
+  token_hash text primary key,
+  created_at timestamptz not null default now(),
+  expires_at timestamptz not null
+);
+
 create index if not exists books_status_idx on books (status);
 create index if not exists book_sources_source_idx on book_sources (source);
 create index if not exists book_notes_book_idx on book_notes (book_id);
@@ -59,6 +73,8 @@ create index if not exists book_notes_book_idx on book_notes (book_id);
 /* ---------- who can read ---------- */
 
 alter table app_secret enable row level security;   -- no policy: nobody can read it
+alter table login_failures enable row level security;
+alter table app_sessions enable row level security;
 alter table books enable row level security;
 alter table book_sources enable row level security;
 alter table book_notes enable row level security;   -- no policy: notes are private
@@ -70,12 +86,15 @@ drop policy if exists "anyone can read book sources" on book_sources;
 create policy "anyone can read book sources" on book_sources for select using (true);
 
 revoke all on app_secret from anon, authenticated;
+revoke all on login_failures from anon, authenticated;
+revoke all on app_sessions from anon, authenticated;
 revoke all on book_notes from anon, authenticated;
 revoke insert, update, delete on books from anon, authenticated;
 revoke insert, update, delete on book_sources from anon, authenticated;
 
 /* ---------- passcode ---------- */
 
+-- Is this a signed-in device? (p_code is the login token from login(), not the passcode.)
 create or replace function check_code(p_code text)
 returns boolean
 language sql
@@ -84,8 +103,57 @@ security definer
 set search_path = public, extensions
 as $$
   select exists (
-    select 1 from app_secret where passcode_hash = crypt(p_code, passcode_hash)
+    select 1 from app_sessions
+    where token_hash = encode(digest(coalesce(p_code, ''), 'sha256'), 'hex')
+      and expires_at > now()
   );
+$$;
+
+-- Sign in with the passcode. Returns a login token, or null for a wrong passcode. After 5 wrong tries
+-- in 15 minutes (or 20 in a day) it refuses everything, even the right passcode, until the tries age
+-- out. A wrong passcode returns null instead of raising an error on purpose: an error would undo the
+-- record of the wrong try. To clear a lockout by hand: delete from login_failures;
+create or replace function login(p_code text)
+returns text
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+declare
+  recent int;
+  today int;
+  token text;
+begin
+  perform pg_advisory_xact_lock(hashtext('book-archive-login'));  -- one try at a time
+  delete from login_failures where at < now() - interval '1 day';
+  delete from app_sessions where expires_at < now();
+
+  select count(*) filter (where at > now() - interval '15 minutes'), count(*) into recent, today from login_failures;
+  if recent >= 5 or today >= 20 then
+    raise exception 'Too many wrong tries. Try again later.' using errcode = 'P0423';
+  end if;
+
+  if not exists (select 1 from app_secret where passcode_hash = crypt(coalesce(p_code, ''), passcode_hash)) then
+    insert into login_failures default values;
+    return null;
+  end if;
+
+  token := encode(gen_random_bytes(24), 'hex');
+  insert into app_sessions (token_hash, expires_at)
+  values (encode(digest(token, 'sha256'), 'hex'), now() + interval '90 days');
+  delete from login_failures;
+  return token;
+end;
+$$;
+
+-- Sign this device out.
+create or replace function logout(p_code text)
+returns void
+language sql
+security definer
+set search_path = public, extensions
+as $$
+  delete from app_sessions where token_hash = encode(digest(coalesce(p_code, ''), 'sha256'), 'hex');
 $$;
 
 create or replace function require_code(p_code text)

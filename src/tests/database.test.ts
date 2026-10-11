@@ -11,7 +11,9 @@ import { SEED_BOOKS } from "@/data/seedBooks";
  * nothing can be written without the passcode, and private notes stay private.
  */
 const sql = (f: string) => readFileSync(join(process.cwd(), "supabase", f), "utf8");
-const CODE = "test-passcode";
+const PASSCODE = "test-passcode";
+/** What a signed-in device holds: the login token, which is what the write functions check. */
+let CODE = "";
 
 let db: PGlite;
 
@@ -22,6 +24,11 @@ async function asAnon<T>(run: () => Promise<T>): Promise<T> {
   } finally {
     await db.exec("reset role");
   }
+}
+
+async function signIn(passcode = PASSCODE): Promise<string> {
+  const r = await asAnon(() => db.query<{ t: string | null }>("select login($1) as t", [passcode]));
+  return r.rows[0].t as string;
 }
 
 async function count(query: string): Promise<number> {
@@ -42,8 +49,9 @@ beforeAll(async () => {
   await db.exec(sql("schema.sql"));
   const passcodeSql = sql("set_passcode.sql");
   expect(passcodeSql.split("CHOOSE-A-PASSCODE")).toHaveLength(2); // placeholder appears exactly once
-  await db.exec(passcodeSql.replace("CHOOSE-A-PASSCODE", CODE));
+  await db.exec(passcodeSql.replace("CHOOSE-A-PASSCODE", PASSCODE));
   await db.exec(sql("seed.sql"));
+  CODE = await signIn();
 }, 120_000);
 
 afterAll(async () => {
@@ -128,6 +136,8 @@ describe("who can do what", () => {
   it("hides the passcode and the private notes from the public", async () => {
     await expect(asAnon(() => db.query("select * from app_secret"))).rejects.toThrow(/permission denied/);
     await expect(asAnon(() => db.query("select * from book_notes"))).rejects.toThrow(/permission denied/);
+    await expect(asAnon(() => db.query("select * from app_sessions"))).rejects.toThrow(/permission denied/);
+    await expect(asAnon(() => db.query("select * from login_failures"))).rejects.toThrow(/permission denied/);
   });
 
   it("blocks writing to any table directly", async () => {
@@ -143,10 +153,13 @@ describe("who can do what", () => {
     ).rejects.toThrow(/permission denied/);
   });
 
-  it("checks the passcode", async () => {
-    expect((await asAnon(() => db.query<{ ok: boolean }>("select check_code($1) as ok", [CODE]))).rows[0].ok).toBe(true);
-    expect((await asAnon(() => db.query<{ ok: boolean }>("select check_code('nope') as ok"))).rows[0].ok).toBe(false);
-    expect((await db.query<{ h: string }>("select passcode_hash as h from app_secret")).rows[0].h).not.toContain(CODE);
+  it("accepts a login token, but not the passcode itself, as the key for changes", async () => {
+    const check = (v: string) => asAnon(() => db.query<{ ok: boolean }>("select check_code($1) as ok", [v]));
+    expect((await check(CODE)).rows[0].ok).toBe(true);
+    expect((await check(PASSCODE)).rows[0].ok).toBe(false);
+    expect((await check("nope")).rows[0].ok).toBe(false);
+    await expect(asAnon(() => db.query("select set_status($1, 'bk-dune-herbert', 'read')", [PASSCODE]))).rejects.toThrow(/Wrong passcode/);
+    expect((await db.query<{ h: string }>("select passcode_hash as h from app_secret")).rows[0].h).not.toContain(PASSCODE);
   });
 
   it("refuses every change with a wrong passcode and changes nothing", async () => {
@@ -240,5 +253,66 @@ describe("filling covers on a library that is already live", () => {
     expect(r.rows[0].cover_url).toMatch(/^https:\/\/covers\.openlibrary\.org\/b\/id\/\d+-M\.jpg$/);
     expect(r.rows[1].cover_url).toBe("https://example.com/mine.jpg");
     await db.exec(sql("covers.sql")); // running it again changes nothing
+  });
+});
+
+describe("signing in and the lockout", () => {
+  const fail = () => asAnon(() => db.query<{ t: string | null }>("select login('wrong') as t"));
+  const locked = () => asAnon(() => db.query("select login($1)", [PASSCODE]));
+  const failures = () => count("select count(*) as n from login_failures");
+
+  it("returns nothing for a wrong passcode, keeps a count, and never stores the token as-is", async () => {
+    await db.exec("delete from login_failures");
+    expect((await fail()).rows[0].t).toBeNull();
+    expect(await failures()).toBe(1); // the count survives, because a wrong passcode isn't an error
+    const token = await signIn();
+    expect(token).toMatch(/^[0-9a-f]{48}$/);
+    expect(await failures()).toBe(0); // the right passcode clears the slate
+    expect(await count(`select count(*) as n from app_sessions where token_hash = '${token}'`)).toBe(0);
+  });
+
+  it("locks after 5 wrong tries, refuses even the right passcode, and leaves signed-in devices alone", async () => {
+    await db.exec("delete from login_failures");
+    const token = await signIn();
+    for (let i = 0; i < 5; i++) expect((await fail()).rows[0].t).toBeNull();
+    await expect(locked()).rejects.toThrow(/Too many wrong tries/);
+    await expect(fail()).rejects.toThrow(/Too many wrong tries/);
+    expect(await failures()).toBe(5); // tries made while locked add nothing
+    // A phone that is already signed in carries on.
+    await asAnon(() => db.query("select set_favorite($1, 'bk-dune-herbert', true)", [token]));
+  });
+
+  it("lifts the lockout once the tries are 15 minutes old", async () => {
+    await db.exec("update login_failures set at = now() - interval '16 minutes'");
+    expect(await signIn()).toMatch(/^[0-9a-f]{48}$/);
+  });
+
+  it("also caps a slow guesser at 20 wrong tries a day", async () => {
+    await db.exec("delete from login_failures");
+    await db.exec("insert into login_failures (at) select now() - interval '2 hours' from generate_series(1, 20)");
+    await expect(locked()).rejects.toThrow(/Too many wrong tries/); // none in the last 15 minutes, but 20 today
+    await db.exec("update login_failures set at = now() - interval '25 hours'");
+    expect(await signIn()).toMatch(/^[0-9a-f]{48}$/);
+  });
+
+  it("signs a device out, and ignores a token that has expired", async () => {
+    const a = await signIn();
+    const b = await signIn();
+    const valid = async (t: string) => (await asAnon(() => db.query<{ ok: boolean }>("select check_code($1) as ok", [t]))).rows[0].ok;
+    expect(await valid(a)).toBe(true);
+    await asAnon(() => db.query("select logout($1)", [a]));
+    expect(await valid(a)).toBe(false);
+    expect(await valid(b)).toBe(true); // other devices stay signed in
+    await db.exec("update app_sessions set expires_at = now() - interval '1 minute'");
+    expect(await valid(b)).toBe(false);
+    CODE = await signIn();
+  });
+
+  it("changing the passcode signs every device out and clears a lockout", async () => {
+    await db.exec("insert into login_failures default values");
+    await db.exec(sql("set_passcode.sql").replace("CHOOSE-A-PASSCODE", PASSCODE));
+    expect(await count("select count(*) as n from app_sessions")).toBe(0);
+    expect(await failures()).toBe(0);
+    CODE = await signIn();
   });
 });

@@ -12,7 +12,7 @@ import {
 } from "react";
 import type { Book, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
-import { PasscodeRequiredError } from "@/lib/passcode";
+import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
 import { getRepository } from "@/repositories";
 import type { BookRepository } from "@/repositories/BookRepository";
 
@@ -41,9 +41,12 @@ interface LibraryApi {
   storageLabel: string;
   requiresPasscode: boolean;
   unlocked: boolean;
-  unlock: (code: string) => Promise<boolean>;
+  /** "locked" means too many wrong tries: the database is refusing every sign-in for a while. */
+  unlock: (code: string) => Promise<UnlockResult>;
   lock: () => void;
 }
+
+export type UnlockResult = "ok" | "wrong" | "locked" | "error";
 
 const LibraryContext = createContext<LibraryApi | null>(null);
 
@@ -209,15 +212,16 @@ export function LibraryProvider({
   );
 
   const unlock = useCallback(
-    async (code: string) => {
+    async (code: string): Promise<UnlockResult> => {
       try {
-        if (!(await repo.unlock(code))) return false;
+        if (!(await repo.unlock(code))) return "wrong";
         setUnlocked(true);
         commit({ books: data.current.books, notes: await repo.listNotes() });
-        return true;
-      } catch {
+        return "ok";
+      } catch (e) {
+        if (e instanceof LockedOutError) return "locked";
         setNotice("Couldn't check the passcode. Check your connection and try again.");
-        return false;
+        return "error";
       }
     },
     [repo, commit],

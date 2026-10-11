@@ -1,11 +1,14 @@
-/** Where the passcode is remembered on this device. Never sent anywhere except to Supabase. */
+/**
+ * Where this device remembers it is signed in. What's kept is the login token the database handed back,
+ * never the passcode itself. Only ever sent to Supabase.
+ */
 export interface PasscodeStore {
   get(): string | null;
   set(code: string): void;
   clear(): void;
 }
 
-export const PASSCODE_KEY = "book-archive:passcode";
+export const PASSCODE_KEY = "book-archive:session";
 
 /** Browser storage, with an in-memory fallback if storage is blocked (private mode). */
 export function browserPasscodeStore(): PasscodeStore {
@@ -42,5 +45,13 @@ export class PasscodeRequiredError extends Error {
   constructor() {
     super("Passcode required");
     this.name = "PasscodeRequiredError";
+  }
+}
+
+/** Thrown when too many wrong passcodes have been tried and the database is refusing every sign-in. */
+export class LockedOutError extends Error {
+  constructor() {
+    super("Too many wrong tries");
+    this.name = "LockedOutError";
   }
 }

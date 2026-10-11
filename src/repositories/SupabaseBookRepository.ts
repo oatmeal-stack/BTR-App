@@ -1,6 +1,6 @@
 import { MY_ADDITIONS, type Book, type BookNote, type NewBookInput, type ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
-import { browserPasscodeStore, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
+import { browserPasscodeStore, LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
 import type { BookRepository } from "./BookRepository";
 
 /** The small part of the Supabase client this file uses (so tests can stand in for it). */
@@ -47,6 +47,7 @@ interface NoteRow {
 
 const PAGE = 1000;
 const WRONG_PASSCODE = "28000";
+const LOCKED_OUT = "P0423";
 
 function newId(prefix: string): string {
   const rand =
@@ -82,15 +83,22 @@ export class SupabaseBookRepository implements BookRepository {
   }
 
   async unlock(code: string): Promise<boolean> {
-    const { data, error } = await this.db.rpc("check_code", { p_code: code });
-    if (error) throw new Error(error.message);
-    if (data !== true) return false;
-    this.passcode.set(code);
+    // The database counts wrong tries and, after a few, refuses everything for a while. On success it
+    // returns a login token; that token (not the passcode) is what this device keeps.
+    const { data, error } = await this.db.rpc("login", { p_code: code });
+    if (error) {
+      if (error.code === LOCKED_OUT || /too many/i.test(error.message)) throw new LockedOutError();
+      throw new Error(error.message);
+    }
+    if (typeof data !== "string" || !data) return false;
+    this.passcode.set(data);
     return true;
   }
 
   lock(): void {
+    const token = this.passcode.get();
     this.passcode.clear();
+    if (token) void Promise.resolve(this.db.rpc("logout", { p_code: token })).catch(() => {});
   }
 
   /* ---------- reading ---------- */

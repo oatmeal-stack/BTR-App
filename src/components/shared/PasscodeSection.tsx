@@ -33,10 +33,11 @@ export function PasscodeSection() {
     }
     setError("");
     setBusy(true);
-    const ok = await unlock(code.trim());
+    const result = await unlock(code.trim());
     setBusy(false);
-    if (ok) setCode("");
-    else setError("That passcode isn't right.");
+    if (result === "ok") setCode("");
+    else if (result === "locked") setError("Too many wrong tries. Wait a while, then try again.");
+    else if (result === "wrong") setError("That passcode isn't right.");
   }
 
   return (

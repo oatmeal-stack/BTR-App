@@ -29,8 +29,15 @@ voting tool). Keep them separate.
   author last name, see `isSameBook`).
 - Scores (out of 10) exist only for Man Book Club and show only on the book page.
 - Amazon links are plain search links, never affiliate links.
-- No accounts. The library is publicly readable; every write needs a passcode checked inside the
+- No accounts. The library is publicly readable; every write needs a login token checked inside the
   database. Private notes are not publicly readable.
+- **Sign-in and lockout**: the passcode is only ever sent to `login(p_code)`, which returns a random 90-day
+  session token (stored hashed in `app_sessions`); the device keeps the token, never the passcode, and every
+  write function takes the token as `p_code`. `login` allows 5 wrong tries per 15 min and 20 per day, then
+  refuses even the right passcode (already signed-in devices keep working). It returns null for a wrong
+  passcode instead of raising, because a raised error would roll back the failure count. Do not "simplify"
+  that. Clear a lockout by hand with `delete from login_failures;`. Re-running set_passcode.sql signs all
+  devices out. The owner's passcode is a short numeric code, so this lockout is what protects it.
 - Do not invent data: leave genres blank rather than guess; sample cover art is a placeholder tile.
 
 ## Commands
