@@ -35,6 +35,19 @@ voting tool). Keep them separate.
   without article + author last name) in `removed_keys`, and `seed.sql` skips any row whose key is there, so a
   re-import can't bring it back even under a different spelling. Adding a removed title again finds the old row
   (it stays removed) and the Add screen offers Restore. Restoring clears the key.
+- **Edit a book** (`/edit?id=`): one form replaces title, author, year, pages, cover, genres, moods, lists and the
+  imported note together (`update_book`; ids never change). If the edit makes the book match another visible one
+  (`findDuplicate`), it asks: merge (`merge_books`: lists, notes, tags and gaps move to the kept book, the other
+  copy is *removed*, never deleted), save separately, or keep editing. "Look up cover and details" uses Open
+  Library from the browser and only fills BLANK year/pages (it reports what it saw instead of overwriting).
+- **Publication year and page count** show on the book page (`bookFacts`). The year is a YEAR only (sources
+  give no dates). Source order: your own lists > Wikidata, but a Wikidata year is only used when Open Library's
+  agrees within 2 years (`agreedYears`), because each alone is wrong for 1 book in 5 to 15 (OL said Song of
+  Solomon 1634, Frankenstein 2017). Otherwise it stays blank rather than wrong. Page counts come from Open
+  Library (sanity 40-3000). Scripts: `fetch-facts.mts` (pages + OL year for cross-check), `fetch-years.mts`
+  (Wikidata). `supabase/facts.sql` fills only blanks on the live DB.
+- Open Library matching (`src/lib/openLibrary.ts`) requires title AND author; a title only counts if it equals
+  the wanted one or differs by a subtitle ("Dune Messiah" is NOT "Dune").
 - **Supabase rejects a DELETE or UPDATE with no WHERE** (safeupdate), but the in-memory test database doesn't.
   A bare `delete from login_failures;` once made every CORRECT sign-in fail with a 400 on the live site while
   all tests passed. `src/tests/sqlSafety.test.ts` now scans the SQL files; write `where true` when you mean all rows.

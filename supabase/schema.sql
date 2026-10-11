@@ -43,6 +43,9 @@ create table if not exists books (
 -- import doesn't bring it back even if the new copy is spelled a little differently.
 alter table books add column if not exists removed_at timestamptz;
 
+-- Page count (the year first published is the existing `year` column).
+alter table books add column if not exists page_count int check (page_count is null or page_count > 0);
+
 create table if not exists removed_keys (
   key text primary key,
   book_id text,
@@ -193,6 +196,83 @@ as $$
 begin
   perform require_code(p_code);
   update books set status = p_status, updated_at = now() where id = p_id;
+end;
+$$;
+
+-- Edit a book. Saves the whole form at once: a blank value clears the field, and the book's lists become
+-- exactly p_sources (a list it was already on keeps its rank; with none given it goes on "My additions").
+create or replace function update_book(
+  p_code text, p_id text, p_title text, p_author text, p_year int, p_page_count int,
+  p_cover_url text, p_genres text[], p_moods text[], p_source_note text, p_sources text[]
+)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+declare
+  lists text[] := coalesce(nullif(p_sources, '{}'), array['My additions']);
+begin
+  perform require_code(p_code);
+  if nullif(trim(p_title), '') is null then
+    raise exception 'A book needs a title';
+  end if;
+  update books
+     set title = trim(p_title),
+         author = nullif(trim(p_author), ''),
+         year = p_year,
+         page_count = p_page_count,
+         cover_url = nullif(trim(p_cover_url), ''),
+         genres = coalesce(p_genres, '{}'),
+         moods = coalesce(p_moods, '{}'),
+         source_note = nullif(trim(p_source_note), ''),
+         updated_at = now()
+   where id = p_id;
+  delete from book_sources where book_id = p_id and not (source = any (lists));
+  insert into book_sources (book_id, source)
+  select p_id, trim(s) from unnest(lists) s where trim(s) <> ''
+  on conflict do nothing;
+end;
+$$;
+
+-- Fold one copy of a book into another (the edit made them the same book). The kept book gains the other
+-- one's lists, notes, tags and anything it was missing, and the other copy is removed (hidden, not deleted).
+create or replace function merge_books(p_code text, p_keep text, p_drop text, p_key text default null)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+declare
+  order_of text[] := array['want_to_read', 'abandoned', 'reading', 'read'];
+begin
+  perform require_code(p_code);
+  if p_keep = p_drop then
+    return;
+  end if;
+  insert into book_sources (book_id, source, rank)
+  select p_keep, source, rank from book_sources where book_id = p_drop
+  on conflict do nothing;
+  update book_notes set book_id = p_keep where book_id = p_drop;
+  update books k
+     set year = coalesce(k.year, d.year),
+         page_count = coalesce(k.page_count, d.page_count),
+         cover_url = coalesce(k.cover_url, d.cover_url),
+         rating = coalesce(k.rating, d.rating),
+         source_note = nullif(concat_ws('. ', k.source_note,
+           case when d.source_note is not null and position(d.source_note in coalesce(k.source_note, '')) = 0
+                then d.source_note end), ''),
+         genres = (select coalesce(array_agg(distinct g), '{}') from unnest(k.genres || d.genres) g),
+         moods = (select coalesce(array_agg(distinct m), '{}') from unnest(k.moods || d.moods) m),
+         favorite = k.favorite or d.favorite,
+         status = case when array_position(order_of, d.status) > array_position(order_of, k.status) then d.status else k.status end,
+         updated_at = now()
+    from books d
+   where k.id = p_keep and d.id = p_drop;
+  update books set removed_at = coalesce(removed_at, now()), updated_at = now() where id = p_drop;
+  if p_key is not null then
+    insert into removed_keys (key, book_id) values (p_key, p_drop) on conflict (key) do nothing;
+  end if;
 end;
 $$;
 

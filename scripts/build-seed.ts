@@ -5,6 +5,7 @@
  *   src/data/seedBooks.json   what the app shows on this device
  *   supabase/seed.sql         paste into the Supabase SQL editor
  *   supabase/covers.sql       fills jackets on a library that is already live
+ *   supabase/facts.sql        fills blank years and page counts on a library that is already live
  * and prints per-list counts so they can be checked against the source sheets.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -12,6 +13,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildBooks, checkTags, parsePsv, parseTags, toCoversSql, toSeedSql, SRC, type Row } from "./lib/seed";
 import { applyCovers, parseCovers } from "./lib/covers";
+import { applyLookups, toFactsSql } from "./lib/facts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (f: string): Row[] => parsePsv(readFileSync(join(root, "data", "raw", f), "utf8"));
@@ -33,6 +35,12 @@ const { books, repeatsWithinList, rowCounts } = buildBooks({
 const coversPath = join(root, "data", "covers.psv");
 applyCovers(books, existsSync(coversPath) ? parseCovers(readFileSync(coversPath, "utf8")) : []);
 
+// Page counts (scripts/fetch-facts.mts, Open Library) and publication years (scripts/fetch-years.mts, Wikidata).
+// They only fill blanks: a year from your own lists always wins, and a looked-up year is only used when
+// Wikidata and Open Library agree on it.
+const readIf = (name: string) => (existsSync(join(root, "data", name)) ? readFileSync(join(root, "data", name), "utf8") : "");
+applyLookups(books, readIf("years.psv"), readIf("facts.psv"));
+
 const problems = checkTags(tags, books);
 if (problems.length) {
   console.error(["data/tags.psv has problems:", ...problems].join("\n  "));
@@ -47,6 +55,7 @@ const out = (p: string, text: string) => {
 out("src/data/seedBooks.json", JSON.stringify(books, null, 1) + "\n");
 out("supabase/seed.sql", toSeedSql(books));
 out("supabase/covers.sql", toCoversSql(books));
+out("supabase/facts.sql", toFactsSql(books));
 
 console.log("Rows read per list vs books tagged with that list:");
 for (const source of Object.values(SRC)) {
@@ -65,6 +74,7 @@ if (repeatsWithinList.length) {
   for (const r of repeatsWithinList) console.log(`  ${r.source}: ${r.title}`);
 }
 
+console.log(`Years: ${books.filter((b) => b.year).length}, page counts: ${books.filter((b) => b.pageCount).length}`);
 console.log(`Covers: ${books.filter((b) => b.coverUrl).length} of ${books.length}`);
 console.log(`Tagged: ${books.filter((b) => b.genres.length).length} with genres, ${books.filter((b) => b.moods.length).length} with moods`);
 const lastNameOnly = books.filter((b) => b.author && !/\s/.test(b.author)).length;

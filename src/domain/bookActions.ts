@@ -2,6 +2,7 @@ import {
   MY_ADDITIONS,
   SOURCE_LISTS,
   type Book,
+  type BookEdit,
   type BookNote,
   type NewBookInput,
   type ReadingStatus,
@@ -153,6 +154,94 @@ export function restoreBook(books: Book[], id: string, now: string): Book[] {
     void _removedAt;
     return { ...rest, updatedAt: now };
   });
+}
+
+/** The values the Edit form starts from. */
+export function editFromBook(b: Book): BookEdit {
+  return {
+    title: b.title,
+    author: b.author,
+    year: b.year,
+    pageCount: b.pageCount,
+    coverUrl: b.coverUrl,
+    genres: [...b.genres],
+    moods: [...b.moods],
+    sourceNote: b.sourceNote,
+    sources: b.sources.map((s) => s.source),
+  };
+}
+
+const clean = (s?: string) => s?.trim() || undefined;
+const positive = (n?: number) => (n !== undefined && Number.isFinite(n) && n > 0 ? Math.round(n) : undefined);
+
+/** Saves an edit. A blank field clears the value; a list the book was already on keeps its rank. */
+export function updateBook(books: Book[], id: string, edit: BookEdit, now: string): Book[] {
+  return books.map((b) => {
+    if (b.id !== id) return b;
+    const names = [...new Set(edit.sources.map((s) => s.trim()).filter(Boolean))];
+    return {
+      ...b,
+      title: edit.title.trim() || b.title,
+      author: clean(edit.author),
+      year: positive(edit.year),
+      pageCount: positive(edit.pageCount),
+      coverUrl: clean(edit.coverUrl),
+      genres: edit.genres,
+      moods: edit.moods,
+      sourceNote: clean(edit.sourceNote),
+      sources: (names.length ? names : [MY_ADDITIONS]).map((source) => b.sources.find((s) => s.source === source) ?? { source }),
+      updatedAt: now,
+    };
+  });
+}
+
+/** Another (visible) book this edit would make a duplicate of, if any. */
+export function findDuplicate(books: Book[], id: string, edit: { title: string; author?: string }): Book | undefined {
+  if (!edit.title.trim()) return undefined;
+  return books.find((b) => b.id !== id && isActive(b) && isSameBook(b, { title: edit.title, author: clean(edit.author) }));
+}
+
+const union = (a: string[], b: string[]) => [...new Set([...a, ...b])];
+const STATUS_RANK: Record<ReadingStatus, number> = { want_to_read: 0, abandoned: 1, reading: 2, read: 3 };
+
+/**
+ * Folds `dropId` into `keepId`: the kept book gains its lists, tags and anything it was missing, keeps its
+ * own title and author, takes the more advanced reading status and any favorite; the other copy is
+ * removed (hidden, never deleted). Notes are re-pointed with mergeNotes.
+ */
+export function mergeBooks(books: Book[], keepId: string, dropId: string, now: string): Book[] {
+  const keep = books.find((b) => b.id === keepId);
+  const drop = books.find((b) => b.id === dropId);
+  if (!keep || !drop || keepId === dropId) return books;
+  const merged: Book = {
+    ...keep,
+    year: keep.year ?? drop.year,
+    pageCount: keep.pageCount ?? drop.pageCount,
+    coverUrl: keep.coverUrl ?? drop.coverUrl,
+    sourceNote: [keep.sourceNote, drop.sourceNote && !keep.sourceNote?.includes(drop.sourceNote) ? drop.sourceNote : undefined]
+      .filter(Boolean)
+      .join(". ") || undefined,
+    genres: union(keep.genres, drop.genres),
+    moods: union(keep.moods, drop.moods),
+    sources: mergeSources(keep.sources, drop.sources),
+    favorite: keep.favorite || drop.favorite,
+    status: STATUS_RANK[drop.status] > STATUS_RANK[keep.status] ? drop.status : keep.status,
+    rating: keep.rating ?? drop.rating,
+    updatedAt: now,
+  };
+  return books.map((b) => (b.id === keepId ? merged : b.id === dropId ? { ...b, removedAt: b.removedAt ?? now, updatedAt: now } : b));
+}
+
+export function mergeNotes(notes: BookNote[], keepId: string, dropId: string): BookNote[] {
+  return notes.map((n) => (n.bookId === dropId ? { ...n, bookId: keepId } : n));
+}
+
+/** "Published 1965 · 612 pages", whichever parts are known, or nothing. */
+export function bookFacts(b: Pick<Book, "year" | "pageCount">): string {
+  const parts: string[] = [];
+  if (b.year) parts.push(`Published ${b.year}`);
+  if (b.pageCount) parts.push(`${b.pageCount.toLocaleString("en-US")} pages`);
+  return parts.join(" · ");
 }
 
 export function addNote(

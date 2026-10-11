@@ -1,4 +1,4 @@
-import { MY_ADDITIONS, type Book, type BookNote, type NewBookInput, type ReadingStatus } from "@/domain/book";
+import { MY_ADDITIONS, type Book, type BookEdit, type BookNote, type NewBookInput, type ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import { browserPasscodeStore, LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
 import type { BookRepository } from "./BookRepository";
@@ -26,6 +26,7 @@ interface BookRow {
   rating: number | string | null;
   cover_url: string | null;
   removed_at: string | null;
+  page_count: number | null;
   source_note: string | null;
   favorite: boolean;
   genres: string[] | null;
@@ -132,6 +133,7 @@ export class SupabaseBookRepository implements BookRepository {
       rating: r.rating === null ? undefined : Number(r.rating),
       coverUrl: r.cover_url ?? undefined,
       removedAt: r.removed_at ?? undefined,
+      pageCount: r.page_count ?? undefined,
       sourceNote: r.source_note ?? undefined,
       favorite: r.favorite,
       genres: r.genres ?? [],
@@ -177,6 +179,29 @@ export class SupabaseBookRepository implements BookRepository {
 
   async setFavorite(bookId: string, favorite: boolean): Promise<void> {
     await this.call("set_favorite", { p_id: bookId, p_favorite: favorite });
+  }
+
+  async updateBook(bookId: string, edit: BookEdit): Promise<void> {
+    await this.call("update_book", {
+      p_id: bookId,
+      p_title: edit.title.trim(),
+      p_author: edit.author?.trim() || null,
+      p_year: edit.year ?? null,
+      p_page_count: edit.pageCount ?? null,
+      p_cover_url: edit.coverUrl?.trim() || null,
+      p_genres: edit.genres,
+      p_moods: edit.moods,
+      p_source_note: edit.sourceNote?.trim() || null,
+      p_sources: edit.sources,
+    });
+  }
+
+  async mergeBooks(keep: Pick<Book, "id">, drop: Pick<Book, "id" | "title" | "author">): Promise<void> {
+    await this.call("merge_books", {
+      p_keep: keep.id,
+      p_drop: drop.id,
+      p_key: actions.importKey(drop.title, drop.author),
+    });
   }
 
   async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {

@@ -176,7 +176,8 @@ describe("book page", () => {
     await screen.findByRole("heading", { name: "Lonesome Dove" });
     expect(SAMPLE_BOOKS.find((b) => b.id === DOVE)!.coverUrl).toBeUndefined();
     expect(screen.getByRole("img", { name: "Cover of Lonesome Dove" })).toBeInTheDocument();
-    expect(screen.getByText("Larry McMurtry · 1985")).toBeInTheDocument();
+    expect(screen.getByText("Larry McMurtry")).toBeInTheDocument();
+    expect(screen.getByText("Published 1985")).toBeInTheDocument();
   });
 
   it("changes status and favorite without changing the book", async () => {

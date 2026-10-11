@@ -1,0 +1,89 @@
+bk-winner-wayne|The Winner|Wayne
+bk-in-crowd-vassell|The In Crowd|Vassell
+bk-things-are-never-so-bad-they-can-t-get-worse-neumann|Things Are Never So Bad They Can't Get Worse|Neumann
+bk-no-no-boys-okada|The No-No Boys|John Okada
+bk-marching-powder-mcfadden|Marching Powder|Rusty Young and Thomas McFadden
+bk-lamb-the-gospel-according-to-biff-christ-s-childhood-pal-moore|Lamb: The Gospel According to Biff, Christ's Childhood Pal|Christopher Moore
+bk-exploration-of-the-colorado-river-powell|An Exploration of the Colorado River|John Wesley Powell
+bk-voices-from-chernobyl-alexievich|Voices from Chernobyl|Svetlana Alexievich
+bk-freedom-franzen|Freedom|Jonathan Franzen
+bk-ghosts-of-everest-al|Ghosts of Everest|Jochen Hemmleb, Larry A. Johnson and Eric R. Simonson
+bk-havana-nocturne-english|Havana Nocturne|T.J. English
+bk-john-dies-at-the-end-pargin|John Dies at the End|Jason Pargin
+bk-outsider-camus|The Outsider|Albert Camus
+bk-son-of-man-amo|The Son of Man|Jean-Baptiste Del Amo
+bk-sharks-in-the-time-of-saviours-washburn|Sharks in the Time of Saviours|Kawai Strong Washburn
+bk-man-called-ove-backman|A Man Called Ove|Fredrik Backman
+bk-drive-your-plow-over-the-bones-of-the-dead-tokarczuk|Drive Your Plow Over the Bones of the Dead|Olga Tokarczuk
+bk-goblin-emperor-addison|The Goblin Emperor|Katherine Addison
+bk-beyond-the-deepwoods-riddell|Beyond the Deepwoods|Paul Stewart and Chris Riddell
+bk-box-88-series-cumming|BOX 88 (series)|Charles Cumming
+bk-jason-bourne-novels-series-ludlum|Jason Bourne novels (series)|Robert Ludlum
+bk-quiller-series-hall|Quiller series|Adam Hall
+bk-scot-harvath-series-thor|Scot Harvath series|Brad Thor
+bk-mitch-rapp-series-flynn|Mitch Rapp series|Vince Flynn
+bk-typhoon-cumming|Typhoon|Charles Cumming
+bk-elias-network-gervais|The Elias Network|Simon Gervais
+bk-battle-born-series-stewart|Battle Born series|Jack Stewart
+bk-helsinki-affair-pitoniak|The Helsinki Affair|Anna Pitoniak
+bk-scarlet-papers-richardson|The Scarlet Papers|Matthew Richardson
+bk-william-catesby-series-wilson|William Catesby series|Edward Wilson
+bk-bernie-gunther-series-kerr|Bernie Gunther series|Philip Kerr
+bk-small-death-in-lisbon-wilson|A Small Death in Lisbon|Robert Wilson
+bk-tommy-hambledon-series-coles|Tommy Hambledon series|Manning Coles
+bk-spy-among-friends-macintyre|A Spy Among Friends|Ben Macintyre
+bk-jack-higgins-spy-thrillers-higgins|Jack Higgins spy thrillers|Jack Higgins
+bk-berlin-station-series-downing|Berlin Station series|David Downing
+bk-maggie-hope-series-macneal|Maggie Hope series|Susan Elia MacNeal
+bk-nine-dash-line-saso|NINE DASH LINE|Emily Saso
+bk-in-arabia-voss|In Arabia|Tony Voss
+bk-laundry-files-series-stross|Laundry Files (series)|Charles Stross
+bk-spy-at-war-beaumont|A Spy at War|Charles Beaumont
+bk-spy-alone-beaumont|A Spy Alone|Charles Beaumont
+bk-trinity-six-cumming|The Trinity Six|Charles Cumming
+bk-red-white-and-blue-carpenter|Red White and Blue|Lea Carpenter
+bk-eighth-dwarf-thomas|The Eighth Dwarf|Ross Thomas
+bk-of-all-the-bloody-cheek-macauliffe|Of All the Bloody Cheek|Frank MacAuliffe
+bk-perfect-nanny-slimani|The Perfect Nanny|Leila Slimani
+bk-girl-with-the-dragon-tattoo-larsson|The Girl With the Dragon Tattoo|Stieg Larsson
+bk-cal-hooper-trilogy-french|Cal Hooper trilogy|Tana French
+bk-jackson-brodie-series-atkinson|Jackson Brodie series|Kate Atkinson
+bk-kurt-wallander-series-mankell|Kurt Wallander series|Henning Mankell
+bk-harry-hole-series-nesb|Harry Hole series|Jo Nesbø
+bk-dave-robicheaux-series-burke|Dave Robicheaux series|James Lee Burke
+bk-cormoran-strike-series-galbraith|Cormoran Strike series|Robert Galbraith
+bk-pendergast-series-child|Pendergast series|Douglas Preston and Lincoln Child
+bk-jane-whitefield-series-perry|Jane Whitefield series|Thomas Perry
+bk-butcher-s-boy-series-perry|Butcher's Boy series|Thomas Perry
+bk-sean-duffy-series-mckinty|Sean Duffy series|Adrian McKinty
+bk-harry-bosch-series-connelly|Harry Bosch series|Michael Connelly
+bk-jack-reacher-series-child|Jack Reacher series|Lee Child
+bk-sue-grafton-alphabet-series-grafton|Sue Grafton alphabet series|Sue Grafton
+bk-v-i-warshawski-series-paretsky|V.I. Warshawski series|Sara Paretsky
+bk-karin-slaughter-novels-slaughter|Karin Slaughter novels|Karin Slaughter
+bk-p-d-james-novels-james|P.D. James novels|P.D. James
+bk-louise-penny-novels-penny|Louise Penny novels|Louise Penny
+bk-ruth-rendell-novels-rendell|Ruth Rendell novels|Ruth Rendell
+bk-elmore-leonard-novels-leonard|Elmore Leonard novels|Elmore Leonard
+bk-james-ellroy-novels-ellroy|James Ellroy novels|James Ellroy
+bk-robert-crais-novels-crais|Robert Crais novels|Robert Crais
+bk-karin-fossum-novels-fossum|Karin Fossum novels|Karin Fossum
+bk-elizabeth-george-novels-george|Elizabeth George novels|Elizabeth George
+bk-camilla-lackberg-novels-lackberg|Camilla Läckberg novels|Camilla Läckberg
+bk-george-pelecanos-novels-pelecanos|George Pelecanos novels|George Pelecanos
+bk-denise-mina-novels-mina|Denise Mina novels|Denise Mina
+bk-ann-cleeves-novels-cleeves|Ann Cleeves novels|Ann Cleeves
+bk-john-sandford-novels-sandford|John Sandford novels|John Sandford
+bk-john-connolly-novels-connolly|John Connolly novels|John Connolly
+bk-carl-hiaasen-novels-hiaasen|Carl Hiaasen novels|Carl Hiaasen
+bk-laura-lippman-novels-lippman|Laura Lippman novels|Laura Lippman
+bk-joyce-carol-oates-novels-oates|Joyce Carol Oates novels|Joyce Carol Oates
+bk-ian-rankin-novels-rankin|Ian Rankin novels|Ian Rankin
+bk-ragnar-jonasson-novels-jonasson|Ragnar Jónasson novels|Ragnar Jónasson
+bk-donna-leon-novels-leon|Donna Leon novels|Donna Leon
+bk-peter-james-novels-james|Peter James novels|Peter James
+bk-martin-cruz-smith-novels-smith|Martin Cruz Smith novels|Martin Cruz Smith
+bk-patrick-radden-keefe-books-keefe|Patrick Radden Keefe books|Patrick Radden Keefe
+bk-michael-crichton-novels-crichton|Michael Crichton novels|Michael Crichton
+bk-tom-clancy-novels-clancy|Tom Clancy novels|Tom Clancy
+bk-arturo-perez-reverte-novels-reverte|Arturo Pérez-Reverte novels|Arturo Pérez-Reverte

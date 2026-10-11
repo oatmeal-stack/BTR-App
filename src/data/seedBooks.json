@@ -3,6 +3,7 @@
   "id": "bk-wide-wide-sea-sides",
   "title": "The Wide Wide Sea",
   "author": "Hampton Sides",
+  "year": 2024,
   "status": "want_to_read",
   "sourceNote": "Upcoming/Not yet rated",
   "favorite": false,
@@ -22,7 +23,8 @@
   ],
   "createdAt": "2026-08-09T12:00:00.000Z",
   "updatedAt": "2026-08-09T12:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14663913-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14663913-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-winner-wayne",
@@ -63,12 +65,14 @@
   ],
   "createdAt": "2026-08-09T11:58:00.000Z",
   "updatedAt": "2026-08-09T11:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12001726-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12001726-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-history-of-sound-shattuck",
   "title": "The History of Sound",
   "author": "Ben Shattuck",
+  "year": 2024,
   "status": "want_to_read",
   "rating": 7.9,
   "favorite": false,
@@ -87,7 +91,8 @@
   ],
   "createdAt": "2026-08-09T11:57:00.000Z",
   "updatedAt": "2026-08-09T11:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14647312-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14647312-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-alchemist-coelho",
@@ -111,12 +116,13 @@
   ],
   "createdAt": "2026-08-09T11:56:00.000Z",
   "updatedAt": "2026-08-09T11:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15173647-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15076026-M.jpg"
  },
  {
   "id": "bk-shipping-news-proulx",
   "title": "The Shipping News",
   "author": "Annie Proulx",
+  "year": 1993,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -134,7 +140,8 @@
   ],
   "createdAt": "2026-08-09T11:55:00.000Z",
   "updatedAt": "2026-08-09T11:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11144579-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11144579-M.jpg",
+  "pageCount": 345
  },
  {
   "id": "bk-in-crowd-vassell",
@@ -177,12 +184,14 @@
   ],
   "createdAt": "2026-08-09T11:53:00.000Z",
   "updatedAt": "2026-08-09T11:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11377019-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11377019-M.jpg",
+  "pageCount": 116
  },
  {
   "id": "bk-ethan-frome-wharton",
   "title": "Ethan Frome",
   "author": "Edith Wharton",
+  "year": 1911,
   "status": "want_to_read",
   "rating": 6.9,
   "favorite": false,
@@ -201,12 +210,14 @@
   ],
   "createdAt": "2026-08-09T11:52:00.000Z",
   "updatedAt": "2026-08-09T11:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12622100-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12622100-M.jpg",
+  "pageCount": 98
  },
  {
   "id": "bk-james-everett",
   "title": "James",
   "author": "Percival Everett",
+  "year": 2024,
   "status": "want_to_read",
   "rating": 7.7,
   "favorite": false,
@@ -226,7 +237,8 @@
   ],
   "createdAt": "2026-08-09T11:51:00.000Z",
   "updatedAt": "2026-08-09T11:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14619520-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14619520-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-so-big-ferber",
@@ -250,12 +262,14 @@
   ],
   "createdAt": "2026-08-09T11:50:00.000Z",
   "updatedAt": "2026-08-09T11:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12622096-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12622096-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-plot-against-america-roth",
   "title": "The Plot Against America",
   "author": "Philip Roth",
+  "year": 2004,
   "status": "want_to_read",
   "rating": 7.4,
   "favorite": false,
@@ -275,7 +289,8 @@
   ],
   "createdAt": "2026-08-09T11:49:00.000Z",
   "updatedAt": "2026-08-09T11:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12855926-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12855926-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-things-are-never-so-bad-they-can-t-get-worse-neumann",
@@ -299,6 +314,7 @@
   "id": "bk-lonesome-dove-mcmurtry",
   "title": "Lonesome Dove",
   "author": "Larry McMurtry",
+  "year": 1985,
   "status": "want_to_read",
   "rating": 9,
   "sourceNote": "Highest-rated book on their list",
@@ -319,12 +335,14 @@
   ],
   "createdAt": "2026-08-09T11:47:00.000Z",
   "updatedAt": "2026-08-09T11:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14819521-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14819521-M.jpg",
+  "pageCount": 945
  },
  {
   "id": "bk-erasure-everett",
   "title": "Erasure",
   "author": "Percival Everett",
+  "year": 2001,
   "status": "want_to_read",
   "rating": 8.2,
   "favorite": false,
@@ -342,12 +360,14 @@
   ],
   "createdAt": "2026-08-09T11:46:00.000Z",
   "updatedAt": "2026-08-09T11:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/546401-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/546401-M.jpg",
+  "pageCount": 278
  },
  {
   "id": "bk-small-mercies-lehane",
   "title": "Small Mercies",
   "author": "Dennis Lehane",
+  "year": 2023,
   "status": "want_to_read",
   "rating": 7.5,
   "favorite": false,
@@ -373,6 +393,7 @@
   "id": "bk-summons-to-memphis-taylor",
   "title": "A Summons to Memphis",
   "author": "Peter Taylor",
+  "year": 1986,
   "status": "want_to_read",
   "rating": 6.2,
   "favorite": false,
@@ -390,7 +411,8 @@
   ],
   "createdAt": "2026-08-09T11:44:00.000Z",
   "updatedAt": "2026-08-09T11:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10621150-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10621150-M.jpg",
+  "pageCount": 224
  },
  {
   "id": "bk-no-no-boys-okada",
@@ -438,12 +460,14 @@
   ],
   "createdAt": "2026-08-09T11:42:00.000Z",
   "updatedAt": "2026-08-09T11:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12859932-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12859932-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-beloved-morrison",
   "title": "Beloved",
   "author": "Toni Morrison",
+  "year": 1987,
   "status": "want_to_read",
   "rating": 8,
   "favorite": false,
@@ -462,12 +486,14 @@
   ],
   "createdAt": "2026-08-09T11:41:00.000Z",
   "updatedAt": "2026-08-09T11:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15169563-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15169563-M.jpg",
+  "pageCount": 321
  },
  {
   "id": "bk-demon-copperhead-kingsolver",
   "title": "Demon Copperhead",
   "author": "Barbara Kingsolver",
+  "year": 2022,
   "status": "want_to_read",
   "rating": 8.9,
   "favorite": false,
@@ -486,12 +512,14 @@
   ],
   "createdAt": "2026-08-09T11:40:00.000Z",
   "updatedAt": "2026-08-09T11:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14817081-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14817081-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-horse-brooks",
   "title": "Horse",
   "author": "Geraldine Brooks",
+  "year": 2022,
   "status": "want_to_read",
   "rating": 6.5,
   "favorite": false,
@@ -510,12 +538,14 @@
   ],
   "createdAt": "2026-08-09T11:39:00.000Z",
   "updatedAt": "2026-08-09T11:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14356912-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14356912-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-klara-and-the-sun-ishiguro",
   "title": "Klara and the Sun",
   "author": "Kazuo Ishiguro",
+  "year": 2021,
   "status": "want_to_read",
   "rating": 8,
   "favorite": false,
@@ -535,12 +565,14 @@
   ],
   "createdAt": "2026-08-09T11:38:00.000Z",
   "updatedAt": "2026-08-09T11:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12818437-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12818437-M.jpg",
+  "pageCount": 334
  },
  {
   "id": "bk-wager-grann",
   "title": "The Wager",
   "author": "David Grann",
+  "year": 2023,
   "status": "want_to_read",
   "rating": 8,
   "favorite": false,
@@ -560,7 +592,8 @@
   ],
   "createdAt": "2026-08-09T11:37:00.000Z",
   "updatedAt": "2026-08-09T11:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15116002-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15116002-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-marching-powder-mcfadden",
@@ -588,6 +621,7 @@
   "id": "bk-ordinary-grace-krueger",
   "title": "Ordinary Grace",
   "author": "William Kent Krueger",
+  "year": 2013,
   "status": "want_to_read",
   "rating": 8,
   "favorite": false,
@@ -606,7 +640,8 @@
   ],
   "createdAt": "2026-08-09T11:35:00.000Z",
   "updatedAt": "2026-08-09T11:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14835548-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14835548-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-river-heller",
@@ -630,7 +665,8 @@
   ],
   "createdAt": "2026-08-09T11:34:00.000Z",
   "updatedAt": "2026-08-09T11:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8807240-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8807240-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-captains-courageous-kipling",
@@ -653,7 +689,8 @@
   ],
   "createdAt": "2026-08-09T11:33:00.000Z",
   "updatedAt": "2026-08-09T11:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14924147-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14924147-M.jpg",
+  "pageCount": 150
  },
  {
   "id": "bk-hellhound-on-his-trail-sides",
@@ -677,12 +714,14 @@
   ],
   "createdAt": "2026-08-09T11:32:00.000Z",
   "updatedAt": "2026-08-09T11:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6447130-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6447130-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-dead-wake-the-last-crossing-of-the-lusitania-larson",
   "title": "Dead Wake: The Last Crossing of the Lusitania",
   "author": "Erik Larson",
+  "year": 2015,
   "status": "want_to_read",
   "rating": 7.4,
   "favorite": false,
@@ -701,7 +740,8 @@
   ],
   "createdAt": "2026-08-09T11:31:00.000Z",
   "updatedAt": "2026-08-09T11:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14991168-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14991168-M.jpg",
+  "pageCount": 448
  },
  {
   "id": "bk-feather-thief-johnson",
@@ -724,12 +764,14 @@
   ],
   "createdAt": "2026-08-09T11:30:00.000Z",
   "updatedAt": "2026-08-09T11:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8749481-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8749481-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-river-of-doubt-millard",
   "title": "The River of Doubt",
   "author": "Candice Millard",
+  "year": 2005,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -749,12 +791,14 @@
   ],
   "createdAt": "2026-08-09T11:29:00.000Z",
   "updatedAt": "2026-08-09T11:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/242461-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/242461-M.jpg",
+  "pageCount": 440
  },
  {
   "id": "bk-lincoln-highway-towles",
   "title": "The Lincoln Highway",
   "author": "Amor Towles",
+  "year": 2021,
   "status": "want_to_read",
   "rating": 7.7,
   "favorite": false,
@@ -774,12 +818,14 @@
   ],
   "createdAt": "2026-08-09T11:28:00.000Z",
   "updatedAt": "2026-08-09T11:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15146301-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15146301-M.jpg",
+  "pageCount": 583
  },
  {
   "id": "bk-great-santini-conroy",
   "title": "The Great Santini",
   "author": "Pat Conroy",
+  "year": 1976,
   "status": "want_to_read",
   "rating": 8.1,
   "favorite": false,
@@ -797,12 +843,14 @@
   ],
   "createdAt": "2026-08-09T11:27:00.000Z",
   "updatedAt": "2026-08-09T11:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/368817-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/368817-M.jpg",
+  "pageCount": 476
  },
  {
   "id": "bk-project-hail-mary-weir",
   "title": "Project Hail Mary",
   "author": "Andy Weir",
+  "year": 2021,
   "status": "want_to_read",
   "rating": 6.4,
   "favorite": false,
@@ -821,12 +869,14 @@
   ],
   "createdAt": "2026-08-09T11:26:00.000Z",
   "updatedAt": "2026-08-09T11:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15208263-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15208263-M.jpg",
+  "pageCount": 496
  },
  {
   "id": "bk-dog-soldiers-stone",
   "title": "Dog Soldiers",
   "author": "Robert Stone",
+  "year": 1974,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -845,12 +895,14 @@
   ],
   "createdAt": "2026-08-09T11:25:00.000Z",
   "updatedAt": "2026-08-09T11:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/257188-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/257188-M.jpg",
+  "pageCount": 342
  },
  {
   "id": "bk-deacon-king-kong-mcbride",
   "title": "Deacon King Kong",
   "author": "James McBride",
+  "year": 2020,
   "status": "want_to_read",
   "rating": 8.5,
   "favorite": false,
@@ -870,7 +922,8 @@
   ],
   "createdAt": "2026-08-09T11:24:00.000Z",
   "updatedAt": "2026-08-09T11:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14714704-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14714704-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-field-guide-to-getting-lost-solnit",
@@ -893,12 +946,14 @@
   ],
   "createdAt": "2026-08-09T11:23:00.000Z",
   "updatedAt": "2026-08-09T11:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/400552-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/400552-M.jpg",
+  "pageCount": 210
  },
  {
   "id": "bk-cook-s-tour-bourdain",
   "title": "A Cook's Tour",
   "author": "Anthony Bourdain",
+  "year": 2001,
   "status": "want_to_read",
   "sourceNote": "Not yet rated (TBD on site)",
   "favorite": false,
@@ -917,12 +972,14 @@
   ],
   "createdAt": "2026-08-09T11:22:00.000Z",
   "updatedAt": "2026-08-09T11:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10661153-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10661153-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-night-boat-to-tangier-barry",
   "title": "Night Boat to Tangier",
   "author": "Kevin Barry",
+  "year": 2019,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -942,12 +999,14 @@
   ],
   "createdAt": "2026-08-09T11:21:00.000Z",
   "updatedAt": "2026-08-09T11:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13994693-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13994693-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-news-of-the-world-jiles",
   "title": "News of the World",
   "author": "Paulette Jiles",
+  "year": 2016,
   "status": "want_to_read",
   "rating": 7.4,
   "favorite": false,
@@ -967,7 +1026,8 @@
   ],
   "createdAt": "2026-08-09T11:20:00.000Z",
   "updatedAt": "2026-08-09T11:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10533937-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10533937-M.jpg",
+  "pageCount": 232
  },
  {
   "id": "bk-tiger-vaillant",
@@ -991,12 +1051,14 @@
   ],
   "createdAt": "2026-08-09T11:19:00.000Z",
   "updatedAt": "2026-08-09T11:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8218954-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8218954-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-overstory-powers",
   "title": "The Overstory",
   "author": "Richard Powers",
+  "year": 2018,
   "status": "want_to_read",
   "rating": 7.4,
   "favorite": false,
@@ -1015,12 +1077,14 @@
   ],
   "createdAt": "2026-08-09T11:18:00.000Z",
   "updatedAt": "2026-08-09T11:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8758252-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8758252-M.jpg",
+  "pageCount": 531
  },
  {
   "id": "bk-code-of-the-woosters-wodehouse",
   "title": "The Code of the Woosters",
   "author": "P.G. Wodehouse",
+  "year": 1938,
   "status": "want_to_read",
   "sourceNote": "Not yet rated (TBD on site)",
   "favorite": false,
@@ -1039,7 +1103,8 @@
   ],
   "createdAt": "2026-08-09T11:17:00.000Z",
   "updatedAt": "2026-08-09T11:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/254199-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/254199-M.jpg",
+  "pageCount": 231
  },
  {
   "id": "bk-last-orders-swift",
@@ -1067,7 +1132,8 @@
   ],
   "createdAt": "2026-08-09T11:16:00.000Z",
   "updatedAt": "2026-08-09T11:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9650191-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9650191-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-executive-hoodlum-costello",
@@ -1085,12 +1151,14 @@
    }
   ],
   "createdAt": "2026-08-09T11:15:00.000Z",
-  "updatedAt": "2026-08-09T11:15:00.000Z"
+  "updatedAt": "2026-08-09T11:15:00.000Z",
+  "pageCount": 268
  },
  {
   "id": "bk-me-talk-pretty-one-day-sedaris",
   "title": "Me Talk Pretty One Day",
   "author": "David Sedaris",
+  "year": 2000,
   "status": "want_to_read",
   "rating": 6,
   "favorite": false,
@@ -1109,12 +1177,14 @@
   ],
   "createdAt": "2026-08-09T11:14:00.000Z",
   "updatedAt": "2026-08-09T11:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14839451-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14839451-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-nickel-boys-whitehead",
   "title": "The Nickel Boys",
   "author": "Colson Whitehead",
+  "year": 2019,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -1133,12 +1203,14 @@
   ],
   "createdAt": "2026-08-09T11:13:00.000Z",
   "updatedAt": "2026-08-09T11:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8747820-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8747820-M.jpg",
+  "pageCount": 224
  },
  {
   "id": "bk-lost-man-harper",
   "title": "The Lost Man",
   "author": "Jane Harper",
+  "year": 2018,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -1158,12 +1230,14 @@
   ],
   "createdAt": "2026-08-09T11:12:00.000Z",
   "updatedAt": "2026-08-09T11:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12587565-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12587565-M.jpg",
+  "pageCount": 376
  },
  {
   "id": "bk-cal-maclaverty",
   "title": "Cal",
   "author": "Bernard MacLaverty",
+  "year": 1983,
   "status": "want_to_read",
   "rating": 8,
   "favorite": false,
@@ -1182,12 +1256,14 @@
   ],
   "createdAt": "2026-08-09T11:11:00.000Z",
   "updatedAt": "2026-08-09T11:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/5342746-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/5342746-M.jpg",
+  "pageCount": 170
  },
  {
   "id": "bk-washington-black-edugyan",
   "title": "Washington Black",
   "author": "Esi Edugyan",
+  "year": 2018,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -1207,12 +1283,14 @@
   ],
   "createdAt": "2026-08-09T11:10:00.000Z",
   "updatedAt": "2026-08-09T11:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15124261-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15124261-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-how-to-change-your-mind-pollan",
   "title": "How to Change Your Mind",
   "author": "Michael Pollan",
+  "year": 2018,
   "status": "want_to_read",
   "rating": 5.3,
   "favorite": false,
@@ -1230,7 +1308,8 @@
   ],
   "createdAt": "2026-08-09T11:09:00.000Z",
   "updatedAt": "2026-08-09T11:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14633674-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14633674-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-devil-s-highway-urrea",
@@ -1254,12 +1333,14 @@
   ],
   "createdAt": "2026-08-09T11:08:00.000Z",
   "updatedAt": "2026-08-09T11:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/187537-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/187537-M.jpg",
+  "pageCount": 264
  },
  {
   "id": "bk-lake-success-shteyngart",
   "title": "Lake Success",
   "author": "Gary Shteyngart",
+  "year": 2018,
   "status": "want_to_read",
   "rating": 5.8,
   "favorite": false,
@@ -1278,12 +1359,14 @@
   ],
   "createdAt": "2026-08-09T11:07:00.000Z",
   "updatedAt": "2026-08-09T11:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8824463-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8824463-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-killers-of-the-flower-moon-grann",
   "title": "Killers of the Flower Moon",
   "author": "David Grann",
+  "year": 2017,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -1304,12 +1387,14 @@
   ],
   "createdAt": "2026-08-09T11:06:00.000Z",
   "updatedAt": "2026-08-09T11:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15161756-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15161756-M.jpg",
+  "pageCount": 350
  },
  {
   "id": "bk-undaunted-courage-ambrose",
   "title": "Undaunted Courage",
   "author": "Stephen E. Ambrose",
+  "year": 1997,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -1329,12 +1414,14 @@
   ],
   "createdAt": "2026-08-09T11:05:00.000Z",
   "updatedAt": "2026-08-09T11:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6616996-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6616996-M.jpg",
+  "pageCount": 521
  },
  {
   "id": "bk-beneath-a-scarlet-sky-sullivan",
   "title": "Beneath a Scarlet Sky",
   "author": "Mark T. Sullivan",
+  "year": 2017,
   "status": "want_to_read",
   "rating": 6.9,
   "favorite": false,
@@ -1353,7 +1440,8 @@
   ],
   "createdAt": "2026-08-09T11:04:00.000Z",
   "updatedAt": "2026-08-09T11:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8315357-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8315357-M.jpg",
+  "pageCount": 576
  },
  {
   "id": "bk-american-prison-bauer",
@@ -1376,12 +1464,14 @@
   ],
   "createdAt": "2026-08-09T11:03:00.000Z",
   "updatedAt": "2026-08-09T11:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8824561-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8824561-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-bend-in-the-river-naipaul",
   "title": "A Bend in the River",
   "author": "V.S. Naipaul",
+  "year": 1979,
   "status": "want_to_read",
   "rating": 6.5,
   "favorite": false,
@@ -1399,12 +1489,14 @@
   ],
   "createdAt": "2026-08-09T11:02:00.000Z",
   "updatedAt": "2026-08-09T11:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8304124-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8304124-M.jpg",
+  "pageCount": 296
  },
  {
   "id": "bk-zeitoun-eggers",
   "title": "Zeitoun",
   "author": "Dave Eggers",
+  "year": 2009,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -1422,12 +1514,14 @@
   ],
   "createdAt": "2026-08-09T11:01:00.000Z",
   "updatedAt": "2026-08-09T11:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11575829-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11575829-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-last-lecture-pausch",
   "title": "The Last Lecture",
   "author": "Randy Pausch",
+  "year": 2008,
   "status": "want_to_read",
   "sourceNote": "Not yet rated (N/A on site)",
   "favorite": false,
@@ -1445,12 +1539,14 @@
   ],
   "createdAt": "2026-08-09T11:00:00.000Z",
   "updatedAt": "2026-08-09T11:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15218053-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15218053-M.jpg",
+  "pageCount": 233
  },
  {
   "id": "bk-women-bukowski",
   "title": "Women",
   "author": "Charles Bukowski",
+  "year": 1978,
   "status": "want_to_read",
   "rating": 6,
   "favorite": false,
@@ -1469,12 +1565,14 @@
   ],
   "createdAt": "2026-08-09T10:59:00.000Z",
   "updatedAt": "2026-08-09T10:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/670144-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/670144-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-butcher-s-crossing-williams",
   "title": "Butcher's Crossing",
   "author": "John Williams",
+  "year": 1960,
   "status": "want_to_read",
   "rating": 8.4,
   "favorite": false,
@@ -1495,12 +1593,14 @@
   ],
   "createdAt": "2026-08-09T10:58:00.000Z",
   "updatedAt": "2026-08-09T10:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11335214-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11335214-M.jpg",
+  "pageCount": 274
  },
  {
   "id": "bk-my-uncle-oswald-dahl",
   "title": "My Uncle Oswald",
   "author": "Roald Dahl",
+  "year": 1979,
   "status": "want_to_read",
   "rating": 5.7,
   "favorite": false,
@@ -1518,7 +1618,8 @@
   ],
   "createdAt": "2026-08-09T10:57:00.000Z",
   "updatedAt": "2026-08-09T10:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6938347-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6938347-M.jpg",
+  "pageCount": 222
  },
  {
   "id": "bk-lost-city-of-the-monkey-god-preston",
@@ -1542,12 +1643,14 @@
   ],
   "createdAt": "2026-08-09T10:56:00.000Z",
   "updatedAt": "2026-08-09T10:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13773737-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13773737-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-gentleman-in-moscow-towles",
   "title": "A Gentleman in Moscow",
   "author": "Amor Towles",
+  "year": 2016,
   "status": "want_to_read",
   "rating": 7.4,
   "sourceNote": "100th book milestone",
@@ -1568,7 +1671,8 @@
   ],
   "createdAt": "2026-08-09T10:55:00.000Z",
   "updatedAt": "2026-08-09T10:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12064129-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12064129-M.jpg",
+  "pageCount": 511
  },
  {
   "id": "bk-narrow-road-to-the-deep-north-flanagan",
@@ -1592,7 +1696,8 @@
   ],
   "createdAt": "2026-08-09T10:54:00.000Z",
   "updatedAt": "2026-08-09T10:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8035435-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8035435-M.jpg",
+  "pageCount": 445
  },
  {
   "id": "bk-taking-of-k-129-dean",
@@ -1617,7 +1722,8 @@
   ],
   "createdAt": "2026-08-09T10:53:00.000Z",
   "updatedAt": "2026-08-09T10:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8819727-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8819727-M.jpg",
+  "pageCount": 444
  },
  {
   "id": "bk-1984-orwell",
@@ -1647,6 +1753,7 @@
   "id": "bk-sapiens-a-brief-history-of-humankind-harari",
   "title": "Sapiens: A Brief History of Humankind",
   "author": "Yuval Noah Harari",
+  "year": 2011,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -1665,12 +1772,14 @@
   ],
   "createdAt": "2026-08-09T10:51:00.000Z",
   "updatedAt": "2026-08-09T10:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9137127-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9137127-M.jpg",
+  "pageCount": 456
  },
  {
   "id": "bk-moonglow-chabon",
   "title": "Moonglow",
   "author": "Michael Chabon",
+  "year": 2016,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -1689,12 +1798,14 @@
   ],
   "createdAt": "2026-08-09T10:50:00.000Z",
   "updatedAt": "2026-08-09T10:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13622055-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13622055-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-hillbilly-elegy-vance",
   "title": "Hillbilly Elegy",
   "author": "J.D. Vance",
+  "year": 2017,
   "status": "want_to_read",
   "rating": 6,
   "favorite": false,
@@ -1712,12 +1823,14 @@
   ],
   "createdAt": "2026-08-09T10:49:00.000Z",
   "updatedAt": "2026-08-09T10:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14846901-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14846901-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-high-wind-in-jamaica-hughes",
   "title": "A High Wind in Jamaica",
   "author": "Richard Hughes",
+  "year": 1929,
   "status": "want_to_read",
   "rating": 5.3,
   "favorite": false,
@@ -1736,7 +1849,8 @@
   ],
   "createdAt": "2026-08-09T10:48:00.000Z",
   "updatedAt": "2026-08-09T10:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14910567-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14910567-M.jpg",
+  "pageCount": 194
  },
  {
   "id": "bk-fixer-malamud",
@@ -1760,12 +1874,14 @@
   ],
   "createdAt": "2026-08-09T10:47:00.000Z",
   "updatedAt": "2026-08-09T10:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14962085-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14962085-M.jpg",
+  "pageCount": 312
  },
  {
   "id": "bk-plainsong-haruf",
   "title": "Plainsong",
   "author": "Kent Haruf",
+  "year": 1999,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -1784,12 +1900,14 @@
   ],
   "createdAt": "2026-08-09T10:46:00.000Z",
   "updatedAt": "2026-08-09T10:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/225853-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/225853-M.jpg",
+  "pageCount": 301
  },
  {
   "id": "bk-sellout-beatty",
   "title": "The Sellout",
   "author": "Paul Beatty",
+  "year": 2015,
   "status": "want_to_read",
   "rating": 6.8,
   "favorite": false,
@@ -1808,7 +1926,8 @@
   ],
   "createdAt": "2026-08-09T10:45:00.000Z",
   "updatedAt": "2026-08-09T10:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7897222-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7897222-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-sympathizer-nguyen",
@@ -1841,12 +1960,14 @@
   ],
   "createdAt": "2026-08-09T10:44:00.000Z",
   "updatedAt": "2026-08-09T10:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7913176-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7913176-M.jpg",
+  "pageCount": 391
  },
  {
   "id": "bk-north-water-mcguire",
   "title": "The North Water",
   "author": "Ian McGuire",
+  "year": 2016,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -1867,12 +1988,14 @@
   ],
   "createdAt": "2026-08-09T10:43:00.000Z",
   "updatedAt": "2026-08-09T10:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12928450-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12928450-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-close-range-wyoming-stories-proulx",
   "title": "Close Range: Wyoming Stories",
   "author": "Annie Proulx",
+  "year": 1999,
   "status": "want_to_read",
   "rating": 8.4,
   "favorite": false,
@@ -1892,12 +2015,14 @@
   ],
   "createdAt": "2026-08-09T10:42:00.000Z",
   "updatedAt": "2026-08-09T10:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11433008-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11433008-M.jpg",
+  "pageCount": 296
  },
  {
   "id": "bk-moonshine-war-leonard",
   "title": "The Moonshine War",
   "author": "Elmore Leonard",
+  "year": 1969,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -1917,7 +2042,8 @@
   ],
   "createdAt": "2026-08-09T10:41:00.000Z",
   "updatedAt": "2026-08-09T10:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10216070-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10216070-M.jpg",
+  "pageCount": 220
  },
  {
   "id": "bk-your-heart-is-a-muscle-the-size-of-a-fist-yapa",
@@ -1940,12 +2066,14 @@
   ],
   "createdAt": "2026-08-09T10:40:00.000Z",
   "updatedAt": "2026-08-09T10:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13047077-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13047077-M.jpg",
+  "pageCount": 316
  },
  {
   "id": "bk-orphan-master-s-son-johnson",
   "title": "The Orphan Master's Son",
   "author": "Adam Johnson",
+  "year": 2012,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -1964,12 +2092,14 @@
   ],
   "createdAt": "2026-08-09T10:39:00.000Z",
   "updatedAt": "2026-08-09T10:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11326717-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11326717-M.jpg",
+  "pageCount": 496
  },
  {
   "id": "bk-being-mortal-gawande",
   "title": "Being Mortal",
   "author": "Atul Gawande",
+  "year": 2015,
   "status": "want_to_read",
   "rating": 7.8,
   "favorite": false,
@@ -1987,12 +2117,14 @@
   ],
   "createdAt": "2026-08-09T10:38:00.000Z",
   "updatedAt": "2026-08-09T10:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12069679-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12069679-M.jpg",
+  "pageCount": 283
  },
  {
   "id": "bk-genghis-khan-and-the-making-of-the-modern-world-weatherford",
   "title": "Genghis Khan and the Making of the Modern World",
   "author": "Jack Weatherford",
+  "year": 2004,
   "status": "want_to_read",
   "rating": 6.5,
   "favorite": false,
@@ -2011,7 +2143,8 @@
   ],
   "createdAt": "2026-08-09T10:37:00.000Z",
   "updatedAt": "2026-08-09T10:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/390818-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/390818-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-financial-lives-of-the-poets-walter",
@@ -2035,12 +2168,14 @@
   ],
   "createdAt": "2026-08-09T10:36:00.000Z",
   "updatedAt": "2026-08-09T10:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12790560-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12790560-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-heart-of-darkness-conrad",
   "title": "Heart of Darkness",
   "author": "Joseph Conrad",
+  "year": 1899,
   "status": "want_to_read",
   "rating": 8.4,
   "favorite": false,
@@ -2059,7 +2194,8 @@
   ],
   "createdAt": "2026-08-09T10:35:00.000Z",
   "updatedAt": "2026-08-09T10:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15229941-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15229941-M.jpg",
+  "pageCount": 136
  },
  {
   "id": "bk-lamb-the-gospel-according-to-biff-christ-s-childhood-pal-moore",
@@ -2088,6 +2224,7 @@
   "id": "bk-onion-field-wambaugh",
   "title": "The Onion Field",
   "author": "Joseph Wambaugh",
+  "year": 1973,
   "status": "want_to_read",
   "rating": 5.5,
   "favorite": false,
@@ -2105,12 +2242,14 @@
   ],
   "createdAt": "2026-08-09T10:33:00.000Z",
   "updatedAt": "2026-08-09T10:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7115068-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7115068-M.jpg",
+  "pageCount": 448
  },
  {
   "id": "bk-appointment-in-samarra-hara",
   "title": "Appointment in Samarra",
   "author": "John O'Hara",
+  "year": 1934,
   "status": "want_to_read",
   "rating": 7.7,
   "favorite": false,
@@ -2128,7 +2267,8 @@
   ],
   "createdAt": "2026-08-09T10:32:00.000Z",
   "updatedAt": "2026-08-09T10:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9021663-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9021663-M.jpg",
+  "pageCount": 301
  },
  {
   "id": "bk-love-in-the-time-of-cholera-marquez",
@@ -2151,7 +2291,8 @@
   ],
   "createdAt": "2026-08-09T10:31:00.000Z",
   "updatedAt": "2026-08-09T10:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10518348-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10518348-M.jpg",
+  "pageCount": 370
  },
  {
   "id": "bk-log-from-the-sea-of-cortez-steinbeck",
@@ -2175,12 +2316,14 @@
   ],
   "createdAt": "2026-08-09T10:30:00.000Z",
   "updatedAt": "2026-08-09T10:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7148028-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7148028-M.jpg",
+  "pageCount": 284
  },
  {
   "id": "bk-sailor-on-horseback-stone",
   "title": "Sailor on Horseback",
   "author": "Irving Stone",
+  "year": 1938,
   "status": "want_to_read",
   "rating": 6.4,
   "favorite": false,
@@ -2198,7 +2341,8 @@
   ],
   "createdAt": "2026-08-09T10:29:00.000Z",
   "updatedAt": "2026-08-09T10:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6602483-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6602483-M.jpg",
+  "pageCount": 326
  },
  {
   "id": "bk-super-sad-true-love-story-shteyngart",
@@ -2223,12 +2367,14 @@
   ],
   "createdAt": "2026-08-09T10:28:00.000Z",
   "updatedAt": "2026-08-09T10:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9163438-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9163438-M.jpg",
+  "pageCount": 334
  },
  {
   "id": "bk-boys-in-the-boat-brown",
   "title": "The Boys in the Boat",
   "author": "Daniel James Brown",
+  "year": 2013,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -2247,7 +2393,8 @@
   ],
   "createdAt": "2026-08-09T10:27:00.000Z",
   "updatedAt": "2026-08-09T10:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12722395-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12722395-M.jpg",
+  "pageCount": 410
  },
  {
   "id": "bk-rise-of-superman-kotler",
@@ -2270,12 +2417,14 @@
   ],
   "createdAt": "2026-08-09T10:26:00.000Z",
   "updatedAt": "2026-08-09T10:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12512763-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12512763-M.jpg",
+  "pageCount": 234
  },
  {
   "id": "bk-zealot-aslan",
   "title": "Zealot",
   "author": "Reza Aslan",
+  "year": 2013,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -2292,12 +2441,14 @@
   ],
   "createdAt": "2026-08-09T10:25:00.000Z",
   "updatedAt": "2026-08-09T10:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7265020-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7265020-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-cain-saramago",
   "title": "Cain",
   "author": "José Saramago",
+  "year": 2009,
   "status": "want_to_read",
   "rating": 6.5,
   "favorite": false,
@@ -2316,7 +2467,8 @@
   ],
   "createdAt": "2026-08-09T10:24:00.000Z",
   "updatedAt": "2026-08-09T10:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7901193-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7901193-M.jpg",
+  "pageCount": 176
  },
  {
   "id": "bk-quiet-american-greene",
@@ -2346,7 +2498,8 @@
   ],
   "createdAt": "2026-08-09T10:23:00.000Z",
   "updatedAt": "2026-08-09T10:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15047494-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15047494-M.jpg",
+  "pageCount": 232
  },
  {
   "id": "bk-canticle-for-leibowitz-miller",
@@ -2370,12 +2523,14 @@
   ],
   "createdAt": "2026-08-09T10:22:00.000Z",
   "updatedAt": "2026-08-09T10:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14818591-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14818591-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-dog-stars-heller",
   "title": "The Dog Stars",
   "author": "Peter Heller",
+  "year": 2012,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -2395,12 +2550,14 @@
   ],
   "createdAt": "2026-08-09T10:21:00.000Z",
   "updatedAt": "2026-08-09T10:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14756222-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14756222-M.jpg",
+  "pageCount": 381
  },
  {
   "id": "bk-good-lord-bird-mcbride",
   "title": "The Good Lord Bird",
   "author": "James McBride",
+  "year": 2013,
   "status": "want_to_read",
   "rating": 7.6,
   "favorite": false,
@@ -2420,12 +2577,14 @@
   ],
   "createdAt": "2026-08-09T10:20:00.000Z",
   "updatedAt": "2026-08-09T10:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12483815-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12483815-M.jpg",
+  "pageCount": 468
  },
  {
   "id": "bk-maltese-falcon-hammett",
   "title": "The Maltese Falcon",
   "author": "Dashiell Hammett",
+  "year": 1929,
   "status": "want_to_read",
   "rating": 6.9,
   "favorite": false,
@@ -2444,7 +2603,8 @@
   ],
   "createdAt": "2026-08-09T10:19:00.000Z",
   "updatedAt": "2026-08-09T10:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8064684-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8064684-M.jpg",
+  "pageCount": 254
  },
  {
   "id": "bk-miracle-life-of-edgar-mint-udall",
@@ -2469,7 +2629,8 @@
   ],
   "createdAt": "2026-08-09T10:18:00.000Z",
   "updatedAt": "2026-08-09T10:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11681022-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11681022-M.jpg",
+  "pageCount": 423
  },
  {
   "id": "bk-book-thief-zusak",
@@ -2498,12 +2659,14 @@
   ],
   "createdAt": "2026-08-09T10:17:00.000Z",
   "updatedAt": "2026-08-09T10:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11473474-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11473474-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-hologram-for-the-king-eggers",
   "title": "A Hologram for the King",
   "author": "Dave Eggers",
+  "year": 2012,
   "status": "want_to_read",
   "rating": 7.5,
   "favorite": false,
@@ -2521,12 +2684,14 @@
   ],
   "createdAt": "2026-08-09T10:16:00.000Z",
   "updatedAt": "2026-08-09T10:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11571932-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11571932-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-cat-s-table-ondaatje",
   "title": "The Cat's Table",
   "author": "Michael Ondaatje",
+  "year": 2011,
   "status": "want_to_read",
   "rating": 8.1,
   "favorite": false,
@@ -2545,7 +2710,8 @@
   ],
   "createdAt": "2026-08-09T10:15:00.000Z",
   "updatedAt": "2026-08-09T10:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10608069-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10608069-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-exploration-of-the-colorado-river-powell",
@@ -2573,6 +2739,7 @@
   "id": "bk-sense-of-an-ending-barnes",
   "title": "The Sense of an Ending",
   "author": "Julian Barnes",
+  "year": 2011,
   "status": "want_to_read",
   "rating": 7.5,
   "favorite": false,
@@ -2590,12 +2757,14 @@
   ],
   "createdAt": "2026-08-09T10:13:00.000Z",
   "updatedAt": "2026-08-09T10:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10422308-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10422308-M.jpg",
+  "pageCount": 154
  },
  {
   "id": "bk-middlesex-eugenides",
   "title": "Middlesex",
   "author": "Jeffrey Eugenides",
+  "year": 2002,
   "status": "want_to_read",
   "rating": 7.5,
   "favorite": false,
@@ -2614,12 +2783,14 @@
   ],
   "createdAt": "2026-08-09T10:12:00.000Z",
   "updatedAt": "2026-08-09T10:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12367202-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12367202-M.jpg",
+  "pageCount": 546
  },
  {
   "id": "bk-life-and-times-of-the-thunderbolt-kid-bryson",
   "title": "The Life and Times of the Thunderbolt Kid",
   "author": "Bill Bryson",
+  "year": 2006,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -2638,12 +2809,14 @@
   ],
   "createdAt": "2026-08-09T10:11:00.000Z",
   "updatedAt": "2026-08-09T10:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8345908-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8345908-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-fight-club-palahniuk",
   "title": "Fight Club",
   "author": "Chuck Palahniuk",
+  "year": 1996,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -2662,7 +2835,8 @@
   ],
   "createdAt": "2026-08-09T10:10:00.000Z",
   "updatedAt": "2026-08-09T10:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9243864-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9243864-M.jpg",
+  "pageCount": 222
  },
  {
   "id": "bk-surely-you-re-joking-mr-feynman-leighton",
@@ -2686,7 +2860,8 @@
   ],
   "createdAt": "2026-08-09T10:09:00.000Z",
   "updatedAt": "2026-08-09T10:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7886767-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7886767-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-unbroken-hillenbrand",
@@ -2712,7 +2887,8 @@
   ],
   "createdAt": "2026-08-09T10:08:00.000Z",
   "updatedAt": "2026-08-09T10:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15055477-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15055477-M.jpg",
+  "pageCount": 500
  },
  {
   "id": "bk-sweet-promised-land-laxalt",
@@ -2735,12 +2911,14 @@
   ],
   "createdAt": "2026-08-09T10:07:00.000Z",
   "updatedAt": "2026-08-09T10:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6567354-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6567354-M.jpg",
+  "pageCount": 176
  },
  {
   "id": "bk-reservation-blues-alexie",
   "title": "Reservation Blues",
   "author": "Sherman Alexie",
+  "year": 1995,
   "status": "want_to_read",
   "rating": 7,
   "favorite": false,
@@ -2759,7 +2937,8 @@
   ],
   "createdAt": "2026-08-09T10:06:00.000Z",
   "updatedAt": "2026-08-09T10:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/569424-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/569424-M.jpg",
+  "pageCount": 306
  },
  {
   "id": "bk-ghosts-of-everest-al",
@@ -2788,6 +2967,7 @@
   "id": "bk-sport-and-a-pastime-salter",
   "title": "A Sport and a Pastime",
   "author": "James Salter",
+  "year": 1967,
   "status": "want_to_read",
   "rating": 6.6,
   "favorite": false,
@@ -2805,7 +2985,8 @@
   ],
   "createdAt": "2026-08-09T10:04:00.000Z",
   "updatedAt": "2026-08-09T10:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12165437-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12165437-M.jpg",
+  "pageCount": 208
  },
  {
   "id": "bk-just-kids-smith",
@@ -2829,12 +3010,14 @@
   ],
   "createdAt": "2026-08-09T10:03:00.000Z",
   "updatedAt": "2026-08-09T10:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6671098-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6671098-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-nobody-s-fool-russo",
   "title": "Nobody's Fool",
   "author": "Richard Russo",
+  "year": 1993,
   "status": "want_to_read",
   "rating": 8.8,
   "favorite": false,
@@ -2854,12 +3037,14 @@
   ],
   "createdAt": "2026-08-09T10:02:00.000Z",
   "updatedAt": "2026-08-09T10:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/4009996-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/4009996-M.jpg",
+  "pageCount": 555
  },
  {
   "id": "bk-all-the-pretty-horses-mccarthy",
   "title": "All the Pretty Horses",
   "author": "Cormac McCarthy",
+  "year": 1992,
   "status": "want_to_read",
   "rating": 7.9,
   "favorite": false,
@@ -2879,7 +3064,8 @@
   ],
   "createdAt": "2026-08-09T10:01:00.000Z",
   "updatedAt": "2026-08-09T10:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10654846-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10654846-M.jpg",
+  "pageCount": 306
  },
  {
   "id": "bk-treasure-island-stevenson",
@@ -2902,7 +3088,8 @@
   ],
   "createdAt": "2026-08-09T10:00:00.000Z",
   "updatedAt": "2026-08-09T10:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12819479-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12819479-M.jpg",
+  "pageCount": 248
  },
  {
   "id": "bk-breakfast-of-champions-vonnegut",
@@ -2931,7 +3118,8 @@
   ],
   "createdAt": "2026-08-09T09:59:00.000Z",
   "updatedAt": "2026-08-09T09:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/280213-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/280213-M.jpg",
+  "pageCount": 302
  },
  {
   "id": "bk-voices-from-chernobyl-alexievich",
@@ -2982,6 +3170,7 @@
   "id": "bk-born-to-run-mcdougall",
   "title": "Born to Run",
   "author": "Christopher McDougall",
+  "year": 2009,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -3001,7 +3190,8 @@
   ],
   "createdAt": "2026-08-09T09:56:00.000Z",
   "updatedAt": "2026-08-09T09:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12063992-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12063992-M.jpg",
+  "pageCount": 287
  },
  {
   "id": "bk-self-comes-to-mind-damasio",
@@ -3022,7 +3212,8 @@
   ],
   "createdAt": "2026-08-09T09:55:00.000Z",
   "updatedAt": "2026-08-09T09:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9124396-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9124396-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-tender-bar-moehringer",
@@ -3046,12 +3237,14 @@
   ],
   "createdAt": "2026-08-09T09:54:00.000Z",
   "updatedAt": "2026-08-09T09:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/546433-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/546433-M.jpg",
+  "pageCount": 424
  },
  {
   "id": "bk-among-the-thugs-buford",
   "title": "Among the Thugs",
   "author": "Bill Buford",
+  "year": 1990,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -3069,7 +3262,8 @@
   ],
   "createdAt": "2026-08-09T09:53:00.000Z",
   "updatedAt": "2026-08-09T09:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8788254-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8788254-M.jpg",
+  "pageCount": 317
  },
  {
   "id": "bk-war-junger",
@@ -3092,12 +3286,14 @@
   ],
   "createdAt": "2026-08-09T09:52:00.000Z",
   "updatedAt": "2026-08-09T09:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7894410-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7894410-M.jpg",
+  "pageCount": 287
  },
  {
   "id": "bk-dark-star-safari-theroux",
   "title": "Dark Star Safari",
   "author": "Paul Theroux",
+  "year": 2002,
   "status": "want_to_read",
   "rating": 7.2,
   "favorite": false,
@@ -3116,12 +3312,14 @@
   ],
   "createdAt": "2026-08-09T09:51:00.000Z",
   "updatedAt": "2026-08-09T09:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11614856-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11614856-M.jpg",
+  "pageCount": 495
  },
  {
   "id": "bk-tinkers-harding",
   "title": "Tinkers",
   "author": "Paul Harding",
+  "year": 2009,
   "status": "want_to_read",
   "rating": 4.8,
   "favorite": false,
@@ -3139,7 +3337,8 @@
   ],
   "createdAt": "2026-08-09T09:50:00.000Z",
   "updatedAt": "2026-08-09T09:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7566593-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7566593-M.jpg",
+  "pageCount": 192
  },
  {
   "id": "bk-shadow-of-the-wind-zafon",
@@ -3191,12 +3390,14 @@
   ],
   "createdAt": "2026-08-09T09:48:00.000Z",
   "updatedAt": "2026-08-09T09:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14634050-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14634050-M.jpg",
+  "pageCount": 155
  },
  {
   "id": "bk-superfreakonomics-dubner",
   "title": "SuperFreakonomics",
   "author": "Steven D. Levitt and Stephen J. Dubner",
+  "year": 2009,
   "status": "want_to_read",
   "rating": 5.4,
   "favorite": false,
@@ -3214,7 +3415,8 @@
   ],
   "createdAt": "2026-08-09T09:47:00.000Z",
   "updatedAt": "2026-08-09T09:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11183936-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11183936-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-cellist-of-sarajevo-galloway",
@@ -3239,7 +3441,8 @@
   ],
   "createdAt": "2026-08-09T09:46:00.000Z",
   "updatedAt": "2026-08-09T09:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/5197390-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/5197390-M.jpg",
+  "pageCount": 246
  },
  {
   "id": "bk-bad-land-raban",
@@ -3263,12 +3466,14 @@
   ],
   "createdAt": "2026-08-09T09:45:00.000Z",
   "updatedAt": "2026-08-09T09:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/4735574-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/4735574-M.jpg",
+  "pageCount": 360
  },
  {
   "id": "bk-breakfast-at-tiffany-s-capote",
   "title": "Breakfast at Tiffany's",
   "author": "Truman Capote",
+  "year": 1958,
   "status": "want_to_read",
   "sourceNote": "Not rated (NR on site)",
   "favorite": false,
@@ -3286,12 +3491,14 @@
   ],
   "createdAt": "2026-08-09T09:44:00.000Z",
   "updatedAt": "2026-08-09T09:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15215685-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15215685-M.jpg",
+  "pageCount": 160
  },
  {
   "id": "bk-in-cold-blood-capote",
   "title": "In Cold Blood",
   "author": "Truman Capote",
+  "year": 1966,
   "status": "want_to_read",
   "rating": 8.4,
   "favorite": false,
@@ -3311,7 +3518,8 @@
   ],
   "createdAt": "2026-08-09T09:43:00.000Z",
   "updatedAt": "2026-08-09T09:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14986409-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14986409-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-judgment-of-paris-taber",
@@ -3333,7 +3541,8 @@
   ],
   "createdAt": "2026-08-09T09:42:00.000Z",
   "updatedAt": "2026-08-09T09:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/475568-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/475568-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-my-name-is-will-winfield",
@@ -3356,7 +3565,8 @@
   ],
   "createdAt": "2026-08-09T09:41:00.000Z",
   "updatedAt": "2026-08-09T09:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6902044-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6902044-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-crazy-for-the-storm-ollestad",
@@ -3380,12 +3590,14 @@
   ],
   "createdAt": "2026-08-09T09:40:00.000Z",
   "updatedAt": "2026-08-09T09:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14938346-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14938346-M.jpg",
+  "pageCount": 322
  },
  {
   "id": "bk-brief-wondrous-life-of-oscar-wao-diaz",
   "title": "The Brief Wondrous Life of Oscar Wao",
   "author": "Junot Díaz",
+  "year": 2007,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -3404,12 +3616,14 @@
   ],
   "createdAt": "2026-08-09T09:39:00.000Z",
   "updatedAt": "2026-08-09T09:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6252904-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6252904-M.jpg",
+  "pageCount": 347
  },
  {
   "id": "bk-tropic-of-cancer-miller",
   "title": "Tropic of Cancer",
   "author": "Henry Miller",
+  "year": 1934,
   "status": "want_to_read",
   "rating": 7.1,
   "favorite": false,
@@ -3428,12 +3642,14 @@
   ],
   "createdAt": "2026-08-09T09:38:00.000Z",
   "updatedAt": "2026-08-09T09:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15147346-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15147346-M.jpg",
+  "pageCount": 330
  },
  {
   "id": "bk-25th-hour-benioff",
   "title": "The 25th Hour",
   "author": "David Benioff",
+  "year": 2001,
   "status": "want_to_read",
   "rating": 5.8,
   "favorite": false,
@@ -3452,12 +3668,14 @@
   ],
   "createdAt": "2026-08-09T09:37:00.000Z",
   "updatedAt": "2026-08-09T09:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/297194-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/297194-M.jpg",
+  "pageCount": 225
  },
  {
   "id": "bk-in-the-lake-of-the-woods-brien",
   "title": "In the Lake of the Woods",
   "author": "Tim O'Brien",
+  "year": 1995,
   "status": "want_to_read",
   "rating": 7.2,
   "favorite": false,
@@ -3477,12 +3695,14 @@
   ],
   "createdAt": "2026-08-09T09:36:00.000Z",
   "updatedAt": "2026-08-09T09:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6634627-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6634627-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-power-of-the-dog-savage",
   "title": "The Power of the Dog",
   "author": "Thomas Savage",
+  "year": 1967,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -3502,7 +3722,8 @@
   ],
   "createdAt": "2026-08-09T09:35:00.000Z",
   "updatedAt": "2026-08-09T09:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12776526-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12776526-M.jpg",
+  "pageCount": 283
  },
  {
   "id": "bk-story-of-edgar-sawtelle-wroblewski",
@@ -3526,7 +3747,8 @@
   ],
   "createdAt": "2026-08-09T09:34:00.000Z",
   "updatedAt": "2026-08-09T09:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14909138-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14909138-M.jpg",
+  "pageCount": 592
  },
  {
   "id": "bk-news-of-a-kidnapping-marquez",
@@ -3549,12 +3771,14 @@
   ],
   "createdAt": "2026-08-09T09:33:00.000Z",
   "updatedAt": "2026-08-09T09:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14672857-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14672857-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-tales-of-the-fish-patrol-london",
   "title": "Tales of the Fish Patrol",
   "author": "Jack London",
+  "year": 1905,
   "status": "want_to_read",
   "rating": 6.7,
   "favorite": false,
@@ -3572,7 +3796,8 @@
   ],
   "createdAt": "2026-08-09T09:32:00.000Z",
   "updatedAt": "2026-08-09T09:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10780987-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10780987-M.jpg",
+  "pageCount": 122
  },
  {
   "id": "bk-havana-nocturne-english",
@@ -3601,6 +3826,7 @@
   "id": "bk-ironweed-kennedy",
   "title": "Ironweed",
   "author": "William Kennedy",
+  "year": 1983,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -3619,12 +3845,14 @@
   ],
   "createdAt": "2026-08-09T09:30:00.000Z",
   "updatedAt": "2026-08-09T09:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/1934430-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/1934430-M.jpg",
+  "pageCount": 240
  },
  {
   "id": "bk-snow-crash-stephenson",
   "title": "Snow Crash",
   "author": "Neal Stephenson",
+  "year": 1992,
   "status": "want_to_read",
   "rating": 5.8,
   "favorite": false,
@@ -3643,12 +3871,14 @@
   ],
   "createdAt": "2026-08-09T09:29:00.000Z",
   "updatedAt": "2026-08-09T09:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7004665-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7004665-M.jpg",
+  "pageCount": 460
  },
  {
   "id": "bk-spectator-bird-stegner",
   "title": "The Spectator Bird",
   "author": "Wallace Stegner",
+  "year": 1976,
   "status": "want_to_read",
   "rating": 7.3,
   "favorite": false,
@@ -3666,7 +3896,8 @@
   ],
   "createdAt": "2026-08-09T09:28:00.000Z",
   "updatedAt": "2026-08-09T09:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6632311-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6632311-M.jpg",
+  "pageCount": 214
  },
  {
   "id": "bk-blindness-saramago",
@@ -3696,6 +3927,7 @@
   "id": "bk-born-standing-up-martin",
   "title": "Born Standing Up",
   "author": "Steve Martin",
+  "year": 2007,
   "status": "want_to_read",
   "rating": 5.8,
   "favorite": false,
@@ -3713,7 +3945,8 @@
   ],
   "createdAt": "2026-08-09T09:26:00.000Z",
   "updatedAt": "2026-08-09T09:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6770621-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6770621-M.jpg",
+  "pageCount": 209
  },
  {
   "id": "bk-nine-toobin",
@@ -3734,7 +3967,8 @@
   ],
   "createdAt": "2026-08-09T09:25:00.000Z",
   "updatedAt": "2026-08-09T09:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/242895-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/242895-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-great-gatsby-fitzgerald",
@@ -3762,12 +3996,14 @@
   ],
   "createdAt": "2026-08-09T09:24:00.000Z",
   "updatedAt": "2026-08-09T09:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14635758-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14635758-M.jpg",
+  "pageCount": 185
  },
  {
   "id": "bk-tortilla-curtain-boyle",
   "title": "Tortilla Curtain",
   "author": "T.C. Boyle",
+  "year": 1995,
   "status": "want_to_read",
   "rating": 7.5,
   "favorite": false,
@@ -3785,7 +4021,8 @@
   ],
   "createdAt": "2026-08-09T09:23:00.000Z",
   "updatedAt": "2026-08-09T09:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10277248-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10277248-M.jpg",
+  "pageCount": 355
  },
  {
   "id": "bk-travels-with-charley-steinbeck",
@@ -3809,12 +4046,14 @@
   ],
   "createdAt": "2026-08-09T09:22:00.000Z",
   "updatedAt": "2026-08-09T09:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8219483-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8219483-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-killer-angels-shaara",
   "title": "The Killer Angels",
   "author": "Michael Shaara",
+  "year": 1974,
   "status": "want_to_read",
   "rating": 6.2,
   "favorite": false,
@@ -3833,12 +4072,14 @@
   ],
   "createdAt": "2026-08-09T09:21:00.000Z",
   "updatedAt": "2026-08-09T09:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14430272-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14430272-M.jpg",
+  "pageCount": 374
  },
  {
   "id": "bk-sea-banville",
   "title": "The Sea",
   "author": "John Banville",
+  "year": 2005,
   "status": "want_to_read",
   "rating": 6.4,
   "favorite": false,
@@ -3856,7 +4097,8 @@
   ],
   "createdAt": "2026-08-09T09:20:00.000Z",
   "updatedAt": "2026-08-09T09:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/167085-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/167085-M.jpg",
+  "pageCount": 233
  },
  {
   "id": "bk-positively-fifth-street-mcmanus",
@@ -3877,7 +4119,8 @@
   ],
   "createdAt": "2026-08-09T09:19:00.000Z",
   "updatedAt": "2026-08-09T09:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/223347-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/223347-M.jpg",
+  "pageCount": 427
  },
  {
   "id": "bk-oscar-and-lucinda-carey",
@@ -3901,7 +4144,8 @@
   ],
   "createdAt": "2026-08-09T09:18:00.000Z",
   "updatedAt": "2026-08-09T09:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6764277-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6764277-M.jpg",
+  "pageCount": 515
  },
  {
   "id": "bk-road-mccarthy",
@@ -3930,12 +4174,14 @@
   ],
   "createdAt": "2026-08-09T09:17:00.000Z",
   "updatedAt": "2026-08-09T09:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14818120-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14818120-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-human-stain-roth",
   "title": "The Human Stain",
   "author": "Philip Roth",
+  "year": 2000,
   "status": "want_to_read",
   "rating": 7.2,
   "favorite": false,
@@ -3954,7 +4200,8 @@
   ],
   "createdAt": "2026-08-09T09:16:00.000Z",
   "updatedAt": "2026-08-09T09:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6863032-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6863032-M.jpg",
+  "pageCount": 398
  },
  {
   "id": "bk-end-of-the-story-davis",
@@ -3977,7 +4224,8 @@
   ],
   "createdAt": "2026-08-09T09:15:00.000Z",
   "updatedAt": "2026-08-09T09:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11562432-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11562432-M.jpg",
+  "pageCount": 231
  },
  {
   "id": "bk-fishermen-obioma",
@@ -4000,7 +4248,8 @@
   ],
   "createdAt": "2026-08-09T09:14:00.000Z",
   "updatedAt": "2026-08-09T09:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15187002-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15187002-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-good-material-alderton",
@@ -4024,7 +4273,8 @@
   ],
   "createdAt": "2026-08-09T09:13:00.000Z",
   "updatedAt": "2026-08-09T09:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14824685-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14824685-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-small-things-like-these-keegan",
@@ -4048,7 +4298,8 @@
   ],
   "createdAt": "2026-08-09T09:12:00.000Z",
   "updatedAt": "2026-08-09T09:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15096821-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15096821-M.jpg",
+  "pageCount": 112
  },
  {
   "id": "bk-heart-is-a-lonely-hunter-mccullers",
@@ -4071,7 +4322,8 @@
   ],
   "createdAt": "2026-08-09T09:11:00.000Z",
   "updatedAt": "2026-08-09T09:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14976913-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14976913-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-pearl-steinbeck",
@@ -4095,7 +4347,8 @@
   ],
   "createdAt": "2026-08-09T09:10:00.000Z",
   "updatedAt": "2026-08-09T09:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9157799-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9157799-M.jpg",
+  "pageCount": 118
  },
  {
   "id": "bk-cherrywood-serong",
@@ -4137,7 +4390,8 @@
   ],
   "createdAt": "2026-08-09T09:08:00.000Z",
   "updatedAt": "2026-08-09T09:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14567040-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14567040-M.jpg",
+  "pageCount": 322
  },
  {
   "id": "bk-john-dies-at-the-end-pargin",
@@ -4184,7 +4438,8 @@
   ],
   "createdAt": "2026-08-09T09:06:00.000Z",
   "updatedAt": "2026-08-09T09:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/670128-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/670128-M.jpg",
+  "pageCount": 160
  },
  {
   "id": "bk-knockout-artist-crews",
@@ -4208,7 +4463,8 @@
   ],
   "createdAt": "2026-08-09T09:05:00.000Z",
   "updatedAt": "2026-08-09T09:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/4129209-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/4129209-M.jpg",
+  "pageCount": 269
  },
  {
   "id": "bk-long-way-to-a-small-angry-planet-chambers",
@@ -4236,7 +4492,8 @@
   ],
   "createdAt": "2026-08-09T09:04:00.000Z",
   "updatedAt": "2026-08-09T09:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8188339-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8188339-M.jpg",
+  "pageCount": 445
  },
  {
   "id": "bk-alone-in-berlin-fallada",
@@ -4261,7 +4518,8 @@
   ],
   "createdAt": "2026-08-09T09:03:00.000Z",
   "updatedAt": "2026-08-09T09:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8261747-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8261747-M.jpg",
+  "pageCount": 598
  },
  {
   "id": "bk-to-have-and-have-not-hemingway",
@@ -4285,7 +4543,8 @@
   ],
   "createdAt": "2026-08-09T09:02:00.000Z",
   "updatedAt": "2026-08-09T09:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14918628-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14918628-M.jpg",
+  "pageCount": 262
  },
  {
   "id": "bk-song-of-solomon-morrison",
@@ -4308,7 +4567,8 @@
   ],
   "createdAt": "2026-08-09T09:01:00.000Z",
   "updatedAt": "2026-08-09T09:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12001858-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12001858-M.jpg",
+  "pageCount": 341
  },
  {
   "id": "bk-reaper-man-pratchett",
@@ -4332,7 +4592,8 @@
   ],
   "createdAt": "2026-08-09T09:00:00.000Z",
   "updatedAt": "2026-08-09T09:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14648856-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14648856-M.jpg",
+  "pageCount": 301
  },
  {
   "id": "bk-outsider-camus",
@@ -4380,7 +4641,8 @@
   ],
   "createdAt": "2026-08-09T08:58:00.000Z",
   "updatedAt": "2026-08-09T08:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12324271-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12324271-M.jpg",
+  "pageCount": 456
  },
  {
   "id": "bk-beach-garland",
@@ -4405,7 +4667,8 @@
   ],
   "createdAt": "2026-08-09T08:57:00.000Z",
   "updatedAt": "2026-08-09T08:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/823949-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/823949-M.jpg",
+  "pageCount": 445
  },
  {
   "id": "bk-secret-history-tartt",
@@ -4433,7 +4696,8 @@
   ],
   "createdAt": "2026-08-09T08:56:00.000Z",
   "updatedAt": "2026-08-09T08:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14826536-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14826536-M.jpg",
+  "pageCount": 608
  },
  {
   "id": "bk-clockwork-orange-burgess",
@@ -4457,7 +4721,8 @@
   ],
   "createdAt": "2026-08-09T08:55:00.000Z",
   "updatedAt": "2026-08-09T08:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12393415-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12393415-M.jpg",
+  "pageCount": 192
  },
  {
   "id": "bk-count-of-monte-cristo-dumas",
@@ -4480,7 +4745,8 @@
   ],
   "createdAt": "2026-08-09T08:54:00.000Z",
   "updatedAt": "2026-08-09T08:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8851690-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8851690-M.jpg",
+  "pageCount": 1240
  },
  {
   "id": "bk-frankenstein-shelley",
@@ -4505,7 +4771,8 @@
   ],
   "createdAt": "2026-08-09T08:53:00.000Z",
   "updatedAt": "2026-08-09T08:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15118068-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15118068-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-riders-winton",
@@ -4529,7 +4796,8 @@
   ],
   "createdAt": "2026-08-09T08:52:00.000Z",
   "updatedAt": "2026-08-09T08:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/425012-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/425012-M.jpg",
+  "pageCount": 377
  },
  {
   "id": "bk-chase-fox",
@@ -4551,7 +4819,8 @@
    }
   ],
   "createdAt": "2026-08-09T08:51:00.000Z",
-  "updatedAt": "2026-08-09T08:51:00.000Z"
+  "updatedAt": "2026-08-09T08:51:00.000Z",
+  "pageCount": 352
  },
  {
   "id": "bk-son-of-man-amo",
@@ -4597,7 +4866,8 @@
   ],
   "createdAt": "2026-08-09T08:49:00.000Z",
   "updatedAt": "2026-08-09T08:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14774659-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14774659-M.jpg",
+  "pageCount": 289
  },
  {
   "id": "bk-we-have-always-lived-in-the-castle-jackson",
@@ -4622,7 +4892,8 @@
   ],
   "createdAt": "2026-08-09T08:48:00.000Z",
   "updatedAt": "2026-08-09T08:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14812400-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14812400-M.jpg",
+  "pageCount": 187
  },
  {
   "id": "bk-hag-seed-atwood",
@@ -4645,7 +4916,8 @@
   ],
   "createdAt": "2026-08-09T08:47:00.000Z",
   "updatedAt": "2026-08-09T08:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12508450-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12508450-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-wizard-of-earthsea-guin",
@@ -4669,7 +4941,8 @@
   ],
   "createdAt": "2026-08-09T08:46:00.000Z",
   "updatedAt": "2026-08-09T08:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15255407-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15255407-M.jpg",
+  "pageCount": 205
  },
  {
   "id": "bk-black-tide-temple",
@@ -4693,7 +4966,8 @@
   ],
   "createdAt": "2026-08-09T08:45:00.000Z",
   "updatedAt": "2026-08-09T08:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12015756-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12015756-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-world-war-z-brooks",
@@ -4718,12 +4992,14 @@
   ],
   "createdAt": "2026-08-09T08:44:00.000Z",
   "updatedAt": "2026-08-09T08:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6994617-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6994617-M.jpg",
+  "pageCount": 422
  },
  {
   "id": "bk-lord-of-the-rings-tolkien",
   "title": "The Lord of the Rings",
   "author": "J.R.R. Tolkien",
+  "year": 1954,
   "status": "want_to_read",
   "sourceNote": "Long read · Read by TGBC November 2023",
   "favorite": false,
@@ -4745,7 +5021,8 @@
   ],
   "createdAt": "2026-08-09T08:43:00.000Z",
   "updatedAt": "2026-08-09T08:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15131000-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15131000-M.jpg",
+  "pageCount": 1193
  },
  {
   "id": "bk-at-the-mountains-of-madness-lovecraft",
@@ -4769,7 +5046,8 @@
   ],
   "createdAt": "2026-08-09T08:42:00.000Z",
   "updatedAt": "2026-08-09T08:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6610039-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6610039-M.jpg",
+  "pageCount": 189
  },
  {
   "id": "bk-open-water-nelson",
@@ -4792,7 +5070,8 @@
   ],
   "createdAt": "2026-08-09T08:41:00.000Z",
   "updatedAt": "2026-08-09T08:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10517883-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10517883-M.jpg",
+  "pageCount": 160
  },
  {
   "id": "bk-steppenwolf-hesse",
@@ -4815,7 +5094,8 @@
   ],
   "createdAt": "2026-08-09T08:40:00.000Z",
   "updatedAt": "2026-08-09T08:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15097023-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15097023-M.jpg",
+  "pageCount": 264
  },
  {
   "id": "bk-long-petal-of-the-sea-allende",
@@ -4838,7 +5118,8 @@
    }
   ],
   "createdAt": "2026-08-09T08:39:00.000Z",
-  "updatedAt": "2026-08-09T08:39:00.000Z"
+  "updatedAt": "2026-08-09T08:39:00.000Z",
+  "pageCount": 336
  },
  {
   "id": "bk-moveable-feast-hemingway",
@@ -4861,7 +5142,8 @@
   ],
   "createdAt": "2026-08-09T08:38:00.000Z",
   "updatedAt": "2026-08-09T08:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8025686-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8025686-M.jpg",
+  "pageCount": 209
  },
  {
   "id": "bk-shadowboxing-birch",
@@ -4884,7 +5166,8 @@
   ],
   "createdAt": "2026-08-09T08:37:00.000Z",
   "updatedAt": "2026-08-09T08:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12620650-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12620650-M.jpg",
+  "pageCount": 178
  },
  {
   "id": "bk-interpreter-of-maladies-lahiri",
@@ -4907,7 +5190,8 @@
   ],
   "createdAt": "2026-08-09T08:36:00.000Z",
   "updatedAt": "2026-08-09T08:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8231757-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8231757-M.jpg",
+  "pageCount": 211
  },
  {
   "id": "bk-scoop-waugh",
@@ -4931,7 +5215,8 @@
   ],
   "createdAt": "2026-08-09T08:35:00.000Z",
   "updatedAt": "2026-08-09T08:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10609212-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10609212-M.jpg",
+  "pageCount": 254
  },
  {
   "id": "bk-metamorphosis-and-other-stories-kafka",
@@ -4977,7 +5262,8 @@
   ],
   "createdAt": "2026-08-09T08:33:00.000Z",
   "updatedAt": "2026-08-09T08:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10768533-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10768533-M.jpg",
+  "pageCount": 192
  },
  {
   "id": "bk-magician-toibin",
@@ -5001,12 +5287,14 @@
   ],
   "createdAt": "2026-08-09T08:32:00.000Z",
   "updatedAt": "2026-08-09T08:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11763643-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11763643-M.jpg",
+  "pageCount": 500
  },
  {
   "id": "bk-infinite-jest-wallace",
   "title": "Infinite Jest",
   "author": "David Foster Wallace",
+  "year": 1996,
   "status": "want_to_read",
   "sourceNote": "Long read · Read by TGBC November 2022",
   "favorite": false,
@@ -5025,7 +5313,8 @@
   ],
   "createdAt": "2026-08-09T08:31:00.000Z",
   "updatedAt": "2026-08-09T08:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13186006-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13186006-M.jpg",
+  "pageCount": 1104
  },
  {
   "id": "bk-wolf-in-white-van-darnielle",
@@ -5048,7 +5337,8 @@
   ],
   "createdAt": "2026-08-09T08:30:00.000Z",
   "updatedAt": "2026-08-09T08:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14834488-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14834488-M.jpg",
+  "pageCount": 216
  },
  {
   "id": "bk-glass-canoe-ireland",
@@ -5094,7 +5384,8 @@
   ],
   "createdAt": "2026-08-09T08:28:00.000Z",
   "updatedAt": "2026-08-09T08:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12239364-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12239364-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-one-flew-over-the-cuckoo-s-nest-kesey",
@@ -5118,7 +5409,8 @@
   ],
   "createdAt": "2026-08-09T08:27:00.000Z",
   "updatedAt": "2026-08-09T08:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15220644-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15220644-M.jpg",
+  "pageCount": 311
  },
  {
   "id": "bk-sharks-in-the-time-of-saviours-washburn",
@@ -5164,7 +5456,8 @@
   ],
   "createdAt": "2026-08-09T08:25:00.000Z",
   "updatedAt": "2026-08-09T08:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8112229-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8112229-M.jpg",
+  "pageCount": 191
  },
  {
   "id": "bk-all-systems-red-wells",
@@ -5188,7 +5481,8 @@
   ],
   "createdAt": "2026-08-09T08:24:00.000Z",
   "updatedAt": "2026-08-09T08:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9157148-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9157148-M.jpg",
+  "pageCount": 158
  },
  {
   "id": "bk-farewell-my-lovely-chandler",
@@ -5212,7 +5506,8 @@
   ],
   "createdAt": "2026-08-09T08:23:00.000Z",
   "updatedAt": "2026-08-09T08:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/3975597-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/3975597-M.jpg",
+  "pageCount": 266
  },
  {
   "id": "bk-amazing-adventures-of-kavalier-and-clay-chabon",
@@ -5237,12 +5532,14 @@
   ],
   "createdAt": "2026-08-09T08:22:00.000Z",
   "updatedAt": "2026-08-09T08:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14547857-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14547857-M.jpg",
+  "pageCount": 639
  },
  {
   "id": "bk-1q84-murakami",
   "title": "1Q84",
   "author": "Haruki Murakami",
+  "year": 2009,
   "status": "want_to_read",
   "sourceNote": "Long read · Read by TGBC November 2021",
   "favorite": false,
@@ -5261,7 +5558,8 @@
   ],
   "createdAt": "2026-08-09T08:21:00.000Z",
   "updatedAt": "2026-08-09T08:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11526100-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11526100-M.jpg",
+  "pageCount": 925
  },
  {
   "id": "bk-age-of-reason-sartre",
@@ -5284,7 +5582,8 @@
   ],
   "createdAt": "2026-08-09T08:20:00.000Z",
   "updatedAt": "2026-08-09T08:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10353459-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10353459-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-station-eleven-mandel",
@@ -5309,7 +5608,8 @@
   ],
   "createdAt": "2026-08-09T08:19:00.000Z",
   "updatedAt": "2026-08-09T08:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14657677-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14657677-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-snows-of-kilimanjaro-hemingway",
@@ -5331,8 +5631,7 @@
    }
   ],
   "createdAt": "2026-08-09T08:18:00.000Z",
-  "updatedAt": "2026-08-09T08:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14913985-M.jpg"
+  "updatedAt": "2026-08-09T08:18:00.000Z"
  },
  {
   "id": "bk-talented-mr-ripley-highsmith",
@@ -5357,7 +5656,8 @@
   ],
   "createdAt": "2026-08-09T08:17:00.000Z",
   "updatedAt": "2026-08-09T08:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12698825-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12698825-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-master-and-margarita-bulgakov",
@@ -5383,7 +5683,8 @@
   ],
   "createdAt": "2026-08-09T08:16:00.000Z",
   "updatedAt": "2026-08-09T08:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15013644-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15013644-M.jpg",
+  "pageCount": 386
  },
  {
   "id": "bk-hawkline-monster-brautigan",
@@ -5408,7 +5709,8 @@
   ],
   "createdAt": "2026-08-09T08:15:00.000Z",
   "updatedAt": "2026-08-09T08:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9254432-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9254432-M.jpg",
+  "pageCount": 216
  },
  {
   "id": "bk-notes-from-underground-dostoevsky",
@@ -5430,7 +5732,8 @@
    }
   ],
   "createdAt": "2026-08-09T08:14:00.000Z",
-  "updatedAt": "2026-08-09T08:14:00.000Z"
+  "updatedAt": "2026-08-09T08:14:00.000Z",
+  "pageCount": 76
  },
  {
   "id": "bk-breath-winton",
@@ -5454,7 +5757,8 @@
   ],
   "createdAt": "2026-08-09T08:13:00.000Z",
   "updatedAt": "2026-08-09T08:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10503277-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10503277-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-starless-sea-morgenstern",
@@ -5477,7 +5781,8 @@
   ],
   "createdAt": "2026-08-09T08:12:00.000Z",
   "updatedAt": "2026-08-09T08:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15261272-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15261272-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-war-and-peace-tolstoy",
@@ -5500,7 +5805,8 @@
   ],
   "createdAt": "2026-08-09T08:11:00.000Z",
   "updatedAt": "2026-08-09T08:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12736340-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12736340-M.jpg",
+  "pageCount": 696
  },
  {
   "id": "bk-frankenstein-in-baghdad-saadawi",
@@ -5525,7 +5831,8 @@
   ],
   "createdAt": "2026-08-09T08:10:00.000Z",
   "updatedAt": "2026-08-09T08:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8351858-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8351858-M.jpg",
+  "pageCount": 290
  },
  {
   "id": "bk-fahrenheit-451-bradbury",
@@ -5548,7 +5855,8 @@
   ],
   "createdAt": "2026-08-09T08:09:00.000Z",
   "updatedAt": "2026-08-09T08:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15141082-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15141082-M.jpg",
+  "pageCount": 188
  },
  {
   "id": "bk-white-teeth-smith",
@@ -5573,7 +5881,8 @@
   ],
   "createdAt": "2026-08-09T08:08:00.000Z",
   "updatedAt": "2026-08-09T08:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14896222-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14896222-M.jpg",
+  "pageCount": 528
  },
  {
   "id": "bk-high-fidelity-hornby",
@@ -5597,7 +5906,8 @@
   ],
   "createdAt": "2026-08-09T08:07:00.000Z",
   "updatedAt": "2026-08-09T08:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10762338-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10762338-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-water-dancer-coates",
@@ -5621,7 +5931,8 @@
   ],
   "createdAt": "2026-08-09T08:06:00.000Z",
   "updatedAt": "2026-08-09T08:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12868381-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12868381-M.jpg",
+  "pageCount": 416
  },
  {
   "id": "bk-cannery-row-steinbeck",
@@ -5646,7 +5957,8 @@
   ],
   "createdAt": "2026-08-09T08:05:00.000Z",
   "updatedAt": "2026-08-09T08:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14923860-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14923860-M.jpg",
+  "pageCount": 188
  },
  {
   "id": "bk-martian-weir",
@@ -5670,7 +5982,8 @@
   ],
   "createdAt": "2026-08-09T08:04:00.000Z",
   "updatedAt": "2026-08-09T08:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14641755-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14641755-M.jpg",
+  "pageCount": 407
  },
  {
   "id": "bk-messenger-zusak",
@@ -5738,7 +6051,8 @@
   ],
   "createdAt": "2026-08-09T08:01:00.000Z",
   "updatedAt": "2026-08-09T08:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9605871-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9605871-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-hornblower-and-the-hotspur-forester",
@@ -5763,7 +6077,8 @@
   ],
   "createdAt": "2026-08-09T08:00:00.000Z",
   "updatedAt": "2026-08-09T08:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14982158-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14982158-M.jpg",
+  "pageCount": 342
  },
  {
   "id": "bk-trainspotting-welsh",
@@ -5787,7 +6102,8 @@
   ],
   "createdAt": "2026-08-09T07:59:00.000Z",
   "updatedAt": "2026-08-09T07:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7891417-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7891417-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-to-name-those-lost-wilson",
@@ -5811,7 +6127,8 @@
   ],
   "createdAt": "2026-08-09T07:58:00.000Z",
   "updatedAt": "2026-08-09T07:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13163102-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13163102-M.jpg",
+  "pageCount": 267
  },
  {
   "id": "bk-hell-s-angels-thompson",
@@ -5835,7 +6152,8 @@
   ],
   "createdAt": "2026-08-09T07:57:00.000Z",
   "updatedAt": "2026-08-09T07:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12184053-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12184053-M.jpg",
+  "pageCount": 307
  },
  {
   "id": "bk-drive-your-plow-over-the-bones-of-the-dead-tokarczuk",
@@ -5885,7 +6203,8 @@
   ],
   "createdAt": "2026-08-09T07:55:00.000Z",
   "updatedAt": "2026-08-09T07:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6452334-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6452334-M.jpg",
+  "pageCount": 359
  },
  {
   "id": "bk-for-whom-the-bell-tolls-hemingway",
@@ -5911,7 +6230,8 @@
   ],
   "createdAt": "2026-08-09T07:54:00.000Z",
   "updatedAt": "2026-08-09T07:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14962766-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14962766-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-praise-mcgahan",
@@ -5934,7 +6254,8 @@
   ],
   "createdAt": "2026-08-09T07:53:00.000Z",
   "updatedAt": "2026-08-09T07:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/175057-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/175057-M.jpg",
+  "pageCount": 279
  },
  {
   "id": "bk-go-tell-it-on-the-mountain-baldwin",
@@ -5957,7 +6278,8 @@
   ],
   "createdAt": "2026-08-09T07:52:00.000Z",
   "updatedAt": "2026-08-09T07:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14971563-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14971563-M.jpg",
+  "pageCount": 233
  },
  {
   "id": "bk-small-gods-pratchett",
@@ -5981,7 +6303,8 @@
   ],
   "createdAt": "2026-08-09T07:51:00.000Z",
   "updatedAt": "2026-08-09T07:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14648213-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14648213-M.jpg",
+  "pageCount": 351
  },
  {
   "id": "bk-stoner-williams",
@@ -6004,7 +6327,8 @@
   ],
   "createdAt": "2026-08-09T07:50:00.000Z",
   "updatedAt": "2026-08-09T07:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15245132-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15245132-M.jpg",
+  "pageCount": 293
  },
  {
   "id": "bk-ask-the-dust-fante",
@@ -6027,7 +6351,8 @@
   ],
   "createdAt": "2026-08-09T07:49:00.000Z",
   "updatedAt": "2026-08-09T07:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6650913-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6650913-M.jpg",
+  "pageCount": 208
  },
  {
   "id": "bk-neuromancer-gibson",
@@ -6051,7 +6376,8 @@
   ],
   "createdAt": "2026-08-09T07:48:00.000Z",
   "updatedAt": "2026-08-09T07:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8904053-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8904053-M.jpg",
+  "pageCount": 317
  },
  {
   "id": "bk-things-they-carried-brien",
@@ -6075,7 +6401,8 @@
   ],
   "createdAt": "2026-08-09T07:47:00.000Z",
   "updatedAt": "2026-08-09T07:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12917634-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12917634-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-men-without-women-murakami",
@@ -6098,7 +6425,8 @@
   ],
   "createdAt": "2026-08-09T07:46:00.000Z",
   "updatedAt": "2026-08-09T07:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13768905-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13768905-M.jpg",
+  "pageCount": 240
  },
  {
   "id": "bk-plains-murnane",
@@ -6121,7 +6449,8 @@
   ],
   "createdAt": "2026-08-09T07:45:00.000Z",
   "updatedAt": "2026-08-09T07:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7154997-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7154997-M.jpg",
+  "pageCount": 126
  },
  {
   "id": "bk-spy-who-came-in-from-the-cold-carre",
@@ -6149,7 +6478,8 @@
   ],
   "createdAt": "2026-08-09T07:44:00.000Z",
   "updatedAt": "2026-08-09T07:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13070970-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13070970-M.jpg",
+  "pageCount": 247
  },
  {
   "id": "bk-things-fall-apart-achebe",
@@ -6173,7 +6503,8 @@
   ],
   "createdAt": "2026-08-09T07:43:00.000Z",
   "updatedAt": "2026-08-09T07:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15159693-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15159693-M.jpg",
+  "pageCount": 192
  },
  {
   "id": "bk-men-without-women-hemingway",
@@ -6196,7 +6527,8 @@
   ],
   "createdAt": "2026-08-09T07:42:00.000Z",
   "updatedAt": "2026-08-09T07:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15016206-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15016206-M.jpg",
+  "pageCount": 159
  },
  {
   "id": "bk-eye-of-the-sheep-laguna",
@@ -6219,7 +6551,8 @@
   ],
   "createdAt": "2026-08-09T07:41:00.000Z",
   "updatedAt": "2026-08-09T07:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12624573-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12624573-M.jpg",
+  "pageCount": 311
  },
  {
   "id": "bk-hitchhiker-s-guide-to-the-galaxy-adams",
@@ -6243,12 +6576,14 @@
   ],
   "createdAt": "2026-08-09T07:40:00.000Z",
   "updatedAt": "2026-08-09T07:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14612687-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14612687-M.jpg",
+  "pageCount": 216
  },
  {
   "id": "bk-game-of-thrones-martin",
   "title": "A Game of Thrones",
   "author": "George R.R. Martin",
+  "year": 1996,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6266,12 +6601,14 @@
   ],
   "createdAt": "2026-08-09T07:39:00.000Z",
   "updatedAt": "2026-08-09T07:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15128814-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15128814-M.jpg",
+  "pageCount": 801
  },
  {
   "id": "bk-name-of-the-wind-rothfuss",
   "title": "The Name of the Wind",
   "author": "Patrick Rothfuss",
+  "year": 2007,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6289,7 +6626,8 @@
   ],
   "createdAt": "2026-08-09T07:38:00.000Z",
   "updatedAt": "2026-08-09T07:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12391248-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12391248-M.jpg",
+  "pageCount": 736
  },
  {
   "id": "bk-earthsea-quartet-guin",
@@ -6312,7 +6650,8 @@
   ],
   "createdAt": "2026-08-09T07:37:00.000Z",
   "updatedAt": "2026-08-09T07:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8259267-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8259267-M.jpg",
+  "pageCount": 704
  },
  {
   "id": "bk-jonathan-strange-and-mr-norrell-clarke",
@@ -6336,12 +6675,14 @@
   ],
   "createdAt": "2026-08-09T07:36:00.000Z",
   "updatedAt": "2026-08-09T07:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12629095-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12629095-M.jpg",
+  "pageCount": 864
  },
  {
   "id": "bk-colour-of-magic-pratchett",
   "title": "The Colour of Magic",
   "author": "Terry Pratchett",
+  "year": 1983,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6359,12 +6700,14 @@
   ],
   "createdAt": "2026-08-09T07:35:00.000Z",
   "updatedAt": "2026-08-09T07:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14645633-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14645633-M.jpg",
+  "pageCount": 240
  },
  {
   "id": "bk-assassin-s-apprentice-hobb",
   "title": "Assassin's Apprentice",
   "author": "Robin Hobb",
+  "year": 1995,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6382,12 +6725,14 @@
   ],
   "createdAt": "2026-08-09T07:34:00.000Z",
   "updatedAt": "2026-08-09T07:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7063790-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7063790-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-fifth-season-jemisin",
   "title": "The Fifth Season",
   "author": "N.K. Jemisin",
+  "year": 2015,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6406,12 +6751,14 @@
   ],
   "createdAt": "2026-08-09T07:33:00.000Z",
   "updatedAt": "2026-08-09T07:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14428463-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14428463-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-gardens-of-the-moon-erikson",
   "title": "Gardens of the Moon",
   "author": "Steven Erikson",
+  "year": 1999,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6429,12 +6776,14 @@
   ],
   "createdAt": "2026-08-09T07:32:00.000Z",
   "updatedAt": "2026-08-09T07:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6758340-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6758340-M.jpg",
+  "pageCount": 635
  },
  {
   "id": "bk-american-gods-gaiman",
   "title": "American Gods",
   "author": "Neil Gaiman",
+  "year": 2001,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6452,7 +6801,8 @@
   ],
   "createdAt": "2026-08-09T07:31:00.000Z",
   "updatedAt": "2026-08-09T07:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14420908-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14420908-M.jpg",
+  "pageCount": 576
  },
  {
   "id": "bk-lies-of-locke-lamora-lynch",
@@ -6476,12 +6826,14 @@
   ],
   "createdAt": "2026-08-09T07:30:00.000Z",
   "updatedAt": "2026-08-09T07:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12901690-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12901690-M.jpg",
+  "pageCount": 544
  },
  {
   "id": "bk-perdido-street-station-mieville",
   "title": "Perdido Street Station",
   "author": "China Mieville",
+  "year": 2000,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6499,7 +6851,8 @@
   ],
   "createdAt": "2026-08-09T07:29:00.000Z",
   "updatedAt": "2026-08-09T07:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8673333-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8673333-M.jpg",
+  "pageCount": 710
  },
  {
   "id": "bk-final-empire-sanderson",
@@ -6523,7 +6876,8 @@
   ],
   "createdAt": "2026-08-09T07:28:00.000Z",
   "updatedAt": "2026-08-09T07:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15101787-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15101787-M.jpg",
+  "pageCount": 669
  },
  {
   "id": "bk-once-and-future-king-white",
@@ -6547,12 +6901,14 @@
   ],
   "createdAt": "2026-08-09T07:27:00.000Z",
   "updatedAt": "2026-08-09T07:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9592030-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9592030-M.jpg",
+  "pageCount": 654
  },
  {
   "id": "bk-gunslinger-king",
   "title": "The Gunslinger",
   "author": "Stephen King",
+  "year": 1978,
   "status": "want_to_read",
   "sourceNote": "Dark Tower book 1",
   "favorite": false,
@@ -6572,12 +6928,14 @@
   ],
   "createdAt": "2026-08-09T07:26:00.000Z",
   "updatedAt": "2026-08-09T07:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14655483-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14655483-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-eye-of-the-world-jordan",
   "title": "The Eye of the World",
   "author": "Robert Jordan",
+  "year": 1990,
   "status": "want_to_read",
   "sourceNote": "Wheel of Time book 1",
   "favorite": false,
@@ -6595,12 +6953,14 @@
   ],
   "createdAt": "2026-08-09T07:25:00.000Z",
   "updatedAt": "2026-08-09T07:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15239992-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15239992-M.jpg",
+  "pageCount": 782
  },
  {
   "id": "bk-lord-foul-s-bane-donaldson",
   "title": "Lord Foul's Bane",
   "author": "Stephen Donaldson",
+  "year": 1977,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6618,7 +6978,8 @@
   ],
   "createdAt": "2026-08-09T07:24:00.000Z",
   "updatedAt": "2026-08-09T07:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11673323-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11673323-M.jpg",
+  "pageCount": 394
  },
  {
   "id": "bk-blade-itself-abercrombie",
@@ -6641,12 +7002,14 @@
   ],
   "createdAt": "2026-08-09T07:23:00.000Z",
   "updatedAt": "2026-08-09T07:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14570450-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14570450-M.jpg",
+  "pageCount": 531
  },
  {
   "id": "bk-tigana-kay",
   "title": "Tigana",
   "author": "Guy Gavriel Kay",
+  "year": 1990,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6664,12 +7027,14 @@
   ],
   "createdAt": "2026-08-09T07:22:00.000Z",
   "updatedAt": "2026-08-09T07:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10595381-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10595381-M.jpg",
+  "pageCount": 688
  },
  {
   "id": "bk-good-omens-pratchett",
   "title": "Good Omens",
   "author": "Terry Pratchett",
+  "year": 1990,
   "status": "want_to_read",
   "sourceNote": "with Neil Gaiman",
   "favorite": false,
@@ -6688,12 +7053,14 @@
   ],
   "createdAt": "2026-08-09T07:21:00.000Z",
   "updatedAt": "2026-08-09T07:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14649235-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14649235-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-hobbit-tolkien",
   "title": "The Hobbit",
   "author": "J.R.R. Tolkien",
+  "year": 1937,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6712,7 +7079,8 @@
   ],
   "createdAt": "2026-08-09T07:20:00.000Z",
   "updatedAt": "2026-08-09T07:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15223072-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15223072-M.jpg",
+  "pageCount": 310
  },
  {
   "id": "bk-lion-the-witch-and-the-wardrobe-lewis",
@@ -6735,12 +7103,14 @@
   ],
   "createdAt": "2026-08-09T07:19:00.000Z",
   "updatedAt": "2026-08-09T07:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12377346-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12377346-M.jpg",
+  "pageCount": 186
  },
  {
   "id": "bk-harry-potter-and-the-philosopher-s-stone-rowling",
   "title": "Harry Potter and the Philosopher's Stone",
   "author": "J.K. Rowling",
+  "year": 1997,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6758,12 +7128,14 @@
   ],
   "createdAt": "2026-08-09T07:18:00.000Z",
   "updatedAt": "2026-08-09T07:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15154784-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15154784-M.jpg",
+  "pageCount": 302
  },
  {
   "id": "bk-titus-groan-peake",
   "title": "Titus Groan",
   "author": "Mervyn Peake",
+  "year": 1946,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6781,12 +7153,14 @@
   ],
   "createdAt": "2026-08-09T07:17:00.000Z",
   "updatedAt": "2026-08-09T07:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11730147-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11730147-M.jpg",
+  "pageCount": 506
  },
  {
   "id": "bk-pawn-of-prophecy-eddings",
   "title": "Pawn of Prophecy",
   "author": "David Eddings",
+  "year": 1982,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6804,12 +7178,14 @@
   ],
   "createdAt": "2026-08-09T07:16:00.000Z",
   "updatedAt": "2026-08-09T07:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6610126-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6610126-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-northern-lights-pullman",
   "title": "Northern Lights",
   "author": "Philip Pullman",
+  "year": 1995,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6827,12 +7203,14 @@
   ],
   "createdAt": "2026-08-09T07:15:00.000Z",
   "updatedAt": "2026-08-09T07:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15172991-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15172991-M.jpg",
+  "pageCount": 405
  },
  {
   "id": "bk-neverwhere-gaiman",
   "title": "Neverwhere",
   "author": "Neil Gaiman",
+  "year": 1996,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6850,7 +7228,8 @@
   ],
   "createdAt": "2026-08-09T07:14:00.000Z",
   "updatedAt": "2026-08-09T07:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11223046-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11223046-M.jpg",
+  "pageCount": 388
  },
  {
   "id": "bk-magician-feist",
@@ -6872,12 +7251,14 @@
   ],
   "createdAt": "2026-08-09T07:13:00.000Z",
   "updatedAt": "2026-08-09T07:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15166403-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15166403-M.jpg",
+  "pageCount": 700
  },
  {
   "id": "bk-princess-bride-goldman",
   "title": "The Princess Bride",
   "author": "William Goldman",
+  "year": 1973,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6897,12 +7278,14 @@
   ],
   "createdAt": "2026-08-09T07:12:00.000Z",
   "updatedAt": "2026-08-09T07:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11511527-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11511527-M.jpg",
+  "pageCount": 399
  },
  {
   "id": "bk-last-unicorn-beagle",
   "title": "The Last Unicorn",
   "author": "Peter S. Beagle",
+  "year": 1968,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6920,12 +7303,14 @@
   ],
   "createdAt": "2026-08-09T07:11:00.000Z",
   "updatedAt": "2026-08-09T07:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15118632-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15118632-M.jpg",
+  "pageCount": 248
  },
  {
   "id": "bk-way-of-kings-sanderson",
   "title": "The Way of Kings",
   "author": "Brandon Sanderson",
+  "year": 2010,
   "status": "want_to_read",
   "sourceNote": "Stormlight Archive book 1",
   "favorite": false,
@@ -6943,12 +7328,14 @@
   ],
   "createdAt": "2026-08-09T07:10:00.000Z",
   "updatedAt": "2026-08-09T07:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8890435-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8890435-M.jpg",
+  "pageCount": 1008
  },
  {
   "id": "bk-watership-down-adams",
   "title": "Watership Down",
   "author": "Richard Adams",
+  "year": 1972,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6967,12 +7354,14 @@
   ],
   "createdAt": "2026-08-09T07:09:00.000Z",
   "updatedAt": "2026-08-09T07:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14896014-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14896014-M.jpg",
+  "pageCount": 478
  },
  {
   "id": "bk-hundred-thousand-kingdoms-jemisin",
   "title": "The Hundred Thousand Kingdoms",
   "author": "N.K. Jemisin",
+  "year": 2010,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -6990,12 +7379,14 @@
   ],
   "createdAt": "2026-08-09T07:08:00.000Z",
   "updatedAt": "2026-08-09T07:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6619465-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6619465-M.jpg",
+  "pageCount": 397
  },
  {
   "id": "bk-alice-s-adventures-in-wonderland-carroll",
   "title": "Alice's Adventures in Wonderland",
   "author": "Lewis Carroll",
+  "year": 1865,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7012,12 +7403,14 @@
   ],
   "createdAt": "2026-08-09T07:07:00.000Z",
   "updatedAt": "2026-08-09T07:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14651246-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14651246-M.jpg",
+  "pageCount": 133
  },
  {
   "id": "bk-dragonflight-mccaffrey",
   "title": "Dragonflight",
   "author": "Anne McCaffrey",
+  "year": 1968,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7035,12 +7428,14 @@
   ],
   "createdAt": "2026-08-09T07:06:00.000Z",
   "updatedAt": "2026-08-09T07:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13074516-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13074516-M.jpg",
+  "pageCount": 309
  },
  {
   "id": "bk-dragonbone-chair-williams",
   "title": "The Dragonbone Chair",
   "author": "Tad Williams",
+  "year": 1988,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7058,12 +7453,14 @@
   ],
   "createdAt": "2026-08-09T07:05:00.000Z",
   "updatedAt": "2026-08-09T07:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13254018-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13254018-M.jpg",
+  "pageCount": 783
  },
  {
   "id": "bk-sword-of-shannara-brooks",
   "title": "The Sword of Shannara",
   "author": "Terry Brooks",
+  "year": 1977,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7080,12 +7477,14 @@
   ],
   "createdAt": "2026-08-09T07:04:00.000Z",
   "updatedAt": "2026-08-09T07:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/211003-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/211003-M.jpg",
+  "pageCount": 726
  },
  {
   "id": "bk-way-of-shadows-weeks",
   "title": "The Way of Shadows",
   "author": "Brent Weeks",
+  "year": 2008,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7103,12 +7502,14 @@
   ],
   "createdAt": "2026-08-09T07:03:00.000Z",
   "updatedAt": "2026-08-09T07:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12377652-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12377652-M.jpg",
+  "pageCount": 645
  },
  {
   "id": "bk-legend-gemmell",
   "title": "Legend",
   "author": "David Gemmell",
+  "year": 1984,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7126,12 +7527,14 @@
   ],
   "createdAt": "2026-08-09T07:02:00.000Z",
   "updatedAt": "2026-08-09T07:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/75981-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/75981-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-poppy-war-kuang",
   "title": "The Poppy War",
   "author": "R.F. Kuang",
+  "year": 2018,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7150,12 +7553,14 @@
   ],
   "createdAt": "2026-08-09T07:01:00.000Z",
   "updatedAt": "2026-08-09T07:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10613239-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10613239-M.jpg",
+  "pageCount": 522
  },
  {
   "id": "bk-summer-tree-kay",
   "title": "The Summer Tree",
   "author": "Guy Gavriel Kay",
+  "year": 1984,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7172,12 +7577,14 @@
   ],
   "createdAt": "2026-08-09T07:00:00.000Z",
   "updatedAt": "2026-08-09T07:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/295003-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/295003-M.jpg",
+  "pageCount": 323
  },
  {
   "id": "bk-rivers-of-london-aaronovitch",
   "title": "Rivers of London",
   "author": "Ben Aaronovitch",
+  "year": 2011,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7218,12 +7625,14 @@
   ],
   "createdAt": "2026-08-09T06:58:00.000Z",
   "updatedAt": "2026-08-09T06:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14291-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14291-M.jpg",
+  "pageCount": 1088
  },
  {
   "id": "bk-vicious-schwab",
   "title": "Vicious",
   "author": "V.E. Schwab",
+  "year": 2013,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7241,7 +7650,8 @@
   ],
   "createdAt": "2026-08-09T06:57:00.000Z",
   "updatedAt": "2026-08-09T06:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7410940-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7410940-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-city-and-the-city-mieville",
@@ -7265,7 +7675,8 @@
   ],
   "createdAt": "2026-08-09T06:56:00.000Z",
   "updatedAt": "2026-08-09T06:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15220924-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15220924-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-goblin-emperor-addison",
@@ -7293,6 +7704,7 @@
   "id": "bk-jade-city-lee",
   "title": "Jade City",
   "author": "Fonda Lee",
+  "year": 2017,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7311,7 +7723,8 @@
   ],
   "createdAt": "2026-08-09T06:54:00.000Z",
   "updatedAt": "2026-08-09T06:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15262041-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15262041-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-forgotten-beasts-of-eld-mckillip",
@@ -7333,7 +7746,8 @@
   ],
   "createdAt": "2026-08-09T06:53:00.000Z",
   "updatedAt": "2026-08-09T06:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11633916-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11633916-M.jpg",
+  "pageCount": 229
  },
  {
   "id": "bk-sudden-appearance-of-hope-north",
@@ -7356,12 +7770,14 @@
   ],
   "createdAt": "2026-08-09T06:52:00.000Z",
   "updatedAt": "2026-08-09T06:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13069566-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13069566-M.jpg",
+  "pageCount": 490
  },
  {
   "id": "bk-sabriel-nix",
   "title": "Sabriel",
   "author": "Garth Nix",
+  "year": 1995,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7379,12 +7795,14 @@
   ],
   "createdAt": "2026-08-09T06:51:00.000Z",
   "updatedAt": "2026-08-09T06:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8260497-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8260497-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-under-heaven-kay",
   "title": "Under Heaven",
   "author": "Guy Gavriel Kay",
+  "year": 2010,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7403,12 +7821,14 @@
   ],
   "createdAt": "2026-08-09T06:50:00.000Z",
   "updatedAt": "2026-08-09T06:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10598840-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10598840-M.jpg",
+  "pageCount": 587
  },
  {
   "id": "bk-magicians-grossman",
   "title": "The Magicians",
   "author": "Lev Grossman",
+  "year": 2009,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7426,12 +7846,14 @@
   ],
   "createdAt": "2026-08-09T06:49:00.000Z",
   "updatedAt": "2026-08-09T06:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12587552-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12587552-M.jpg",
+  "pageCount": 416
  },
  {
   "id": "bk-kushiel-s-dart-carey",
   "title": "Kushiel's Dart",
   "author": "Jacqueline Carey",
+  "year": 2001,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7449,12 +7871,14 @@
   ],
   "createdAt": "2026-08-09T06:48:00.000Z",
   "updatedAt": "2026-08-09T06:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/524944-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/524944-M.jpg",
+  "pageCount": 703
  },
  {
   "id": "bk-night-circus-morgenstern",
   "title": "The Night Circus",
   "author": "Erin Morgenstern",
+  "year": 2011,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7472,7 +7896,8 @@
   ],
   "createdAt": "2026-08-09T06:47:00.000Z",
   "updatedAt": "2026-08-09T06:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8750522-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8750522-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-golem-and-the-djinni-wecker",
@@ -7502,6 +7927,7 @@
   "id": "bk-black-company-cook",
   "title": "The Black Company",
   "author": "Glen Cook",
+  "year": 1984,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7519,12 +7945,14 @@
   ],
   "createdAt": "2026-08-09T06:45:00.000Z",
   "updatedAt": "2026-08-09T06:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6978703-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6978703-M.jpg",
+  "pageCount": 319
  },
  {
   "id": "bk-priory-of-the-orange-tree-shannon",
   "title": "The Priory of the Orange Tree",
   "author": "Samantha Shannon",
+  "year": 2019,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7541,12 +7969,14 @@
   ],
   "createdAt": "2026-08-09T06:44:00.000Z",
   "updatedAt": "2026-08-09T06:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8802446-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8802446-M.jpg",
+  "pageCount": 848
  },
  {
   "id": "bk-ten-thousand-doors-of-january-harrow",
   "title": "The Ten Thousand Doors of January",
   "author": "Alix E. Harrow",
+  "year": 2019,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7565,12 +7995,14 @@
   ],
   "createdAt": "2026-08-09T06:43:00.000Z",
   "updatedAt": "2026-08-09T06:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8753949-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8753949-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-some-kind-of-fairy-tale-joyce",
   "title": "Some Kind of Fairy Tale",
   "author": "Graham Joyce",
+  "year": 2012,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7588,12 +8020,14 @@
   ],
   "createdAt": "2026-08-09T06:42:00.000Z",
   "updatedAt": "2026-08-09T06:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12187650-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12187650-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-duncton-wood-horwood",
   "title": "Duncton Wood",
   "author": "William Horwood",
+  "year": 1980,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7611,7 +8045,8 @@
   ],
   "createdAt": "2026-08-09T06:41:00.000Z",
   "updatedAt": "2026-08-09T06:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14547942-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14547942-M.jpg",
+  "pageCount": 733
  },
  {
   "id": "bk-tender-morsels-lanagan",
@@ -7633,12 +8068,14 @@
   ],
   "createdAt": "2026-08-09T06:40:00.000Z",
   "updatedAt": "2026-08-09T06:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10812623-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10812623-M.jpg",
+  "pageCount": 464
  },
  {
   "id": "bk-palimpsest-valente",
   "title": "Palimpsest",
   "author": "Catherynne M. Valente",
+  "year": 2009,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7656,12 +8093,14 @@
   ],
   "createdAt": "2026-08-09T06:39:00.000Z",
   "updatedAt": "2026-08-09T06:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12509604-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12509604-M.jpg",
+  "pageCount": 367
  },
  {
   "id": "bk-moon-and-the-sun-mcintyre",
   "title": "The Moon and the Sun",
   "author": "Vonda N. McIntyre",
+  "year": 1997,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7679,12 +8118,14 @@
   ],
   "createdAt": "2026-08-09T06:38:00.000Z",
   "updatedAt": "2026-08-09T06:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12688070-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12688070-M.jpg",
+  "pageCount": 464
  },
  {
   "id": "bk-alif-the-unseen-wilson",
   "title": "Alif the Unseen",
   "author": "G. Willow Wilson",
+  "year": 2012,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7702,12 +8143,14 @@
   ],
   "createdAt": "2026-08-09T06:37:00.000Z",
   "updatedAt": "2026-08-09T06:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12184298-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12184298-M.jpg",
+  "pageCount": 448
  },
  {
   "id": "bk-weaveworld-barker",
   "title": "Weaveworld",
   "author": "Clive Barker",
+  "year": 1987,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7726,12 +8169,14 @@
   ],
   "createdAt": "2026-08-09T06:36:00.000Z",
   "updatedAt": "2026-08-09T06:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6633915-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6633915-M.jpg",
+  "pageCount": 721
  },
  {
   "id": "bk-heir-of-night-lowe",
   "title": "The Heir of Night",
   "author": "Helen Lowe",
+  "year": 2010,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7748,7 +8193,8 @@
   ],
   "createdAt": "2026-08-09T06:35:00.000Z",
   "updatedAt": "2026-08-09T06:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8407719-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8407719-M.jpg",
+  "pageCount": 464
  },
  {
   "id": "bk-dawnthief-barclay",
@@ -7770,7 +8216,8 @@
   ],
   "createdAt": "2026-08-09T06:34:00.000Z",
   "updatedAt": "2026-08-09T06:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14425816-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14425816-M.jpg",
+  "pageCount": 496
  },
  {
   "id": "bk-sum-of-all-men-farland",
@@ -7792,12 +8239,14 @@
   ],
   "createdAt": "2026-08-09T06:33:00.000Z",
   "updatedAt": "2026-08-09T06:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10811055-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10811055-M.jpg",
+  "pageCount": 619
  },
  {
   "id": "bk-bear-and-the-nightingale-arden",
   "title": "The Bear and the Nightingale",
   "author": "Katherine Arden",
+  "year": 2017,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7816,7 +8265,8 @@
   ],
   "createdAt": "2026-08-09T06:32:00.000Z",
   "updatedAt": "2026-08-09T06:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14745524-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14745524-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-beyond-the-deepwoods-riddell",
@@ -7844,6 +8294,7 @@
   "id": "bk-daughter-of-the-forest-marillier",
   "title": "Daughter of the Forest",
   "author": "Juliet Marillier",
+  "year": 1999,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7861,7 +8312,8 @@
   ],
   "createdAt": "2026-08-09T06:30:00.000Z",
   "updatedAt": "2026-08-09T06:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/182331-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/182331-M.jpg",
+  "pageCount": 476
  },
  {
   "id": "bk-magpie-murders-horowitz",
@@ -7889,12 +8341,14 @@
   ],
   "createdAt": "2026-08-09T06:29:00.000Z",
   "updatedAt": "2026-08-09T06:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8189045-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8189045-M.jpg",
+  "pageCount": 496
  },
  {
   "id": "bk-kraken-mieville",
   "title": "Kraken",
   "author": "China Mieville",
+  "year": 2010,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7913,12 +8367,14 @@
   ],
   "createdAt": "2026-08-09T06:28:00.000Z",
   "updatedAt": "2026-08-09T06:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6678353-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6678353-M.jpg",
+  "pageCount": 509
  },
  {
   "id": "bk-ancillary-justice-leckie",
   "title": "Ancillary Justice",
   "author": "Ann Leckie",
+  "year": 2013,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7936,12 +8392,14 @@
   ],
   "createdAt": "2026-08-09T06:27:00.000Z",
   "updatedAt": "2026-08-09T06:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11930071-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11930071-M.jpg",
+  "pageCount": 409
  },
  {
   "id": "bk-steerswoman-kirstein",
   "title": "The Steerswoman",
   "author": "Rosemary Kirstein",
+  "year": 1989,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7959,12 +8417,14 @@
   ],
   "createdAt": "2026-08-09T06:26:00.000Z",
   "updatedAt": "2026-08-09T06:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14567254-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14567254-M.jpg",
+  "pageCount": 279
  },
  {
   "id": "bk-shadow-of-the-torturer-wolfe",
   "title": "The Shadow of the Torturer",
   "author": "Gene Wolfe",
+  "year": 1980,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -7983,12 +8443,14 @@
   ],
   "createdAt": "2026-08-09T06:25:00.000Z",
   "updatedAt": "2026-08-09T06:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6970056-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6970056-M.jpg",
+  "pageCount": 303
  },
  {
   "id": "bk-dune-herbert",
   "title": "Dune",
   "author": "Frank Herbert",
+  "year": 1965,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8005,12 +8467,14 @@
   ],
   "createdAt": "2026-08-09T06:24:00.000Z",
   "updatedAt": "2026-08-09T06:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9705237-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9705237-M.jpg",
+  "pageCount": 608
  },
  {
   "id": "bk-bone-clocks-mitchell",
   "title": "The Bone Clocks",
   "author": "David Mitchell",
+  "year": 2014,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8028,12 +8492,14 @@
   ],
   "createdAt": "2026-08-09T06:23:00.000Z",
   "updatedAt": "2026-08-09T06:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12472574-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12472574-M.jpg",
+  "pageCount": 656
  },
  {
   "id": "bk-atrocity-archives-stross",
   "title": "The Atrocity Archives",
   "author": "Charles Stross",
+  "year": 2004,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8051,12 +8517,14 @@
   ],
   "createdAt": "2026-08-09T06:22:00.000Z",
   "updatedAt": "2026-08-09T06:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8259834-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8259834-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-circe-miller",
   "title": "Circe",
   "author": "Madeline Miller",
+  "year": 2018,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8075,12 +8543,14 @@
   ],
   "createdAt": "2026-08-09T06:21:00.000Z",
   "updatedAt": "2026-08-09T06:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15176841-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15176841-M.jpg",
+  "pageCount": 404
  },
  {
   "id": "bk-prince-of-thorns-lawrence",
   "title": "Prince of Thorns",
   "author": "Mark Lawrence",
+  "year": 2011,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8097,7 +8567,8 @@
   ],
   "createdAt": "2026-08-09T06:20:00.000Z",
   "updatedAt": "2026-08-09T06:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12739288-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12739288-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-swan-song-mccammon",
@@ -8121,12 +8592,14 @@
   ],
   "createdAt": "2026-08-09T06:19:00.000Z",
   "updatedAt": "2026-08-09T06:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6919762-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6919762-M.jpg",
+  "pageCount": 956
  },
  {
   "id": "bk-stand-king",
   "title": "The Stand",
   "author": "Stephen King",
+  "year": 1978,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -8149,12 +8622,14 @@
   ],
   "createdAt": "2026-08-09T06:18:00.000Z",
   "updatedAt": "2026-08-09T06:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14914282-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14914282-M.jpg",
+  "pageCount": 1153
  },
  {
   "id": "bk-raven-tower-leckie",
   "title": "The Raven Tower",
   "author": "Ann Leckie",
+  "year": 2019,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8171,12 +8646,14 @@
   ],
   "createdAt": "2026-08-09T06:17:00.000Z",
   "updatedAt": "2026-08-09T06:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13441513-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13441513-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-ninth-house-bardugo",
   "title": "Ninth House",
   "author": "Leigh Bardugo",
+  "year": 2019,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8196,12 +8673,14 @@
   ],
   "createdAt": "2026-08-09T06:16:00.000Z",
   "updatedAt": "2026-08-09T06:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12856759-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12856759-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-gideon-the-ninth-muir",
   "title": "Gideon the Ninth",
   "author": "Tamsyn Muir",
+  "year": 2019,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8220,12 +8699,14 @@
   ],
   "createdAt": "2026-08-09T06:15:00.000Z",
   "updatedAt": "2026-08-09T06:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14539448-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14539448-M.jpg",
+  "pageCount": 440
  },
  {
   "id": "bk-foundryside-bennett",
   "title": "Foundryside",
   "author": "Robert Jackson Bennett",
+  "year": 2018,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8243,12 +8724,14 @@
   ],
   "createdAt": "2026-08-09T06:14:00.000Z",
   "updatedAt": "2026-08-09T06:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9252092-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9252092-M.jpg",
+  "pageCount": 503
  },
  {
   "id": "bk-engine-summer-crowley",
   "title": "Engine Summer",
   "author": "John Crowley",
+  "year": 1979,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8265,12 +8748,14 @@
   ],
   "createdAt": "2026-08-09T06:13:00.000Z",
   "updatedAt": "2026-08-09T06:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15177984-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15177984-M.jpg",
+  "pageCount": 187
  },
  {
   "id": "bk-jasmine-throne-suri",
   "title": "The Jasmine Throne",
   "author": "Tasha Suri",
+  "year": 2021,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8288,12 +8773,14 @@
   ],
   "createdAt": "2026-08-09T06:12:00.000Z",
   "updatedAt": "2026-08-09T06:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15158305-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15158305-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-storm-front-butcher",
   "title": "Storm Front",
   "author": "Jim Butcher",
+  "year": 2000,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8312,12 +8799,14 @@
   ],
   "createdAt": "2026-08-09T06:11:00.000Z",
   "updatedAt": "2026-08-09T06:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15116627-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15116627-M.jpg",
+  "pageCount": 347
  },
  {
   "id": "bk-darker-shade-of-magic-schwab",
   "title": "A Darker Shade of Magic",
   "author": "V.E. Schwab",
+  "year": 2015,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8335,12 +8824,14 @@
   ],
   "createdAt": "2026-08-09T06:10:00.000Z",
   "updatedAt": "2026-08-09T06:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9157270-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9157270-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-babel-kuang",
   "title": "Babel",
   "author": "R.F. Kuang",
+  "year": 2022,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8359,12 +8850,14 @@
   ],
   "createdAt": "2026-08-09T06:09:00.000Z",
   "updatedAt": "2026-08-09T06:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12866714-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12866714-M.jpg",
+  "pageCount": 577
  },
  {
   "id": "bk-piranesi-clarke",
   "title": "Piranesi",
   "author": "Susanna Clarke",
+  "year": 2020,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8382,12 +8875,14 @@
   ],
   "createdAt": "2026-08-09T06:08:00.000Z",
   "updatedAt": "2026-08-09T06:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15155469-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15155469-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-shadow-year-ford",
   "title": "The Shadow Year",
   "author": "Jeffrey Ford",
+  "year": 2008,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8405,12 +8900,14 @@
   ],
   "createdAt": "2026-08-09T06:07:00.000Z",
   "updatedAt": "2026-08-09T06:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8291160-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8291160-M.jpg",
+  "pageCount": 297
  },
  {
   "id": "bk-red-rising-brown",
   "title": "Red Rising",
   "author": "Pierce Brown",
+  "year": 2014,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8428,12 +8925,14 @@
   ],
   "createdAt": "2026-08-09T06:06:00.000Z",
   "updatedAt": "2026-08-09T06:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8407136-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8407136-M.jpg",
+  "pageCount": 416
  },
  {
   "id": "bk-tainted-cup-bennett",
   "title": "The Tainted Cup",
   "author": "Robert Jackson Bennett",
+  "year": 2024,
   "status": "want_to_read",
   "favorite": false,
   "genres": [
@@ -8451,7 +8950,8 @@
   ],
   "createdAt": "2026-08-09T06:05:00.000Z",
   "updatedAt": "2026-08-09T06:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15251529-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15251529-M.jpg",
+  "pageCount": 419
  },
  {
   "id": "bk-roadside-picnic-strugatsky",
@@ -8474,7 +8974,8 @@
   ],
   "createdAt": "2026-08-09T06:04:00.000Z",
   "updatedAt": "2026-08-09T06:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14633429-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14633429-M.jpg",
+  "pageCount": 170
  },
  {
   "id": "bk-between-two-fires-buehlman",
@@ -8499,7 +9000,8 @@
   ],
   "createdAt": "2026-08-09T06:03:00.000Z",
   "updatedAt": "2026-08-09T06:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15093954-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15093954-M.jpg",
+  "pageCount": 456
  },
  {
   "id": "bk-coffin-for-dimitrios-ambler",
@@ -8524,7 +9026,8 @@
   ],
   "createdAt": "2026-08-09T06:02:00.000Z",
   "updatedAt": "2026-08-09T06:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6617003-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6617003-M.jpg",
+  "pageCount": 255
  },
  {
   "id": "bk-tears-of-autumn-mccarry",
@@ -8548,7 +9051,7 @@
   ],
   "createdAt": "2026-08-09T06:01:00.000Z",
   "updatedAt": "2026-08-09T06:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/851172-M.jpg"
+  "pageCount": 276
  },
  {
   "id": "bk-casino-royale-fleming",
@@ -8572,7 +9075,8 @@
   ],
   "createdAt": "2026-08-09T06:00:00.000Z",
   "updatedAt": "2026-08-09T06:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15160954-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15160954-M.jpg",
+  "pageCount": 189
  },
  {
   "id": "bk-stone-roses-gainham",
@@ -8595,7 +9099,8 @@
   ],
   "createdAt": "2026-08-09T05:59:00.000Z",
   "updatedAt": "2026-08-09T05:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13209313-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13209313-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-red-sparrow-matthews",
@@ -8620,7 +9125,8 @@
   ],
   "createdAt": "2026-08-09T05:58:00.000Z",
   "updatedAt": "2026-08-09T05:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13724190-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13724190-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-slow-horses-herron",
@@ -8649,7 +9155,8 @@
   ],
   "createdAt": "2026-08-09T05:57:00.000Z",
   "updatedAt": "2026-08-09T05:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14518519-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14518519-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-peacock-and-the-sparrow-berry",
@@ -8671,7 +9178,8 @@
   ],
   "createdAt": "2026-08-09T05:56:00.000Z",
   "updatedAt": "2026-08-09T05:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14841381-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14841381-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-night-heron-brookes",
@@ -8695,7 +9203,8 @@
   ],
   "createdAt": "2026-08-09T05:55:00.000Z",
   "updatedAt": "2026-08-09T05:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10017992-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10017992-M.jpg",
+  "pageCount": 408
  },
  {
   "id": "bk-gray-man-greaney",
@@ -8719,7 +9228,8 @@
   ],
   "createdAt": "2026-08-09T05:54:00.000Z",
   "updatedAt": "2026-08-09T05:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12439682-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12439682-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-agents-of-innocence-ignatius",
@@ -8743,7 +9253,8 @@
   ],
   "createdAt": "2026-08-09T05:53:00.000Z",
   "updatedAt": "2026-08-09T05:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15241603-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15241603-M.jpg",
+  "pageCount": 444
  },
  {
   "id": "bk-hunt-for-red-october-clancy",
@@ -8767,7 +9278,8 @@
   ],
   "createdAt": "2026-08-09T05:52:00.000Z",
   "updatedAt": "2026-08-09T05:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14920770-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14920770-M.jpg",
+  "pageCount": 479
  },
  {
   "id": "bk-berlin-game-deighton",
@@ -8792,7 +9304,8 @@
   ],
   "createdAt": "2026-08-09T05:51:00.000Z",
   "updatedAt": "2026-08-09T05:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11655891-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11655891-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-dark-star-furst",
@@ -8815,12 +9328,14 @@
   ],
   "createdAt": "2026-08-09T05:50:00.000Z",
   "updatedAt": "2026-08-09T05:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/230585-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/230585-M.jpg",
+  "pageCount": 351
  },
  {
   "id": "bk-company-littell",
   "title": "The Company",
   "author": "Robert Littell",
+  "year": 2002,
   "status": "want_to_read",
   "sourceNote": "If you loved it · Recommended after Spy Who Came in From the Cold",
   "favorite": false,
@@ -8839,7 +9354,8 @@
   ],
   "createdAt": "2026-08-09T05:49:00.000Z",
   "updatedAt": "2026-08-09T05:49:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6741356-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6741356-M.jpg",
+  "pageCount": 894
  },
  {
   "id": "bk-third-man-greene",
@@ -8863,7 +9379,8 @@
   ],
   "createdAt": "2026-08-09T05:48:00.000Z",
   "updatedAt": "2026-08-09T05:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8260635-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8260635-M.jpg",
+  "pageCount": 134
  },
  {
   "id": "bk-transcription-atkinson",
@@ -8886,7 +9403,8 @@
   ],
   "createdAt": "2026-08-09T05:47:00.000Z",
   "updatedAt": "2026-08-09T05:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9169163-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9169163-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-box-88-series-cumming",
@@ -8931,7 +9449,8 @@
   ],
   "createdAt": "2026-08-09T05:45:00.000Z",
   "updatedAt": "2026-08-09T05:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12383376-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12383376-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-jason-bourne-novels-series-ludlum",
@@ -8975,8 +9494,7 @@
    }
   ],
   "createdAt": "2026-08-09T05:43:00.000Z",
-  "updatedAt": "2026-08-09T05:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7929704-M.jpg"
+  "updatedAt": "2026-08-09T05:43:00.000Z"
  },
  {
   "id": "bk-american-spy-wilkinson",
@@ -9000,12 +9518,14 @@
   ],
   "createdAt": "2026-08-09T05:42:00.000Z",
   "updatedAt": "2026-08-09T05:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14834233-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14834233-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-charm-school-demille",
   "title": "The Charm School",
   "author": "Nelson DeMille",
+  "year": 1988,
   "status": "want_to_read",
   "sourceNote": "If you loved it · Recommended after Red Sparrow",
   "favorite": false,
@@ -9023,7 +9543,8 @@
   ],
   "createdAt": "2026-08-09T05:41:00.000Z",
   "updatedAt": "2026-08-09T05:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12911359-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12911359-M.jpg",
+  "pageCount": 704
  },
  {
   "id": "bk-down-range-moore",
@@ -9045,12 +9566,14 @@
   ],
   "createdAt": "2026-08-09T05:40:00.000Z",
   "updatedAt": "2026-08-09T05:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10907045-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10907045-M.jpg",
+  "pageCount": 392
  },
  {
   "id": "bk-our-man-in-havana-greene",
   "title": "Our Man in Havana",
   "author": "Graham Greene",
+  "year": 1958,
   "status": "want_to_read",
   "sourceNote": "If you loved it · Recommended after Slow Horses",
   "favorite": false,
@@ -9068,7 +9591,8 @@
   ],
   "createdAt": "2026-08-09T05:39:00.000Z",
   "updatedAt": "2026-08-09T05:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15130123-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15130123-M.jpg",
+  "pageCount": 246
  },
  {
   "id": "bk-once-a-spy-thomson",
@@ -9099,6 +9623,7 @@
   "id": "bk-body-of-lies-ignatius",
   "title": "Body of Lies",
   "author": "David Ignatius",
+  "year": 2007,
   "status": "want_to_read",
   "sourceNote": "If you loved it · Recommended after Peacock and the Sparrow",
   "favorite": false,
@@ -9116,7 +9641,8 @@
   ],
   "createdAt": "2026-08-09T05:37:00.000Z",
   "updatedAt": "2026-08-09T05:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7099024-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7099024-M.jpg",
+  "pageCount": 349
  },
  {
   "id": "bk-beirut-station-vidich",
@@ -9138,7 +9664,8 @@
    }
   ],
   "createdAt": "2026-08-09T05:36:00.000Z",
-  "updatedAt": "2026-08-09T05:36:00.000Z"
+  "updatedAt": "2026-08-09T05:36:00.000Z",
+  "pageCount": 304
  },
  {
   "id": "bk-loyal-spy-conway",
@@ -9161,7 +9688,8 @@
   ],
   "createdAt": "2026-08-09T05:35:00.000Z",
   "updatedAt": "2026-08-09T05:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7607276-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7607276-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-gabriel-s-moon-boyd",
@@ -9184,7 +9712,8 @@
   ],
   "createdAt": "2026-08-09T05:34:00.000Z",
   "updatedAt": "2026-08-09T05:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14830516-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14830516-M.jpg",
+  "pageCount": 288
  },
  {
   "id": "bk-shanghai-factor-mccarry",
@@ -9207,7 +9736,8 @@
   ],
   "createdAt": "2026-08-09T05:33:00.000Z",
   "updatedAt": "2026-08-09T05:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10380100-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10380100-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-typhoon-cumming",
@@ -9302,7 +9832,8 @@
   ],
   "createdAt": "2026-08-09T05:29:00.000Z",
   "updatedAt": "2026-08-09T05:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10360035-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10360035-M.jpg",
+  "pageCount": 704
  },
  {
   "id": "bk-kill-artist-silva",
@@ -9325,7 +9856,8 @@
   ],
   "createdAt": "2026-08-09T05:28:00.000Z",
   "updatedAt": "2026-08-09T05:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/227545-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/227545-M.jpg",
+  "pageCount": 433
  },
  {
   "id": "bk-damascus-station-mccloskey",
@@ -9348,12 +9880,14 @@
   ],
   "createdAt": "2026-08-09T05:27:00.000Z",
   "updatedAt": "2026-08-09T05:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12198638-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12198638-M.jpg",
+  "pageCount": 426
  },
  {
   "id": "bk-day-of-the-jackal-forsyth",
   "title": "The Day of the Jackal",
   "author": "Frederick Forsyth",
+  "year": 1971,
   "status": "want_to_read",
   "sourceNote": "If you loved it · Recommended after Agents of Innocence · Reader suggestion (2 readers)",
   "favorite": false,
@@ -9374,7 +9908,8 @@
   ],
   "createdAt": "2026-08-09T05:26:00.000Z",
   "updatedAt": "2026-08-09T05:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12159392-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12159392-M.jpg",
+  "pageCount": 416
  },
  {
   "id": "bk-elias-network-gervais",
@@ -9441,7 +9976,8 @@
   ],
   "createdAt": "2026-08-09T05:23:00.000Z",
   "updatedAt": "2026-08-09T05:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12873376-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12873376-M.jpg",
+  "pageCount": 424
  },
  {
   "id": "bk-shanghai-kanon",
@@ -9465,7 +10001,8 @@
   ],
   "createdAt": "2026-08-09T05:22:00.000Z",
   "updatedAt": "2026-08-09T05:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14797874-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14797874-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-coldest-warrior-vidich",
@@ -9488,7 +10025,8 @@
   ],
   "createdAt": "2026-08-09T05:21:00.000Z",
   "updatedAt": "2026-08-09T05:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9262506-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9262506-M.jpg",
+  "pageCount": 216
  },
  {
   "id": "bk-helsinki-affair-pitoniak",
@@ -9533,7 +10071,8 @@
   ],
   "createdAt": "2026-08-09T05:19:00.000Z",
   "updatedAt": "2026-08-09T05:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12860006-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12860006-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-scarlet-papers-richardson",
@@ -9576,7 +10115,8 @@
   ],
   "createdAt": "2026-08-09T05:17:00.000Z",
   "updatedAt": "2026-08-09T05:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11525024-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11525024-M.jpg",
+  "pageCount": 360
  },
  {
   "id": "bk-william-catesby-series-wilson",
@@ -9630,6 +10170,7 @@
   "id": "bk-tinker-tailor-soldier-spy-carre",
   "title": "Tinker Tailor Soldier Spy",
   "author": "John le Carré",
+  "year": 1974,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Extremely high engagement (98 recommends on one comment); widely called the best of the genre",
   "favorite": false,
@@ -9647,12 +10188,14 @@
   ],
   "createdAt": "2026-08-09T05:14:00.000Z",
   "updatedAt": "2026-08-09T05:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/253664-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/253664-M.jpg",
+  "pageCount": 369
  },
  {
   "id": "bk-smiley-s-people-carre",
   "title": "Smiley's People",
   "author": "John le Carré",
+  "year": 1979,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Called \"the best thing he ever wrote\" by multiple commenters",
   "favorite": false,
@@ -9670,12 +10213,14 @@
   ],
   "createdAt": "2026-08-09T05:13:00.000Z",
   "updatedAt": "2026-08-09T05:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6751545-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6751545-M.jpg",
+  "pageCount": 388
  },
  {
   "id": "bk-perfect-spy-carre",
   "title": "A Perfect Spy",
   "author": "John le Carré",
+  "year": 1986,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -9693,12 +10238,14 @@
   ],
   "createdAt": "2026-08-09T05:12:00.000Z",
   "updatedAt": "2026-08-09T05:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14505906-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14505906-M.jpg",
+  "pageCount": 576
  },
  {
   "id": "bk-legacy-of-spies-carre",
   "title": "A Legacy of Spies",
   "author": "John le Carré",
+  "year": 2017,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Sequel/companion to Spy Who Came in From the Cold",
   "favorite": false,
@@ -9716,7 +10263,8 @@
   ],
   "createdAt": "2026-08-09T05:11:00.000Z",
   "updatedAt": "2026-08-09T05:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11418026-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11418026-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-night-soldiers-furst",
@@ -9740,12 +10288,14 @@
   ],
   "createdAt": "2026-08-09T05:10:00.000Z",
   "updatedAt": "2026-08-09T05:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15198312-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15198312-M.jpg",
+  "pageCount": 437
  },
  {
   "id": "bk-polish-officer-furst",
   "title": "The Polish Officer",
   "author": "Alan Furst",
+  "year": 1995,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Cited as his high point by one commenter",
   "favorite": false,
@@ -9764,12 +10314,14 @@
   ],
   "createdAt": "2026-08-09T05:09:00.000Z",
   "updatedAt": "2026-08-09T05:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11696675-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11696675-M.jpg",
+  "pageCount": 325
  },
  {
   "id": "bk-world-at-night-furst",
   "title": "The World at Night",
   "author": "Alan Furst",
+  "year": 1996,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -9788,12 +10340,14 @@
   ],
   "createdAt": "2026-08-09T05:08:00.000Z",
   "updatedAt": "2026-08-09T05:08:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11010265-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11010265-M.jpg",
+  "pageCount": 312
  },
  {
   "id": "bk-kingdom-of-shadows-furst",
   "title": "Kingdom of Shadows",
   "author": "Alan Furst",
+  "year": 2000,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -9812,7 +10366,8 @@
   ],
   "createdAt": "2026-08-09T05:07:00.000Z",
   "updatedAt": "2026-08-09T05:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/227748-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/227748-M.jpg",
+  "pageCount": 274
  },
  {
   "id": "bk-red-gold-furst",
@@ -9836,7 +10391,8 @@
   ],
   "createdAt": "2026-08-09T05:06:00.000Z",
   "updatedAt": "2026-08-09T05:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/418916-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/418916-M.jpg",
+  "pageCount": 277
  },
  {
   "id": "bk-envoy-wilson",
@@ -9859,12 +10415,14 @@
   ],
   "createdAt": "2026-08-09T05:05:00.000Z",
   "updatedAt": "2026-08-09T05:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/3048535-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/3048535-M.jpg",
+  "pageCount": 300
  },
  {
   "id": "bk-secret-agent-conrad",
   "title": "The Secret Agent",
   "author": "Joseph Conrad",
+  "year": 1907,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Multiple positive mentions",
   "favorite": false,
@@ -9882,7 +10440,8 @@
   ],
   "createdAt": "2026-08-09T05:04:00.000Z",
   "updatedAt": "2026-08-09T05:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15144211-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15144211-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-ipcress-file-deighton",
@@ -9904,12 +10463,14 @@
   ],
   "createdAt": "2026-08-09T05:03:00.000Z",
   "updatedAt": "2026-08-09T05:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12677423-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12677423-M.jpg",
+  "pageCount": 223
  },
  {
   "id": "bk-old-man-perry",
   "title": "The Old Man",
   "author": "Thomas Perry",
+  "year": 2017,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -9972,7 +10533,8 @@
   ],
   "createdAt": "2026-08-09T05:00:00.000Z",
   "updatedAt": "2026-08-09T05:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14863232-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14863232-M.jpg",
+  "pageCount": 333
  },
  {
   "id": "bk-spy-coast-gerritsen",
@@ -10016,7 +10578,8 @@
   ],
   "createdAt": "2026-08-09T04:58:00.000Z",
   "updatedAt": "2026-08-09T04:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14851935-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14851935-M.jpg",
+  "pageCount": 351
  },
  {
   "id": "bk-tommy-hambledon-series-coles",
@@ -10059,8 +10622,7 @@
    }
   ],
   "createdAt": "2026-08-09T04:56:00.000Z",
-  "updatedAt": "2026-08-09T04:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8118917-M.jpg"
+  "updatedAt": "2026-08-09T04:56:00.000Z"
  },
  {
   "id": "bk-spy-and-the-traitor-macintyre",
@@ -10084,7 +10646,8 @@
   ],
   "createdAt": "2026-08-09T04:55:00.000Z",
   "updatedAt": "2026-08-09T04:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15170248-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15170248-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-riddle-of-the-sands-childers",
@@ -10108,7 +10671,8 @@
   ],
   "createdAt": "2026-08-09T04:54:00.000Z",
   "updatedAt": "2026-08-09T04:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12622075-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12622075-M.jpg",
+  "pageCount": 299
  },
  {
   "id": "bk-ashenden-maugham",
@@ -10133,7 +10697,8 @@
   ],
   "createdAt": "2026-08-09T04:53:00.000Z",
   "updatedAt": "2026-08-09T04:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14634209-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14634209-M.jpg",
+  "pageCount": 285
  },
  {
   "id": "bk-once-and-future-spy-littell",
@@ -10156,7 +10721,8 @@
   ],
   "createdAt": "2026-08-09T04:52:00.000Z",
   "updatedAt": "2026-08-09T04:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/850980-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/850980-M.jpg",
+  "pageCount": 299
  },
  {
   "id": "bk-amateur-littell",
@@ -10179,7 +10745,8 @@
   ],
   "createdAt": "2026-08-09T04:51:00.000Z",
   "updatedAt": "2026-08-09T04:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11587682-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11587682-M.jpg",
+  "pageCount": 252
  },
  {
   "id": "bk-october-circle-littell",
@@ -10200,7 +10767,8 @@
   ],
   "createdAt": "2026-08-09T04:50:00.000Z",
   "updatedAt": "2026-08-09T04:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7975212-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7975212-M.jpg",
+  "pageCount": 248
  },
  {
   "id": "bk-jack-higgins-spy-thrillers-higgins",
@@ -10250,6 +10818,7 @@
   "id": "bk-expats-pavone",
   "title": "The Expats",
   "author": "Chris Pavone",
+  "year": 2012,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Won Edgar and Anthony Awards for best first novel",
   "favorite": false,
@@ -10267,7 +10836,8 @@
   ],
   "createdAt": "2026-08-09T04:47:00.000Z",
   "updatedAt": "2026-08-09T04:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10382641-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10382641-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-madame-fourcade-s-secret-war-olson",
@@ -10290,7 +10860,8 @@
   ],
   "createdAt": "2026-08-09T04:46:00.000Z",
   "updatedAt": "2026-08-09T04:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8806666-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8806666-M.jpg",
+  "pageCount": 464
  },
  {
   "id": "bk-lost-girls-of-paris-jenoff",
@@ -10312,7 +10883,8 @@
   ],
   "createdAt": "2026-08-09T04:45:00.000Z",
   "updatedAt": "2026-08-09T04:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8804709-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8804709-M.jpg",
+  "pageCount": 384
  },
  {
   "id": "bk-maggie-hope-series-macneal",
@@ -10468,6 +11040,7 @@
   "id": "bk-thirty-nine-steps-buchan",
   "title": "The Thirty-Nine Steps",
   "author": "John Buchan",
+  "year": 1915,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Multiple strong mentions · though one reader found it simplistic",
   "favorite": false,
@@ -10486,7 +11059,8 @@
   ],
   "createdAt": "2026-08-09T04:37:00.000Z",
   "updatedAt": "2026-08-09T04:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12621950-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12621950-M.jpg",
+  "pageCount": 116
  },
  {
   "id": "bk-red-white-and-blue-carpenter",
@@ -10531,12 +11105,14 @@
   ],
   "createdAt": "2026-08-09T04:35:00.000Z",
   "updatedAt": "2026-08-09T04:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6701576-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6701576-M.jpg",
+  "pageCount": 434
  },
  {
   "id": "bk-human-factor-greene",
   "title": "The Human Factor",
   "author": "Graham Greene",
+  "year": 1978,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10555,12 +11131,14 @@
   ],
   "createdAt": "2026-08-09T04:34:00.000Z",
   "updatedAt": "2026-08-09T04:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14984062-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14984062-M.jpg",
+  "pageCount": 317
  },
  {
   "id": "bk-honorary-consul-greene",
   "title": "The Honorary Consul",
   "author": "Graham Greene",
+  "year": 1973,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Greene's own favorite among his novels per commenter",
   "favorite": false,
@@ -10578,12 +11156,14 @@
   ],
   "createdAt": "2026-08-09T04:33:00.000Z",
   "updatedAt": "2026-08-09T04:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14831293-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14831293-M.jpg",
+  "pageCount": 309
  },
  {
   "id": "bk-heart-of-the-matter-greene",
   "title": "The Heart of the Matter",
   "author": "Graham Greene",
+  "year": 1948,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10600,12 +11180,14 @@
   ],
   "createdAt": "2026-08-09T04:32:00.000Z",
   "updatedAt": "2026-08-09T04:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14896322-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14896322-M.jpg",
+  "pageCount": 306
  },
  {
   "id": "bk-power-and-the-glory-greene",
   "title": "The Power and the Glory",
   "author": "Graham Greene",
+  "year": 1940,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10622,12 +11204,14 @@
   ],
   "createdAt": "2026-08-09T04:31:00.000Z",
   "updatedAt": "2026-08-09T04:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14907324-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14907324-M.jpg",
+  "pageCount": 254
  },
  {
   "id": "bk-tree-of-smoke-johnson",
   "title": "Tree of Smoke",
   "author": "Denis Johnson",
+  "year": 2007,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Set in Southeast Asia 1950s-70s",
   "favorite": false,
@@ -10647,12 +11231,14 @@
   ],
   "createdAt": "2026-08-09T04:30:00.000Z",
   "updatedAt": "2026-08-09T04:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7371178-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7371178-M.jpg",
+  "pageCount": 649
  },
  {
   "id": "bk-innocent-mcewan",
   "title": "The Innocent",
   "author": "Ian McEwan",
+  "year": 1990,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Set in Cold War Berlin",
   "favorite": false,
@@ -10672,12 +11258,14 @@
   ],
   "createdAt": "2026-08-09T04:29:00.000Z",
   "updatedAt": "2026-08-09T04:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10541443-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10541443-M.jpg",
+  "pageCount": 270
  },
  {
   "id": "bk-restless-boyd",
   "title": "Restless",
   "author": "William Boyd",
+  "year": 2006,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10695,7 +11283,8 @@
   ],
   "createdAt": "2026-08-09T04:28:00.000Z",
   "updatedAt": "2026-08-09T04:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6807963-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6807963-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-eye-of-the-needle-follett",
@@ -10743,7 +11332,8 @@
   ],
   "createdAt": "2026-08-09T04:26:00.000Z",
   "updatedAt": "2026-08-09T04:26:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10545319-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10545319-M.jpg",
+  "pageCount": 355
  },
  {
   "id": "bk-kim-kipling",
@@ -10767,12 +11357,14 @@
   ],
   "createdAt": "2026-08-09T04:25:00.000Z",
   "updatedAt": "2026-08-09T04:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12621813-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12621813-M.jpg",
+  "pageCount": 286
  },
  {
   "id": "bk-alexandria-quartet-durrell",
   "title": "The Alexandria Quartet",
   "author": "Lawrence Durrell",
+  "year": 1962,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10789,7 +11381,8 @@
   ],
   "createdAt": "2026-08-09T04:24:00.000Z",
   "updatedAt": "2026-08-09T04:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14903612-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14903612-M.jpg",
+  "pageCount": 884
  },
  {
   "id": "bk-aubrey-maturin-series-brian",
@@ -10812,8 +11405,7 @@
    }
   ],
   "createdAt": "2026-08-09T04:23:00.000Z",
-  "updatedAt": "2026-08-09T04:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/4614317-M.jpg"
+  "updatedAt": "2026-08-09T04:23:00.000Z"
  },
  {
   "id": "bk-cold-war-swap-thomas",
@@ -10836,7 +11428,8 @@
   ],
   "createdAt": "2026-08-09T04:22:00.000Z",
   "updatedAt": "2026-08-09T04:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15132340-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15132340-M.jpg",
+  "pageCount": 222
  },
  {
   "id": "bk-eighth-dwarf-thomas",
@@ -10879,7 +11472,8 @@
   ],
   "createdAt": "2026-08-09T04:20:00.000Z",
   "updatedAt": "2026-08-09T04:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7122976-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7122976-M.jpg",
+  "pageCount": 343
  },
  {
   "id": "bk-exposure-dunmore",
@@ -10902,12 +11496,14 @@
   ],
   "createdAt": "2026-08-09T04:19:00.000Z",
   "updatedAt": "2026-08-09T04:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14305672-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14305672-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-death-of-a-citizen-hamilton",
   "title": "Death of a Citizen",
   "author": "Donald Hamilton",
+  "year": 1960,
   "status": "want_to_read",
   "sourceNote": "Reader comment · First Matt Helm novel",
   "favorite": false,
@@ -10925,12 +11521,14 @@
   ],
   "createdAt": "2026-08-09T04:18:00.000Z",
   "updatedAt": "2026-08-09T04:18:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14909371-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14909371-M.jpg",
+  "pageCount": 142
  },
  {
   "id": "bk-intriguers-hamilton",
   "title": "The Intriguers",
   "author": "Donald Hamilton",
+  "year": 1972,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10948,12 +11546,14 @@
   ],
   "createdAt": "2026-08-09T04:17:00.000Z",
   "updatedAt": "2026-08-09T04:17:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6628977-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6628977-M.jpg",
+  "pageCount": 209
  },
  {
   "id": "bk-shibumi-trevanian",
   "title": "Shibumi",
   "author": "Trevanian",
+  "year": 1979,
   "status": "want_to_read",
   "sourceNote": "Reader comment",
   "favorite": false,
@@ -10972,7 +11572,8 @@
   ],
   "createdAt": "2026-08-09T04:16:00.000Z",
   "updatedAt": "2026-08-09T04:16:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6631336-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6631336-M.jpg",
+  "pageCount": 400
  },
  {
   "id": "bk-of-all-the-bloody-cheek-macauliffe",
@@ -11015,7 +11616,8 @@
   ],
   "createdAt": "2026-08-09T04:14:00.000Z",
   "updatedAt": "2026-08-09T04:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14759591-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14759591-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-red-london-katsu",
@@ -11044,6 +11646,7 @@
   "id": "bk-other-woman-silva",
   "title": "The Other Woman",
   "author": "Daniel Silva",
+  "year": 2018,
   "status": "want_to_read",
   "sourceNote": "Reader comment · Combines modern day with Kim Philby story",
   "favorite": false,
@@ -11107,7 +11710,8 @@
   ],
   "createdAt": "2026-08-09T04:10:00.000Z",
   "updatedAt": "2026-08-09T04:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11691058-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11691058-M.jpg",
+  "pageCount": 256
  },
  {
   "id": "bk-alamut-ambush-price",
@@ -11130,7 +11734,8 @@
   ],
   "createdAt": "2026-08-09T04:09:00.000Z",
   "updatedAt": "2026-08-09T04:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14865859-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14865859-M.jpg",
+  "pageCount": 192
  },
  {
   "id": "bk-none-of-this-is-true-jewell",
@@ -11179,7 +11784,8 @@
   ],
   "createdAt": "2026-08-09T04:07:00.000Z",
   "updatedAt": "2026-08-09T04:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14643108-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14643108-M.jpg",
+  "pageCount": 608
  },
  {
   "id": "bk-push-audrain",
@@ -11203,7 +11809,8 @@
   ],
   "createdAt": "2026-08-09T04:06:00.000Z",
   "updatedAt": "2026-08-09T04:06:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14824674-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14824674-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-before-i-go-to-sleep-watson",
@@ -11226,7 +11833,8 @@
   ],
   "createdAt": "2026-08-09T04:05:00.000Z",
   "updatedAt": "2026-08-09T04:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10732856-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10732856-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-mexican-gothic-garcia",
@@ -11250,7 +11858,8 @@
   ],
   "createdAt": "2026-08-09T04:04:00.000Z",
   "updatedAt": "2026-08-09T04:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10239163-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10239163-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-jar-of-hearts-hillier",
@@ -11274,7 +11883,8 @@
   ],
   "createdAt": "2026-08-09T04:03:00.000Z",
   "updatedAt": "2026-08-09T04:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12641488-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12641488-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-lush-life-price",
@@ -11298,7 +11908,8 @@
   ],
   "createdAt": "2026-08-09T04:02:00.000Z",
   "updatedAt": "2026-08-09T04:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/2411414-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/2411414-M.jpg",
+  "pageCount": 464
  },
  {
   "id": "bk-you-kepnes",
@@ -11322,7 +11933,8 @@
   ],
   "createdAt": "2026-08-09T04:01:00.000Z",
   "updatedAt": "2026-08-09T04:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14847580-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14847580-M.jpg",
+  "pageCount": 447
  },
  {
   "id": "bk-tell-no-one-coben",
@@ -11346,7 +11958,8 @@
   ],
   "createdAt": "2026-08-09T04:00:00.000Z",
   "updatedAt": "2026-08-09T04:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/4341044-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/4341044-M.jpg",
+  "pageCount": 353
  },
  {
   "id": "bk-dark-matter-crouch",
@@ -11370,7 +11983,8 @@
   ],
   "createdAt": "2026-08-09T03:59:00.000Z",
   "updatedAt": "2026-08-09T03:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15104743-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15104743-M.jpg",
+  "pageCount": 366
  },
  {
   "id": "bk-fingersmith-waters",
@@ -11395,7 +12009,8 @@
   ],
   "createdAt": "2026-08-09T03:58:00.000Z",
   "updatedAt": "2026-08-09T03:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7130103-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7130103-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-your-house-will-pay-cha",
@@ -11419,7 +12034,8 @@
   ],
   "createdAt": "2026-08-09T03:57:00.000Z",
   "updatedAt": "2026-08-09T03:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8918952-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8918952-M.jpg",
+  "pageCount": 312
  },
  {
   "id": "bk-silent-patient-michaelides",
@@ -11443,7 +12059,8 @@
   ],
   "createdAt": "2026-08-09T03:56:00.000Z",
   "updatedAt": "2026-08-09T03:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15105887-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15105887-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-all-the-sinners-bleed-cosby",
@@ -11467,7 +12084,8 @@
   ],
   "createdAt": "2026-08-09T03:55:00.000Z",
   "updatedAt": "2026-08-09T03:55:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14677378-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14677378-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-likeness-french",
@@ -11491,7 +12109,8 @@
   ],
   "createdAt": "2026-08-09T03:54:00.000Z",
   "updatedAt": "2026-08-09T03:54:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10599405-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10599405-M.jpg",
+  "pageCount": 466
  },
  {
   "id": "bk-witch-elm-french",
@@ -11515,7 +12134,8 @@
   ],
   "createdAt": "2026-08-09T03:53:00.000Z",
   "updatedAt": "2026-08-09T03:53:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14407788-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14407788-M.jpg",
+  "pageCount": 650
  },
  {
   "id": "bk-notes-on-an-execution-kukafka",
@@ -11538,7 +12158,8 @@
   ],
   "createdAt": "2026-08-09T03:52:00.000Z",
   "updatedAt": "2026-08-09T03:52:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13472603-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13472603-M.jpg",
+  "pageCount": 272
  },
  {
   "id": "bk-defending-jacob-landay",
@@ -11563,7 +12184,8 @@
   ],
   "createdAt": "2026-08-09T03:51:00.000Z",
   "updatedAt": "2026-08-09T03:51:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12157272-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12157272-M.jpg",
+  "pageCount": 419
  },
  {
   "id": "bk-plot-korelitz",
@@ -11586,7 +12208,8 @@
   ],
   "createdAt": "2026-08-09T03:50:00.000Z",
   "updatedAt": "2026-08-09T03:50:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10632957-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10632957-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-perfect-nanny-slimani",
@@ -11634,7 +12257,8 @@
   ],
   "createdAt": "2026-08-09T03:48:00.000Z",
   "updatedAt": "2026-08-09T03:48:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15135665-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15135665-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-da-vinci-code-brown",
@@ -11658,7 +12282,8 @@
   ],
   "createdAt": "2026-08-09T03:47:00.000Z",
   "updatedAt": "2026-08-09T03:47:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12392336-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12392336-M.jpg",
+  "pageCount": 489
  },
  {
   "id": "bk-winter-s-bone-woodrell",
@@ -11682,7 +12307,8 @@
   ],
   "createdAt": "2026-08-09T03:46:00.000Z",
   "updatedAt": "2026-08-09T03:46:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10307879-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10307879-M.jpg",
+  "pageCount": 203
  },
  {
   "id": "bk-dry-harper",
@@ -11707,7 +12333,8 @@
   ],
   "createdAt": "2026-08-09T03:45:00.000Z",
   "updatedAt": "2026-08-09T03:45:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10166656-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10166656-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-goldfinch-tartt",
@@ -11731,7 +12358,8 @@
   ],
   "createdAt": "2026-08-09T03:44:00.000Z",
   "updatedAt": "2026-08-09T03:44:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12727864-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12727864-M.jpg",
+  "pageCount": 862
  },
  {
   "id": "bk-constant-gardener-carre",
@@ -11756,7 +12384,8 @@
   ],
   "createdAt": "2026-08-09T03:43:00.000Z",
   "updatedAt": "2026-08-09T03:43:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7009431-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7009431-M.jpg",
+  "pageCount": 557
  },
  {
   "id": "bk-room-donoghue",
@@ -11781,7 +12410,8 @@
   ],
   "createdAt": "2026-08-09T03:42:00.000Z",
   "updatedAt": "2026-08-09T03:42:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13264741-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13264741-M.jpg",
+  "pageCount": 370
  },
  {
   "id": "bk-broken-harbor-french",
@@ -11805,7 +12435,8 @@
   ],
   "createdAt": "2026-08-09T03:41:00.000Z",
   "updatedAt": "2026-08-09T03:41:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7400649-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7400649-M.jpg",
+  "pageCount": 480
  },
  {
   "id": "bk-sharp-objects-flynn",
@@ -11830,7 +12461,8 @@
   ],
   "createdAt": "2026-08-09T03:40:00.000Z",
   "updatedAt": "2026-08-09T03:40:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14638448-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14638448-M.jpg",
+  "pageCount": 312
  },
  {
   "id": "bk-11-22-63-king",
@@ -11856,7 +12488,8 @@
   ],
   "createdAt": "2026-08-09T03:39:00.000Z",
   "updatedAt": "2026-08-09T03:39:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14652974-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14652974-M.jpg",
+  "pageCount": 849
  },
  {
   "id": "bk-shutter-island-lehane",
@@ -11881,7 +12514,8 @@
   ],
   "createdAt": "2026-08-09T03:38:00.000Z",
   "updatedAt": "2026-08-09T03:38:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10378656-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10378656-M.jpg",
+  "pageCount": 385
  },
  {
   "id": "bk-lincoln-lawyer-connelly",
@@ -11905,7 +12539,8 @@
   ],
   "createdAt": "2026-08-09T03:37:00.000Z",
   "updatedAt": "2026-08-09T03:37:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11983592-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11983592-M.jpg",
+  "pageCount": 472
  },
  {
   "id": "bk-dare-me-abbott",
@@ -11929,7 +12564,8 @@
   ],
   "createdAt": "2026-08-09T03:36:00.000Z",
   "updatedAt": "2026-08-09T03:36:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9373776-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9373776-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-we-need-to-talk-about-kevin-shriver",
@@ -11953,7 +12589,8 @@
   ],
   "createdAt": "2026-08-09T03:35:00.000Z",
   "updatedAt": "2026-08-09T03:35:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15144009-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15144009-M.jpg",
+  "pageCount": 468
  },
  {
   "id": "bk-case-histories-atkinson",
@@ -11976,7 +12613,8 @@
   ],
   "createdAt": "2026-08-09T03:34:00.000Z",
   "updatedAt": "2026-08-09T03:34:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8329484-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8329484-M.jpg",
+  "pageCount": 368
  },
  {
   "id": "bk-girl-on-the-train-hawkins",
@@ -12000,7 +12638,8 @@
   ],
   "createdAt": "2026-08-09T03:33:00.000Z",
   "updatedAt": "2026-08-09T03:33:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13078078-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13078078-M.jpg",
+  "pageCount": 360
  },
  {
   "id": "bk-blacktop-wasteland-cosby",
@@ -12024,7 +12663,8 @@
   ],
   "createdAt": "2026-08-09T03:32:00.000Z",
   "updatedAt": "2026-08-09T03:32:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14721978-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14721978-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-bluebird-bluebird-locke",
@@ -12049,7 +12689,8 @@
   ],
   "createdAt": "2026-08-09T03:31:00.000Z",
   "updatedAt": "2026-08-09T03:31:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14428466-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14428466-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-razorblade-tears-cosby",
@@ -12073,7 +12714,8 @@
   ],
   "createdAt": "2026-08-09T03:30:00.000Z",
   "updatedAt": "2026-08-09T03:30:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12381641-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12381641-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-god-of-the-woods-moore",
@@ -12097,7 +12739,8 @@
   ],
   "createdAt": "2026-08-09T03:29:00.000Z",
   "updatedAt": "2026-08-09T03:29:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14645736-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14645736-M.jpg",
+  "pageCount": 438
  },
  {
   "id": "bk-my-sister-the-serial-killer-braithwaite",
@@ -12122,7 +12765,8 @@
   ],
   "createdAt": "2026-08-09T03:28:00.000Z",
   "updatedAt": "2026-08-09T03:28:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10721487-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10721487-M.jpg",
+  "pageCount": 238
  },
  {
   "id": "bk-no-country-for-old-men-mccarthy",
@@ -12147,7 +12791,8 @@
   ],
   "createdAt": "2026-08-09T03:27:00.000Z",
   "updatedAt": "2026-08-09T03:27:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15248080-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15248080-M.jpg",
+  "pageCount": 304
  },
  {
   "id": "bk-girl-with-the-dragon-tattoo-larsson",
@@ -12195,7 +12840,8 @@
   ],
   "createdAt": "2026-08-09T03:25:00.000Z",
   "updatedAt": "2026-08-09T03:25:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11398671-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11398671-M.jpg",
+  "pageCount": 578
  },
  {
   "id": "bk-mystic-river-lehane",
@@ -12219,7 +12865,8 @@
   ],
   "createdAt": "2026-08-09T03:24:00.000Z",
   "updatedAt": "2026-08-09T03:24:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10510110-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10510110-M.jpg",
+  "pageCount": 493
  },
  {
   "id": "bk-gone-girl-flynn",
@@ -12244,12 +12891,14 @@
   ],
   "createdAt": "2026-08-09T03:23:00.000Z",
   "updatedAt": "2026-08-09T03:23:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12498395-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12498395-M.jpg",
+  "pageCount": 475
  },
  {
   "id": "bk-strange-sally-diamond-nugent",
   "title": "Strange Sally Diamond",
   "author": "Liz Nugent",
+  "year": 2023,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12267,7 +12916,8 @@
   ],
   "createdAt": "2026-08-09T03:22:00.000Z",
   "updatedAt": "2026-08-09T03:22:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13518189-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13518189-M.jpg",
+  "pageCount": 320
  },
  {
   "id": "bk-descent-johnston",
@@ -12291,12 +12941,14 @@
   ],
   "createdAt": "2026-08-09T03:21:00.000Z",
   "updatedAt": "2026-08-09T03:21:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10355881-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10355881-M.jpg",
+  "pageCount": 499
  },
  {
   "id": "bk-crimson-petal-and-the-white-faber",
   "title": "The Crimson Petal and the White",
   "author": "Michel Faber",
+  "year": 2002,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12315,7 +12967,8 @@
   ],
   "createdAt": "2026-08-09T03:20:00.000Z",
   "updatedAt": "2026-08-09T03:20:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8009875-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8009875-M.jpg",
+  "pageCount": 845
  },
  {
   "id": "bk-slammerkin-donoghue",
@@ -12338,7 +12991,8 @@
   ],
   "createdAt": "2026-08-09T03:19:00.000Z",
   "updatedAt": "2026-08-09T03:19:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/7030398-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/7030398-M.jpg",
+  "pageCount": 406
  },
  {
   "id": "bk-devotion-of-suspect-x-higashino",
@@ -12391,6 +13045,7 @@
   "id": "bk-everybody-knows-harper",
   "title": "Everybody Knows",
   "author": "Jordan Harper",
+  "year": 2023,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12432,12 +13087,14 @@
   ],
   "createdAt": "2026-08-09T03:15:00.000Z",
   "updatedAt": "2026-08-09T03:15:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6906197-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6906197-M.jpg",
+  "pageCount": 396
  },
  {
   "id": "bk-mr-mercedes-king",
   "title": "Mr. Mercedes",
   "author": "Stephen King",
+  "year": 2014,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12455,12 +13112,14 @@
   ],
   "createdAt": "2026-08-09T03:14:00.000Z",
   "updatedAt": "2026-08-09T03:14:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14653585-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14653585-M.jpg",
+  "pageCount": 484
  },
  {
   "id": "bk-poet-connelly",
   "title": "The Poet",
   "author": "Michael Connelly",
+  "year": 1996,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12479,12 +13138,14 @@
   ],
   "createdAt": "2026-08-09T03:13:00.000Z",
   "updatedAt": "2026-08-09T03:13:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6903687-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6903687-M.jpg",
+  "pageCount": 512
  },
  {
   "id": "bk-firm-grisham",
   "title": "The Firm",
   "author": "John Grisham",
+  "year": 1991,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (3 readers)",
   "favorite": false,
@@ -12501,12 +13162,14 @@
   ],
   "createdAt": "2026-08-09T03:12:00.000Z",
   "updatedAt": "2026-08-09T03:12:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15224199-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15224199-M.jpg",
+  "pageCount": 496
  },
  {
   "id": "bk-presumed-innocent-turow",
   "title": "Presumed Innocent",
   "author": "Scott Turow",
+  "year": 1987,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12525,12 +13188,14 @@
   ],
   "createdAt": "2026-08-09T03:11:00.000Z",
   "updatedAt": "2026-08-09T03:11:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8401752-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8401752-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-silence-of-the-lambs-harris",
   "title": "The Silence of the Lambs",
   "author": "Thomas Harris",
+  "year": 1988,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (4 readers)",
   "favorite": false,
@@ -12549,12 +13214,14 @@
   ],
   "createdAt": "2026-08-09T03:10:00.000Z",
   "updatedAt": "2026-08-09T03:10:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12002974-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12002974-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-red-dragon-harris",
   "title": "Red Dragon",
   "author": "Thomas Harris",
+  "year": 1981,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (3 readers)",
   "favorite": false,
@@ -12573,7 +13240,8 @@
   ],
   "createdAt": "2026-08-09T03:09:00.000Z",
   "updatedAt": "2026-08-09T03:09:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/9330546-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/9330546-M.jpg",
+  "pageCount": 373
  },
  {
   "id": "bk-devil-in-a-blue-dress-mosley",
@@ -12620,7 +13288,8 @@
   ],
   "createdAt": "2026-08-09T03:07:00.000Z",
   "updatedAt": "2026-08-09T03:07:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/13391560-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/13391560-M.jpg",
+  "pageCount": 416
  },
  {
   "id": "bk-two-nights-in-lisbon-pavone",
@@ -12666,12 +13335,14 @@
   ],
   "createdAt": "2026-08-09T03:05:00.000Z",
   "updatedAt": "2026-08-09T03:05:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10444423-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10444423-M.jpg",
+  "pageCount": 340
  },
  {
   "id": "bk-woman-in-the-window-finn",
   "title": "The Woman in the Window",
   "author": "A. J. Finn",
+  "year": 2018,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12688,7 +13359,8 @@
   ],
   "createdAt": "2026-08-09T03:04:00.000Z",
   "updatedAt": "2026-08-09T03:04:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/8315362-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/8315362-M.jpg",
+  "pageCount": 456
  },
  {
   "id": "bk-five-decembers-kestrel",
@@ -12713,7 +13385,8 @@
   ],
   "createdAt": "2026-08-09T03:03:00.000Z",
   "updatedAt": "2026-08-09T03:03:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/12389427-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/12389427-M.jpg",
+  "pageCount": 432
  },
  {
   "id": "bk-substitution-order-clark",
@@ -12737,12 +13410,14 @@
   ],
   "createdAt": "2026-08-09T03:02:00.000Z",
   "updatedAt": "2026-08-09T03:02:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/11967324-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/11967324-M.jpg",
+  "pageCount": 352
  },
  {
   "id": "bk-ruins-smith",
   "title": "The Ruins",
   "author": "Scott Smith",
+  "year": 2006,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12761,7 +13436,8 @@
   ],
   "createdAt": "2026-08-09T03:01:00.000Z",
   "updatedAt": "2026-08-09T03:01:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/167453-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/167453-M.jpg",
+  "pageCount": 336
  },
  {
   "id": "bk-out-kirino",
@@ -12784,12 +13460,14 @@
   ],
   "createdAt": "2026-08-09T03:00:00.000Z",
   "updatedAt": "2026-08-09T03:00:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/10622268-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/10622268-M.jpg",
+  "pageCount": 616
  },
  {
   "id": "bk-daughter-of-time-tey",
   "title": "The Daughter of Time",
   "author": "Josephine Tey",
+  "year": 1951,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12808,7 +13486,8 @@
   ],
   "createdAt": "2026-08-09T02:59:00.000Z",
   "updatedAt": "2026-08-09T02:59:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/6973329-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/6973329-M.jpg",
+  "pageCount": 207
  },
  {
   "id": "bk-nightingale-hannah",
@@ -12831,12 +13510,14 @@
   ],
   "createdAt": "2026-08-09T02:58:00.000Z",
   "updatedAt": "2026-08-09T02:58:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/15090833-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/15090833-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-place-of-execution-mcdermid",
   "title": "A Place of Execution",
   "author": "Val McDermid",
+  "year": 1999,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (2 readers)",
   "favorite": false,
@@ -12855,12 +13536,14 @@
   ],
   "createdAt": "2026-08-09T02:57:00.000Z",
   "updatedAt": "2026-08-09T02:57:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/177491-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/177491-M.jpg",
+  "pageCount": 529
  },
  {
   "id": "bk-power-of-the-dog-winslow",
   "title": "The Power of the Dog",
   "author": "Don Winslow",
+  "year": 2005,
   "status": "want_to_read",
   "sourceNote": "Reader suggestion (3 readers)",
   "favorite": false,
@@ -12878,7 +13561,8 @@
   ],
   "createdAt": "2026-08-09T02:56:00.000Z",
   "updatedAt": "2026-08-09T02:56:00.000Z",
-  "coverUrl": "https://covers.openlibrary.org/b/id/14765762-M.jpg"
+  "coverUrl": "https://covers.openlibrary.org/b/id/14765762-M.jpg",
+  "pageCount": 560
  },
  {
   "id": "bk-cal-hooper-trilogy-french",

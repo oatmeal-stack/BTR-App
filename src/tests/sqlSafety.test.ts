@@ -8,7 +8,7 @@ import { describe, expect, it } from "vitest";
  * fails for real: that is exactly how a correct passcode once got an error. This checks the SQL text
  * instead, so it can't happen again.
  */
-const FILES = ["schema.sql", "set_passcode.sql", "covers.sql"];
+const FILES = ["schema.sql", "set_passcode.sql", "covers.sql", "facts.sql"];
 
 function withoutComments(sql: string): string {
   return sql.replace(/--[^\n]*/g, "").replace(/\/\*[\s\S]*?\*\//g, "");
@@ -17,7 +17,7 @@ function withoutComments(sql: string): string {
 /** Every DELETE / UPDATE statement, up to its semicolon. */
 function writes(sql: string): string[] {
   const out: string[] = [];
-  const re = /\b(delete\s+from\s+\w+|update\s+\w+\s+set)\b[^;]*;?/gi;
+  const re = /\b(delete\s+from\s+\w+|update\s+\w+(?:\s+\w+)?\s+set)\b[^;]*;?/gi;
   for (const m of withoutComments(sql).matchAll(re)) out.push(m[0].replace(/\s+/g, " ").trim());
   return out;
 }
@@ -32,7 +32,7 @@ describe("SQL that Supabase will actually accept", () => {
   }
 
   it("the check itself catches a bare DELETE and a bare UPDATE", () => {
-    const bad = writes("begin; delete from t; update t set a = 1; delete from t where x = 1;");
-    expect(bad.filter((s) => !/\bwhere\b/i.test(s))).toHaveLength(2);
+    const bad = writes("begin; delete from t; update t set a = 1; update t x set a = 1; delete from t where x = 1;");
+    expect(bad.filter((s) => !/\bwhere\b/i.test(s))).toHaveLength(3);
   });
 });

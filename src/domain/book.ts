@@ -23,7 +23,9 @@ export interface Book {
   id: string;
   title: string;
   author?: string;
+  /** Year first published (not a date: sources only give the year). */
   year?: number;
+  pageCount?: number;
   status: ReadingStatus;
   /** Only Man Book Club rows have a score (out of 10). Never invented. */
   rating?: number;
@@ -41,6 +43,24 @@ export interface Book {
   sources: SourceTag[];
   createdAt: string;
   updatedAt: string;
+}
+
+/**
+ * Everything the Edit screen can change, all at once (the form always holds the full set, so saving
+ * replaces these fields rather than patching some of them). Blank fields clear the value.
+ */
+export interface BookEdit {
+  title: string;
+  author?: string;
+  year?: number;
+  pageCount?: number;
+  coverUrl?: string;
+  genres: string[];
+  moods: string[];
+  /** The imported note that came with the book ("Notes" on the book page). */
+  sourceNote?: string;
+  /** List names. A list the book was already on keeps its rank. */
+  sources: string[];
 }
 
 /** Private notes. Many per book. */

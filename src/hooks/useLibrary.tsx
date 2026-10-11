@@ -10,7 +10,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Book, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
 import { getRepository } from "@/repositories";
@@ -33,6 +33,10 @@ interface LibraryApi {
   findBook: (id: string) => Book | undefined;
   /** The book just removed, while its Undo bar is showing. */
   undoable: { id: string; title: string } | null;
+  /** Saves everything on the Edit screen. */
+  updateBook: (id: string, edit: BookEdit) => Promise<boolean>;
+  /** Folds one copy of a book into another (the second is removed). */
+  mergeBooks: (keepId: string, dropId: string) => Promise<boolean>;
   removeBook: (id: string) => Promise<boolean>;
   restoreBook: (id: string) => Promise<boolean>;
   undoRemove: () => Promise<void>;
@@ -220,6 +224,31 @@ export function LibraryProvider({
     return () => clearTimeout(t);
   }, [undoable]);
 
+  const updateBook = useCallback(
+    (id: string, edit: BookEdit) =>
+      optimistic({ books: actions.updateBook(data.current.books, id, edit, new Date().toISOString()) }, () =>
+        repo.updateBook(id, edit),
+      ),
+    [optimistic, repo],
+  );
+
+  const mergeBooks = useCallback(
+    (keepId: string, dropId: string) => {
+      const keep = data.current.books.find((b) => b.id === keepId);
+      const drop = data.current.books.find((b) => b.id === dropId);
+      if (!keep || !drop) return Promise.resolve(false);
+      const now = new Date().toISOString();
+      return optimistic(
+        {
+          books: actions.mergeBooks(data.current.books, keepId, dropId, now),
+          notes: actions.mergeNotes(data.current.notes, keepId, dropId),
+        },
+        () => repo.mergeBooks(keep, drop),
+      );
+    },
+    [optimistic, repo],
+  );
+
   const removeBook = useCallback(
     async (id: string) => {
       const book = data.current.books.find((b) => b.id === id);
@@ -308,6 +337,8 @@ export function LibraryProvider({
       removeBook,
       restoreBook,
       undoRemove,
+      updateBook,
+      mergeBooks,
       notes,
       ready,
       loadFailed,
@@ -327,7 +358,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

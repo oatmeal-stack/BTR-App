@@ -1,4 +1,4 @@
-import type { Book, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import { SEED_BOOKS } from "@/data/seedBooks";
 import type { BookRepository } from "./BookRepository";
@@ -90,6 +90,19 @@ export class LocalBookRepository implements BookRepository {
   async setStatus(bookId: string, status: ReadingStatus): Promise<void> {
     const d = read(this.storage, this.seedBooks);
     d.books = actions.setStatus(d.books, bookId, status, new Date().toISOString());
+    write(this.storage, d);
+  }
+
+  async updateBook(bookId: string, edit: BookEdit): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = actions.updateBook(d.books, bookId, edit, new Date().toISOString());
+    write(this.storage, d);
+  }
+
+  async mergeBooks(keep: Pick<Book, "id">, drop: Pick<Book, "id" | "title" | "author">): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = actions.mergeBooks(d.books, keep.id, drop.id, new Date().toISOString());
+    d.notes = actions.mergeNotes(d.notes, keep.id, drop.id);
     write(this.storage, d);
   }
 

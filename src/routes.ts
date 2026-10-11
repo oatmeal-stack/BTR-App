@@ -7,6 +7,7 @@ export const ROUTES = {
   profile: "/profile",
   add: "/add",
   removed: "/removed",
+  edit: (id: string) => `/edit?id=${encodeURIComponent(id)}`,
   book: (id: string) => `/book?id=${encodeURIComponent(id)}`,
   browseWith: (params: { q?: string; source?: string; genre?: string; mood?: string }) => {
     const p = new URLSearchParams();

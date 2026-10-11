@@ -275,3 +275,55 @@ describe("removing books (shared library)", () => {
     await repo.restoreBook(frankenstein.id);
   });
 });
+
+describe("editing books (shared library)", () => {
+  const book = { id: "bk-frankenstein-shelley", title: "Frankenstein", author: "Mary Shelley" };
+  const edit = (over: Partial<import("@/domain/book").BookEdit> = {}): import("@/domain/book").BookEdit => ({
+    title: "Frankenstein",
+    author: "Mary Shelley",
+    year: 1818,
+    pageCount: 280,
+    coverUrl: undefined,
+    genres: ["Gothic"],
+    moods: [],
+    sourceNote: undefined,
+    sources: ["Tough Guy Book Club"],
+    ...over,
+  });
+
+  it("refuses while locked", async () => {
+    const repo = new SupabaseBookRepository(makeDb(), memoryStore());
+    await expect(repo.updateBook(book.id, edit())).rejects.toBeInstanceOf(PasscodeRequiredError);
+    await expect(repo.mergeBooks({ id: book.id }, { id: "x", title: "X" })).rejects.toBeInstanceOf(PasscodeRequiredError);
+  });
+
+  it("saves an edit that another device then sees, including year and page count", async () => {
+    const repo = await unlockedRepo();
+    await repo.updateBook(book.id, edit({ year: 1818, pageCount: 280, sourceNote: "Borrow Ana's copy" }));
+    const seen = (await (await unlockedRepo()).listBooks()).find((b) => b.id === book.id)!;
+    expect(seen).toMatchObject({ title: "Frankenstein", year: 1818, pageCount: 280, sourceNote: "Borrow Ana's copy" });
+    expect(seen.sources.map((s) => s.source)).toEqual(["Tough Guy Book Club"]);
+  });
+
+  it("clears a field that was blanked", async () => {
+    const repo = await unlockedRepo();
+    await repo.updateBook(book.id, edit({ pageCount: undefined, year: undefined }));
+    const seen = (await repo.listBooks()).find((b) => b.id === book.id)!;
+    expect(seen.pageCount).toBeUndefined();
+    expect(seen.year).toBeUndefined();
+  });
+
+  it("merges a duplicate into the kept book: notes move, the other copy is removed, not deleted", async () => {
+    const repo = await unlockedRepo();
+    const made = await repo.addBook({ title: "Frankenstein; or, the Modern Prometheus", author: "Shelley", sources: [{ source: "Book Club Master List" }] });
+    expect(made.created).toBe(true); // a different title, so it really is a second copy
+    await repo.addNote(made.book.id, "From the duplicate");
+
+    await repo.mergeBooks({ id: book.id }, made.book);
+
+    const all = await repo.listBooks();
+    expect(all.find((b) => b.id === made.book.id)?.removedAt).toBeTruthy();
+    expect(all.find((b) => b.id === book.id)?.sources.map((s) => s.source)).toContain("Book Club Master List");
+    expect((await repo.listNotes()).find((n) => n.body === "From the duplicate")?.bookId).toBe(book.id);
+  });
+});

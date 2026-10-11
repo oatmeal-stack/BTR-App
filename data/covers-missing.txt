@@ -12,18 +12,21 @@ bk-shadow-of-the-wind-zafon|The Shadow of the Wind|Carlos Ruiz Zafón
 bk-havana-nocturne-english|Havana Nocturne|T.J. English
 bk-john-dies-at-the-end-pargin|John Dies at the End|Jason Pargin
 bk-outsider-camus|The Outsider|Albert Camus
-bk-son-of-man-amo|The Son of Man|Jean-Baptiste Del Amo
 bk-chase-fox|The Chase|Candice Fox
+bk-son-of-man-amo|The Son of Man|Jean-Baptiste Del Amo
 bk-long-petal-of-the-sea-allende|A Long Petal of the Sea|Isabel Allende
 bk-glass-canoe-ireland|The Glass Canoe|David Ireland
 bk-sharks-in-the-time-of-saviours-washburn|Sharks in the Time of Saviours|Kawai Strong Washburn
+bk-snows-of-kilimanjaro-hemingway|The Snows of Kilimanjaro|Ernest Hemingway
 bk-notes-from-underground-dostoevsky|Notes from Underground|Fyodor Dostoevsky
 bk-messenger-zusak|The Messenger|Markus Zusak
 bk-man-called-ove-backman|A Man Called Ove|Fredrik Backman
 bk-drive-your-plow-over-the-bones-of-the-dead-tokarczuk|Drive Your Plow Over the Bones of the Dead|Olga Tokarczuk
 bk-goblin-emperor-addison|The Goblin Emperor|Katherine Addison
 bk-beyond-the-deepwoods-riddell|Beyond the Deepwoods|Paul Stewart and Chris Riddell
+bk-tears-of-autumn-mccarry|The Tears of Autumn|Charles McCarry
 bk-box-88-series-cumming|BOX 88 (series)|Charles Cumming
+bk-quiller-series-hall|Quiller series|Adam Hall
 bk-jason-bourne-novels-series-ludlum|Jason Bourne novels (series)|Robert Ludlum
 bk-beirut-station-vidich|Beirut Station|Paul Vidich
 bk-typhoon-cumming|Typhoon|Charles Cumming
@@ -37,6 +40,7 @@ bk-william-catesby-series-wilson|William Catesby series|Edward Wilson
 bk-bernie-gunther-series-kerr|Bernie Gunther series|Philip Kerr
 bk-small-death-in-lisbon-wilson|A Small Death in Lisbon|Robert Wilson
 bk-tommy-hambledon-series-coles|Tommy Hambledon series|Manning Coles
+bk-spy-among-friends-macintyre|A Spy Among Friends|Ben Macintyre
 bk-jack-higgins-spy-thrillers-higgins|Jack Higgins spy thrillers|Jack Higgins
 bk-berlin-station-series-downing|Berlin Station series|David Downing
 bk-maggie-hope-series-macneal|Maggie Hope series|Susan Elia MacNeal
@@ -47,9 +51,10 @@ bk-spy-alone-beaumont|A Spy Alone|Charles Beaumont
 bk-spy-at-war-beaumont|A Spy at War|Charles Beaumont
 bk-trinity-six-cumming|The Trinity Six|Charles Cumming
 bk-red-white-and-blue-carpenter|Red White and Blue|Lea Carpenter
+bk-aubrey-maturin-series-brian|Aubrey–Maturin series|Patrick O'Brian
 bk-eighth-dwarf-thomas|The Eighth Dwarf|Ross Thomas
-bk-of-all-the-bloody-cheek-macauliffe|Of All the Bloody Cheek|Frank MacAuliffe
 bk-other-woman-silva|The Other Woman|Daniel Silva
+bk-of-all-the-bloody-cheek-macauliffe|Of All the Bloody Cheek|Frank MacAuliffe
 bk-perfect-nanny-slimani|The Perfect Nanny|Leila Slimani
 bk-girl-with-the-dragon-tattoo-larsson|The Girl With the Dragon Tattoo|Stieg Larsson
 bk-smilla-s-sense-of-snow-eg|Smilla's Sense of Snow|Peter Høeg
@@ -57,18 +62,18 @@ bk-cal-hooper-trilogy-french|Cal Hooper trilogy|Tana French
 bk-jackson-brodie-series-atkinson|Jackson Brodie series|Kate Atkinson
 bk-kurt-wallander-series-mankell|Kurt Wallander series|Henning Mankell
 bk-harry-hole-series-nesb|Harry Hole series|Jo Nesbø
-bk-dave-robicheaux-series-burke|Dave Robicheaux series|James Lee Burke
 bk-cormoran-strike-series-galbraith|Cormoran Strike series|Robert Galbraith
 bk-pendergast-series-child|Pendergast series|Douglas Preston and Lincoln Child
-bk-jane-whitefield-series-perry|Jane Whitefield series|Thomas Perry
+bk-dave-robicheaux-series-burke|Dave Robicheaux series|James Lee Burke
 bk-butcher-s-boy-series-perry|Butcher's Boy series|Thomas Perry
-bk-sean-duffy-series-mckinty|Sean Duffy series|Adrian McKinty
+bk-jane-whitefield-series-perry|Jane Whitefield series|Thomas Perry
 bk-harry-bosch-series-connelly|Harry Bosch series|Michael Connelly
+bk-sean-duffy-series-mckinty|Sean Duffy series|Adrian McKinty
 bk-jack-reacher-series-child|Jack Reacher series|Lee Child
 bk-sue-grafton-alphabet-series-grafton|Sue Grafton alphabet series|Sue Grafton
 bk-v-i-warshawski-series-paretsky|V.I. Warshawski series|Sara Paretsky
-bk-p-d-james-novels-james|P.D. James novels|P.D. James
 bk-karin-slaughter-novels-slaughter|Karin Slaughter novels|Karin Slaughter
+bk-p-d-james-novels-james|P.D. James novels|P.D. James
 bk-elizabeth-george-novels-george|Elizabeth George novels|Elizabeth George
 bk-louise-penny-novels-penny|Louise Penny novels|Louise Penny
 bk-ruth-rendell-novels-rendell|Ruth Rendell novels|Ruth Rendell
@@ -84,8 +89,8 @@ bk-john-sandford-novels-sandford|John Sandford novels|John Sandford
 bk-john-connolly-novels-connolly|John Connolly novels|John Connolly
 bk-carl-hiaasen-novels-hiaasen|Carl Hiaasen novels|Carl Hiaasen
 bk-laura-lippman-novels-lippman|Laura Lippman novels|Laura Lippman
-bk-joyce-carol-oates-novels-oates|Joyce Carol Oates novels|Joyce Carol Oates
 bk-ian-rankin-novels-rankin|Ian Rankin novels|Ian Rankin
+bk-joyce-carol-oates-novels-oates|Joyce Carol Oates novels|Joyce Carol Oates
 bk-ragnar-jonasson-novels-jonasson|Ragnar Jónasson novels|Ragnar Jónasson
 bk-donna-leon-novels-leon|Donna Leon novels|Donna Leon
 bk-peter-james-novels-james|Peter James novels|Peter James

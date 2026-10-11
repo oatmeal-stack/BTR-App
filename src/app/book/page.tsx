@@ -3,9 +3,9 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ExternalLink, Heart, Trash2, Undo2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Heart, Pencil, Trash2, Undo2 } from "lucide-react";
 import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
-import { amazonSearchUrl } from "@/domain/bookActions";
+import { amazonSearchUrl, bookFacts } from "@/domain/bookActions";
 import { useLibrary } from "@/hooks/useLibrary";
 import { ROUTES } from "@/routes";
 import { BookCover } from "@/components/books/BookCover";
@@ -91,9 +91,18 @@ function BookView() {
         </div>
         <div style={{ minWidth: 0 }}>
           <h1>{book.title}</h1>
-          <p className="muted" style={{ margin: "4px 0 10px" }}>
-            {[book.author, book.year].filter(Boolean).join(" · ")}
-          </p>
+          {book.author ? (
+            <p className="muted" style={{ margin: "4px 0 0" }}>
+              {book.author}
+            </p>
+          ) : null}
+          {bookFacts(book) ? (
+            <p className="muted" style={{ margin: "2px 0 10px", fontSize: 14 }}>
+              {bookFacts(book)}
+            </p>
+          ) : (
+            <div style={{ height: 10 }} />
+          )}
           <div>
             {book.sources.map((s) => (
               <Link key={s.source} className="tag" href={ROUTES.browseWith({ source: s.source })}>
@@ -137,6 +146,9 @@ function BookView() {
         <a className="btn" href={amazonSearchUrl(book)} target="_blank" rel="noopener noreferrer">
           <ExternalLink size={18} aria-hidden="true" /> Find on Amazon
         </a>
+        <Link className="btn" href={ROUTES.edit(book.id)}>
+          <Pencil size={18} aria-hidden="true" /> Edit
+        </Link>
         <button type="button" className="btn" onClick={() => void remove()}>
           <Trash2 size={18} aria-hidden="true" /> Remove this book
         </button>

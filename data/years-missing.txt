@@ -1,0 +1,195 @@
+bk-winner-wayne|The Winner|Wayne
+bk-just-mercy-stevenson|Just Mercy|Bryan Stevenson
+bk-in-crowd-vassell|The In Crowd|Vassell
+bk-things-are-never-so-bad-they-can-t-get-worse-neumann|Things Are Never So Bad They Can't Get Worse|Neumann
+bk-no-no-boys-okada|The No-No Boys|John Okada
+bk-kingdoms-of-savannah-green|Kingdoms of Savannah|George Dawes Green
+bk-marching-powder-mcfadden|Marching Powder|Rusty Young and Thomas McFadden
+bk-river-heller|The River|Peter Heller
+bk-captains-courageous-kipling|Captains Courageous|Rudyard Kipling
+bk-hellhound-on-his-trail-sides|Hellhound on His Trail|Hampton Sides
+bk-feather-thief-johnson|The Feather Thief|Kirk Wallace Johnson
+bk-field-guide-to-getting-lost-solnit|A Field Guide to Getting Lost|Rebecca Solnit
+bk-tiger-vaillant|The Tiger|John Vaillant
+bk-executive-hoodlum-costello|Executive Hoodlum|Costello
+bk-devil-s-highway-urrea|The Devil's Highway|Luis Alberto Urrea
+bk-american-prison-bauer|American Prison|Shane Bauer
+bk-lost-city-of-the-monkey-god-preston|The Lost City of the Monkey God|Douglas Preston
+bk-taking-of-k-129-dean|The Taking of K-129|Josh Dean
+bk-your-heart-is-a-muscle-the-size-of-a-fist-yapa|Your Heart is a Muscle the Size of a Fist|Sunil Yapa
+bk-financial-lives-of-the-poets-walter|The Financial Lives of the Poets|Jess Walter
+bk-lamb-the-gospel-according-to-biff-christ-s-childhood-pal-moore|Lamb: The Gospel According to Biff, Christ's Childhood Pal|Christopher Moore
+bk-rise-of-superman-kotler|The Rise of Superman|Steven Kotler
+bk-canticle-for-leibowitz-miller|A Canticle for Leibowitz|Walter M. Miller Jr.
+bk-miracle-life-of-edgar-mint-udall|The Miracle Life of Edgar Mint|Brady Udall
+bk-exploration-of-the-colorado-river-powell|An Exploration of the Colorado River|John Wesley Powell
+bk-surely-you-re-joking-mr-feynman-leighton|Surely You're Joking, Mr. Feynman|Richard Feynman and Ralph Leighton
+bk-sweet-promised-land-laxalt|Sweet Promised Land|Robert Laxalt
+bk-ghosts-of-everest-al|Ghosts of Everest|Jochen Hemmleb, Larry A. Johnson and Eric R. Simonson
+bk-self-comes-to-mind-damasio|Self Comes to Mind|Antonio Damasio
+bk-war-junger|War|Sebastian Junger
+bk-cellist-of-sarajevo-galloway|The Cellist of Sarajevo|Steven Galloway
+bk-bad-land-raban|Bad Land|Jonathan Raban
+bk-judgment-of-paris-taber|Judgment of Paris|George M. Taber
+bk-my-name-is-will-winfield|My Name is Will|Jess Winfield
+bk-crazy-for-the-storm-ollestad|Crazy for the Storm|Norman Ollestad
+bk-story-of-edgar-sawtelle-wroblewski|The Story of Edgar Sawtelle|David Wroblewski
+bk-havana-nocturne-english|Havana Nocturne|T.J. English
+bk-nine-toobin|The Nine|Jeffrey Toobin
+bk-travels-with-charley-steinbeck|Travels With Charley|John Steinbeck
+bk-positively-fifth-street-mcmanus|Positively Fifth Street|James McManus
+bk-oscar-and-lucinda-carey|Oscar & Lucinda|Peter Carey
+bk-end-of-the-story-davis|The End of the Story|Lydia Davis
+bk-good-material-alderton|Good Material|Dolly Alderton
+bk-cherrywood-serong|Cherrywood|Jock Serong
+bk-john-dies-at-the-end-pargin|John Dies at the End|Jason Pargin
+bk-knockout-artist-crews|The Knockout Artist|Harry Crews
+bk-alone-in-berlin-fallada|Alone in Berlin|Hans Fallada
+bk-outsider-camus|The Outsider|Albert Camus
+bk-still-life-winman|Still Life|Sarah Winman
+bk-open-water-nelson|Open Water|Caleb Azumah Nelson
+bk-shadowboxing-birch|Shadowboxing|Tony Birch
+bk-metamorphosis-and-other-stories-kafka|Metamorphosis and Other Stories|Franz Kafka
+bk-sharks-in-the-time-of-saviours-washburn|Sharks in the Time of Saviours|Kawai Strong Washburn
+bk-notes-from-underground-dostoevsky|Notes from Underground|Fyodor Dostoevsky
+bk-war-and-peace-tolstoy|War & Peace|Leo Tolstoy
+bk-hell-s-angels-thompson|Hell's Angels|Hunter S. Thompson
+bk-hitchhiker-s-guide-to-the-galaxy-adams|The Hitchhiker's Guide to the Galaxy|Douglas Adams
+bk-earthsea-quartet-guin|The Earthsea Quartet|Ursula K. Le Guin
+bk-final-empire-sanderson|The Final Empire|Brandon Sanderson
+bk-lion-the-witch-and-the-wardrobe-lewis|The Lion the Witch and the Wardrobe|C.S. Lewis
+bk-magician-feist|Magician|Raymond E. Feist
+bk-city-and-the-city-mieville|The City and the City|China Mieville
+bk-goblin-emperor-addison|The Goblin Emperor|Katherine Addison
+bk-forgotten-beasts-of-eld-mckillip|The Forgotten Beasts of Eld|Patricia McKillip
+bk-sudden-appearance-of-hope-north|The Sudden Appearance of Hope|Claire North
+bk-golem-and-the-djinni-wecker|The Golem and the Djinni|Helene Wecker
+bk-sum-of-all-men-farland|The Sum of All Men|David Farland
+bk-between-two-fires-buehlman|Between Two Fires|Christopher Buehlman
+bk-coffin-for-dimitrios-ambler|A Coffin for Dimitrios|Eric Ambler
+bk-peacock-and-the-sparrow-berry|The Peacock and the Sparrow|I.S. Berry
+bk-agents-of-innocence-ignatius|Agents of Innocence|David Ignatius
+bk-dark-star-furst|Dark Star|Alan Furst
+bk-transcription-atkinson|Transcription|Kate Atkinson
+bk-box-88-series-cumming|BOX 88 (series)|Charles Cumming
+bk-sleeping-bear-sullivan|Sleeping Bear|Connor Sullivan
+bk-jason-bourne-novels-series-ludlum|Jason Bourne novels (series)|Robert Ludlum
+bk-quiller-series-hall|Quiller series|Adam Hall
+bk-american-spy-wilkinson|American Spy|Lauren Wilkinson
+bk-down-range-moore|Down Range|Taylor Moore
+bk-once-a-spy-thomson|Once a Spy|Keith Thomson
+bk-beirut-station-vidich|Beirut Station|Paul Vidich
+bk-loyal-spy-conway|A Loyal Spy|Simon Conway
+bk-gabriel-s-moon-boyd|Gabriel's Moon|William Boyd
+bk-shanghai-factor-mccarry|The Shanghai Factor|Charles McCarry
+bk-typhoon-cumming|Typhoon|Charles Cumming
+bk-scot-harvath-series-thor|Scot Harvath series|Brad Thor
+bk-mitch-rapp-series-flynn|Mitch Rapp series|Vince Flynn
+bk-damascus-station-mccloskey|Damascus Station|David McCloskey
+bk-elias-network-gervais|The Elias Network|Simon Gervais
+bk-battle-born-series-stewart|Battle Born series|Jack Stewart
+bk-without-sanction-bentley|Without Sanction|Don Bentley
+bk-shanghai-kanon|Shanghai|Joseph Kanon
+bk-coldest-warrior-vidich|The Coldest Warrior|Paul Vidich
+bk-helsinki-affair-pitoniak|The Helsinki Affair|Anna Pitoniak
+bk-winter-work-fesperman|Winter Work|Dan Fesperman
+bk-scarlet-papers-richardson|The Scarlet Papers|Matthew Richardson
+bk-defectors-kanon|Defectors|Joseph Kanon
+bk-william-catesby-series-wilson|William Catesby series|Edward Wilson
+bk-bernie-gunther-series-kerr|Bernie Gunther series|Philip Kerr
+bk-night-soldiers-furst|Night Soldiers|Alan Furst
+bk-red-gold-furst|Red Gold|Alan Furst
+bk-envoy-wilson|The Envoy|Edward Wilson
+bk-ipcress-file-deighton|The Ipcress File|Len Deighton
+bk-above-suspicion-macinnes|Above Suspicion|Helen MacInnes
+bk-spy-coast-gerritsen|The Spy Coast|Tess Gerritsen
+bk-summer-guests-gerritsen|The Summer Guests|Tess Gerritsen
+bk-tommy-hambledon-series-coles|Tommy Hambledon series|Manning Coles
+bk-spy-among-friends-macintyre|A Spy Among Friends|Ben Macintyre
+bk-spy-and-the-traitor-macintyre|The Spy and the Traitor|Ben Macintyre
+bk-ashenden-maugham|Ashenden|W. Somerset Maugham
+bk-once-and-future-spy-littell|The Once and Future Spy|Robert Littell
+bk-amateur-littell|The Amateur|Robert Littell
+bk-october-circle-littell|The October Circle|Robert Littell
+bk-jack-higgins-spy-thrillers-higgins|Jack Higgins spy thrillers|Jack Higgins
+bk-berlin-station-series-downing|Berlin Station series|David Downing
+bk-madame-fourcade-s-secret-war-olson|Madame Fourcade's Secret War|Lynne Olson
+bk-lost-girls-of-paris-jenoff|The Lost Girls of Paris|Pam Jenoff
+bk-maggie-hope-series-macneal|Maggie Hope series|Susan Elia MacNeal
+bk-nine-dash-line-saso|NINE DASH LINE|Emily Saso
+bk-in-arabia-voss|In Arabia|Tony Voss
+bk-spy-alone-beaumont|A Spy Alone|Charles Beaumont
+bk-spy-at-war-beaumont|A Spy at War|Charles Beaumont
+bk-trinity-six-cumming|The Trinity Six|Charles Cumming
+bk-red-white-and-blue-carpenter|Red White and Blue|Lea Carpenter
+bk-man-who-lost-the-war-tyler|The Man Who Lost the War|W.T. Tyler
+bk-kim-kipling|Kim|Rudyard Kipling
+bk-aubrey-maturin-series-brian|Aubrey–Maturin series|Patrick O'Brian
+bk-cold-war-swap-thomas|The Cold War Swap|Ross Thomas
+bk-eighth-dwarf-thomas|The Eighth Dwarf|Ross Thomas
+bk-twilight-at-mac-s-place-thomas|Twilight at Mac's Place|Ross Thomas
+bk-exposure-dunmore|Exposure|Helen Dunmore
+bk-of-all-the-bloody-cheek-macauliffe|Of All the Bloody Cheek|Frank MacAuliffe
+bk-red-widow-katsu|Red Widow|Alma Katsu
+bk-red-london-katsu|Red London|Alma Katsu
+bk-other-paths-to-glory-price|Other Paths to Glory|Anthony Price
+bk-alamut-ambush-price|Alamut Ambush|Anthony Price
+bk-all-the-colors-of-the-dark-whitaker|All the Colors of the Dark|Chris Whitaker
+bk-push-audrain|The Push|Ashley Audrain
+bk-jar-of-hearts-hillier|Jar of Hearts|Jennifer Hillier
+bk-your-house-will-pay-cha|Your House Will Pay|Steph Cha
+bk-all-the-sinners-bleed-cosby|All the Sinners Bleed|S.A. Cosby
+bk-witch-elm-french|The Witch Elm|Tana French
+bk-notes-on-an-execution-kukafka|Notes on an Execution|Danya Kukafka
+bk-perfect-nanny-slimani|The Perfect Nanny|Leila Slimani
+bk-winter-s-bone-woodrell|Winter’s Bone|Daniel Woodrell
+bk-broken-harbor-french|Broken Harbor|Tana French
+bk-blacktop-wasteland-cosby|Blacktop Wasteland|S.A. Cosby
+bk-girl-with-the-dragon-tattoo-larsson|The Girl With the Dragon Tattoo|Stieg Larsson
+bk-descent-johnston|Descent|Tim Johnston
+bk-slammerkin-donoghue|Slammerkin|Emma Donoghue
+bk-before-the-fall-hawley|Before the Fall|Noah Hawley
+bk-two-nights-in-lisbon-pavone|Two Nights in Lisbon|Chris Pavone
+bk-bangkok-8-burdett|Bangkok 8|John Burdett
+bk-five-decembers-kestrel|Five Decembers|James Kestrel
+bk-substitution-order-clark|The Substitution Order|Martin Clark
+bk-cal-hooper-trilogy-french|Cal Hooper trilogy|Tana French
+bk-kurt-wallander-series-mankell|Kurt Wallander series|Henning Mankell
+bk-harry-hole-series-nesb|Harry Hole series|Jo Nesbø
+bk-dave-robicheaux-series-burke|Dave Robicheaux series|James Lee Burke
+bk-cormoran-strike-series-galbraith|Cormoran Strike series|Robert Galbraith
+bk-pendergast-series-child|Pendergast series|Douglas Preston and Lincoln Child
+bk-jane-whitefield-series-perry|Jane Whitefield series|Thomas Perry
+bk-butcher-s-boy-series-perry|Butcher's Boy series|Thomas Perry
+bk-sean-duffy-series-mckinty|Sean Duffy series|Adrian McKinty
+bk-harry-bosch-series-connelly|Harry Bosch series|Michael Connelly
+bk-jack-reacher-series-child|Jack Reacher series|Lee Child
+bk-sue-grafton-alphabet-series-grafton|Sue Grafton alphabet series|Sue Grafton
+bk-v-i-warshawski-series-paretsky|V.I. Warshawski series|Sara Paretsky
+bk-karin-slaughter-novels-slaughter|Karin Slaughter novels|Karin Slaughter
+bk-p-d-james-novels-james|P.D. James novels|P.D. James
+bk-elizabeth-george-novels-george|Elizabeth George novels|Elizabeth George
+bk-louise-penny-novels-penny|Louise Penny novels|Louise Penny
+bk-ruth-rendell-novels-rendell|Ruth Rendell novels|Ruth Rendell
+bk-elmore-leonard-novels-leonard|Elmore Leonard novels|Elmore Leonard
+bk-james-ellroy-novels-ellroy|James Ellroy novels|James Ellroy
+bk-robert-crais-novels-crais|Robert Crais novels|Robert Crais
+bk-karin-fossum-novels-fossum|Karin Fossum novels|Karin Fossum
+bk-camilla-lackberg-novels-lackberg|Camilla Läckberg novels|Camilla Läckberg
+bk-george-pelecanos-novels-pelecanos|George Pelecanos novels|George Pelecanos
+bk-denise-mina-novels-mina|Denise Mina novels|Denise Mina
+bk-ann-cleeves-novels-cleeves|Ann Cleeves novels|Ann Cleeves
+bk-john-sandford-novels-sandford|John Sandford novels|John Sandford
+bk-john-connolly-novels-connolly|John Connolly novels|John Connolly
+bk-carl-hiaasen-novels-hiaasen|Carl Hiaasen novels|Carl Hiaasen
+bk-laura-lippman-novels-lippman|Laura Lippman novels|Laura Lippman
+bk-joyce-carol-oates-novels-oates|Joyce Carol Oates novels|Joyce Carol Oates
+bk-ian-rankin-novels-rankin|Ian Rankin novels|Ian Rankin
+bk-ragnar-jonasson-novels-jonasson|Ragnar Jónasson novels|Ragnar Jónasson
+bk-donna-leon-novels-leon|Donna Leon novels|Donna Leon
+bk-peter-james-novels-james|Peter James novels|Peter James
+bk-martin-cruz-smith-novels-smith|Martin Cruz Smith novels|Martin Cruz Smith
+bk-patrick-radden-keefe-books-keefe|Patrick Radden Keefe books|Patrick Radden Keefe
+bk-michael-crichton-novels-crichton|Michael Crichton novels|Michael Crichton
+bk-tom-clancy-novels-clancy|Tom Clancy novels|Tom Clancy
+bk-arturo-perez-reverte-novels-reverte|Arturo Pérez-Reverte novels|Arturo Pérez-Reverte

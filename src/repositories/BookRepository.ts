@@ -1,6 +1,7 @@
 import type {
   Book,
   BookNote,
+  BookEdit,
   NewBookInput,
   ReadingStatus,
 } from "@/domain/book";
@@ -28,6 +29,10 @@ export interface BookRepository {
   listNotes(): Promise<BookNote[]>;
   setStatus(bookId: string, status: ReadingStatus): Promise<void>;
   setFavorite(bookId: string, favorite: boolean): Promise<void>;
+  /** Saves everything the Edit screen changes (see BookEdit). */
+  updateBook(bookId: string, edit: BookEdit): Promise<void>;
+  /** Folds the second copy into the first: lists, notes, tags and gaps move over; the second is removed. */
+  mergeBooks(keep: Pick<Book, "id">, drop: Pick<Book, "id" | "title" | "author">): Promise<void>;
   /** Hides a book everywhere without deleting anything. A re-import will not bring it back. */
   removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void>;
   /** Brings a removed book back exactly as it was. */
