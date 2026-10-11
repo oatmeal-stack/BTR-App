@@ -62,7 +62,7 @@ export default function HomePage() {
           <section className="card" aria-label="Random pick">
             <div className="pick">
               <div className="pick__cover">
-                <BookCover book={pick} />
+                <BookCover book={pick} large />
               </div>
               <div className="pick__body">
                 <h2>{pick.title}</h2>

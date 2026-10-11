@@ -20,6 +20,11 @@ export const cozyCabin: SkinConfig = {
     radius: { card: "16px", control: "12px", pill: "999px" },
     shadow: { card: "0 6px 24px rgba(0, 0, 0, 0.28)" },
   },
-  artwork: { pickHero: null, browseBanner: null, emptyState: null, onboarding: null },
+  artwork: {
+    pickHero: "/skins/cozy-cabin/pick-hero.jpg",
+    browseBanner: "/skins/cozy-cabin/browse-banner.jpg",
+    emptyState: "/skins/cozy-cabin/empty-state.jpg",
+    onboarding: "/skins/cozy-cabin/onboarding.jpg",
+  },
   artworkPosition: { pickHero: "50% 50%" },
 };

@@ -151,6 +151,7 @@ describe("who can do what", () => {
 
   it("refuses every change with a wrong passcode and changes nothing", async () => {
     const id = "bk-dune-herbert";
+    const before = await db.query<{ cover_url: string | null }>("select cover_url from books where id = $1", [id]);
     const calls: [string, unknown[]][] = [
       ["select set_status($1, $2, 'read')", ["wrong", id]],
       ["select set_favorite($1, $2, true)", ["wrong", id]],
@@ -169,7 +170,8 @@ describe("who can do what", () => {
       "select status, favorite, cover_url from books where id = $1",
       [id],
     );
-    expect(r.rows[0]).toEqual({ status: "want_to_read", favorite: false, cover_url: null });
+    expect(r.rows[0]).toEqual({ status: "want_to_read", favorite: false, cover_url: before.rows[0].cover_url });
+    expect(r.rows[0].cover_url).not.toBe("http://x");
     expect(await count("select count(*) as n from books where id = 'bk-new'")).toBe(0);
   });
 });
@@ -224,5 +226,19 @@ describe("changes with the right passcode", () => {
     expect(s.rows.map((r) => r.source)).toEqual(["My additions", "Tough Guy Book Club"]);
     const b = await db.query<{ source_note: string }>("select source_note from books where id = 'bk-shogun-clavell'");
     expect(b.rows[0].source_note).toBe("Via Joe · Camp pick");
+  });
+});
+
+describe("filling covers on a library that is already live", () => {
+  it("fills books with no cover, and never overwrites one that already has a cover", async () => {
+    await db.query("update books set cover_url = null where id = 'bk-dune-herbert'");
+    await db.query("update books set cover_url = 'https://example.com/mine.jpg' where id = 'bk-just-mercy-stevenson'");
+    await db.exec(sql("covers.sql"));
+    const r = await db.query<{ id: string; cover_url: string | null }>(
+      "select id, cover_url from books where id in ('bk-dune-herbert','bk-just-mercy-stevenson') order by id",
+    );
+    expect(r.rows[0].cover_url).toMatch(/^https:\/\/covers\.openlibrary\.org\/b\/id\/\d+-M\.jpg$/);
+    expect(r.rows[1].cover_url).toBe("https://example.com/mine.jpg");
+    await db.exec(sql("covers.sql")); // running it again changes nothing
   });
 });

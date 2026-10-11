@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import { NAV_TABS, ROUTES } from "@/routes";
 import { DEFAULT_SKIN_ID, getSkin, SKINS, skinBootScript } from "@/skins/registry";
@@ -67,6 +69,14 @@ describe("skins are presentation only", () => {
 
   it("declare every artwork slot (null is fine until the file exists)", () => {
     for (const s of SKINS) expect(Object.keys(s.artwork).sort()).toEqual([...ARTWORK_SLOTS].sort());
+  });
+
+  it("only point at artwork files that exist in public/", () => {
+    for (const s of SKINS) {
+      for (const [slot, path] of Object.entries(s.artwork)) {
+        if (path) expect(existsSync(join(process.cwd(), "public", path)), `${s.id} ${slot}: ${path}`).toBe(true);
+      }
+    }
   });
 });
 

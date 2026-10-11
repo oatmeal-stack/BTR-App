@@ -62,7 +62,7 @@ function BookView() {
 
       <div className="detail">
         <div className="detail__cover">
-          <BookCover book={book} />
+          <BookCover book={book} large />
         </div>
         <div style={{ minWidth: 0 }}>
           <h1>{book.title}</h1>

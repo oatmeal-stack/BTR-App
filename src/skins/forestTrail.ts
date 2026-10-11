@@ -20,8 +20,13 @@ export const forestTrail: SkinConfig = {
     radius: { card: "18px", control: "12px", pill: "999px" },
     shadow: { card: "0 6px 24px rgba(0, 0, 0, 0.18)" },
   },
-  // Files arrive from the artwork brief (pick-hero, browse-banner, ...).
-  // Set a path here once the file is in public/skins/forest-trail/.
-  artwork: { pickHero: null, browseBanner: null, emptyState: null, onboarding: null },
+  // Stand-ins cropped from the design poster (scripts/crop-poster-art.mjs). Drop the real, full-size
+  // files over the same names in public/skins/forest-trail/ and nothing else needs to change.
+  artwork: {
+    pickHero: "/skins/forest-trail/pick-hero.jpg",
+    browseBanner: "/skins/forest-trail/browse-banner.jpg",
+    emptyState: "/skins/forest-trail/empty-state.jpg",
+    onboarding: "/skins/forest-trail/onboarding.jpg",
+  },
   artworkPosition: { pickHero: "50% 45%" },
 };

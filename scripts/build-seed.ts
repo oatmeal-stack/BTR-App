@@ -4,12 +4,14 @@
  * Writes:
  *   src/data/seedBooks.json   what the app shows on this device
  *   supabase/seed.sql         paste into the Supabase SQL editor
+ *   supabase/covers.sql       fills jackets on a library that is already live
  * and prints per-list counts so they can be checked against the source sheets.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { buildBooks, checkTags, parsePsv, parseTags, toSeedSql, SRC, type Row } from "./lib/seed";
+import { buildBooks, checkTags, parsePsv, parseTags, toCoversSql, toSeedSql, SRC, type Row } from "./lib/seed";
+import { applyCovers, parseCovers } from "./lib/covers";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (f: string): Row[] => parsePsv(readFileSync(join(root, "data", "raw", f), "utf8"));
@@ -27,6 +29,10 @@ const { books, repeatsWithinList, rowCounts } = buildBooks({
   tags,
 });
 
+// Jackets found by scripts/fetch-covers.mts. A book with no entry simply has no cover (never guessed).
+const coversPath = join(root, "data", "covers.psv");
+applyCovers(books, existsSync(coversPath) ? parseCovers(readFileSync(coversPath, "utf8")) : []);
+
 const problems = checkTags(tags, books);
 if (problems.length) {
   console.error(["data/tags.psv has problems:", ...problems].join("\n  "));
@@ -40,6 +46,7 @@ const out = (p: string, text: string) => {
 };
 out("src/data/seedBooks.json", JSON.stringify(books, null, 1) + "\n");
 out("supabase/seed.sql", toSeedSql(books));
+out("supabase/covers.sql", toCoversSql(books));
 
 console.log("Rows read per list vs books tagged with that list:");
 for (const source of Object.values(SRC)) {
@@ -58,6 +65,7 @@ if (repeatsWithinList.length) {
   for (const r of repeatsWithinList) console.log(`  ${r.source}: ${r.title}`);
 }
 
+console.log(`Covers: ${books.filter((b) => b.coverUrl).length} of ${books.length}`);
 console.log(`Tagged: ${books.filter((b) => b.genres.length).length} with genres, ${books.filter((b) => b.moods.length).length} with moods`);
 const lastNameOnly = books.filter((b) => b.author && !/\s/.test(b.author)).length;
 console.log(`\nAuthors given as a single word (probably last name only): ${lastNameOnly}`);

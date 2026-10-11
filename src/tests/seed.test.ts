@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { SEED_BOOKS } from "@/data/seedBooks";
 import { isSameBook } from "@/domain/bookActions";
+import { applyCovers, parseCovers } from "../../scripts/lib/covers";
 import { buildBooks, checkTags, parsePsv, parseTags, SRC, toSeedSql } from "../../scripts/lib/seed";
 import { GENRES, MOODS } from "@/domain/book";
 
@@ -21,6 +22,7 @@ const input = () => ({
 });
 
 const built = buildBooks(input());
+applyCovers(built.books, parseCovers(readFileSync(join(process.cwd(), "data", "covers.psv"), "utf8")));
 const byTitle = (t: string) => built.books.filter((b) => b.title === t);
 
 describe("import from the five lists", () => {
