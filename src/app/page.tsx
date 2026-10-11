@@ -1,69 +1,136 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Plus, Shuffle } from "lucide-react";
+import type { Book } from "@/domain/book";
+import { sortBooks } from "@/domain/bookActions";
+import { useLibrary } from "@/hooks/useLibrary";
+import { ROUTES } from "@/routes";
+import { BookCard } from "@/components/books/BookCard";
+import { BookCover } from "@/components/books/BookCover";
+import { BookRow } from "@/components/books/BookRow";
+import { EmptyState } from "@/components/shared/EmptyState";
+import { LoadProblem } from "@/components/shared/LoadProblem";
+import { ScenicBanner } from "@/components/shared/ScenicBanner";
+import { SearchInput } from "@/components/shared/SearchInput";
+
+export default function HomePage() {
+  const router = useRouter();
+  const { books, ready, loadFailed, home, shuffle } = useLibrary();
+
+  const pick = books.find((b) => b.id === home.pickId);
+  const forYou = home.forYouIds
+    .map((id) => books.find((b) => b.id === id))
+    .filter((b): b is Book => Boolean(b));
+  const reading = books.filter((b) => b.status === "reading");
+  const recent = sortBooks(books, "recent").slice(0, 5);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <ScenicBanner
+        slot="pickHero"
+        title="Your next read"
+        subtitle="Discover your next great read."
+        action={
+          <Link className="iconbtn" href={ROUTES.add} aria-label="Add books">
+            <Plus size={20} aria-hidden="true" />
+          </Link>
+        }
+      />
+      <div className="stack">
+        <SearchInput
+          placeholder="Search books or authors"
+          onSubmit={(q) => router.push(ROUTES.browseWith({ q }))}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {!ready ? (
+          <p className="muted">Loading your library…</p>
+        ) : loadFailed ? (
+          <LoadProblem />
+        ) : !pick ? (
+          <EmptyState
+            title="Your library is empty"
+            body="Add a book to get started."
+            action={
+              <Link className="btn btn--primary" href={ROUTES.add}>
+                Add a book
+              </Link>
+            }
+          />
+        ) : (
+          <section className="card" aria-label="Random pick">
+            <div className="pick">
+              <div className="pick__cover">
+                <BookCover book={pick} />
+              </div>
+              <div className="pick__body">
+                <h2>{pick.title}</h2>
+                {pick.author ? <p className="muted">{pick.author}</p> : null}
+                <p style={{ marginTop: 8 }}>
+                  {pick.sources.map((s) => (
+                    <span key={s.source} className="tag">
+                      {s.source}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </div>
+            <div className="pick__actions">
+              <button type="button" className="btn" onClick={shuffle}>
+                <Shuffle size={18} aria-hidden="true" /> Shuffle
+              </button>
+              <Link className="btn btn--primary" href={ROUTES.book(pick.id)}>
+                Open book
+              </Link>
+            </div>
+          </section>
+        )}
+
+        {reading.length > 0 && (
+          <section aria-labelledby="reading-h">
+            <div className="section-head">
+              <h2 id="reading-h">Currently reading</h2>
+            </div>
+            <ul className="rows">
+              {reading.map((b) => (
+                <BookRow key={b.id} book={b} />
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {forYou.length > 0 && (
+          <section aria-labelledby="foryou-h">
+            <div className="section-head">
+              <h2 id="foryou-h">For you</h2>
+              <Link href={ROUTES.library}>See library</Link>
+            </div>
+            <div className="hrow" style={{ marginTop: 12 }}>
+              {forYou.map((b) => (
+                <BookCard key={b.id} book={b} />
+              ))}
+            </div>
+            <p className="muted" style={{ fontSize: 13 }}>
+              Random picks from your Want to read.
+            </p>
+          </section>
+        )}
+
+        {recent.length > 0 && (
+          <section aria-labelledby="recent-h">
+            <div className="section-head">
+              <h2 id="recent-h">Recently added</h2>
+              <Link href={ROUTES.browse}>See all</Link>
+            </div>
+            <ul className="rows">
+              {recent.map((b) => (
+                <BookRow key={b.id} book={b} />
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+    </>
   );
 }

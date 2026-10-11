@@ -1,0 +1,228 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { PGlite } from "@electric-sql/pglite";
+import { pgcrypto } from "@electric-sql/pglite/contrib/pgcrypto";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { SEED_BOOKS } from "@/data/seedBooks";
+
+/**
+ * Runs supabase/schema.sql, set_passcode.sql and seed.sql against a real (in-memory)
+ * Postgres, then checks the rules that matter: the library is readable by anyone,
+ * nothing can be written without the passcode, and private notes stay private.
+ */
+const sql = (f: string) => readFileSync(join(process.cwd(), "supabase", f), "utf8");
+const CODE = "test-passcode";
+
+let db: PGlite;
+
+async function asAnon<T>(run: () => Promise<T>): Promise<T> {
+  await db.exec("set role anon");
+  try {
+    return await run();
+  } finally {
+    await db.exec("reset role");
+  }
+}
+
+async function count(query: string): Promise<number> {
+  const r = await db.query<{ n: number }>(query);
+  return Number(r.rows[0].n);
+}
+
+beforeAll(async () => {
+  db = await PGlite.create({ extensions: { pgcrypto } });
+  // What a Supabase project already has before our files run.
+  await db.exec(`
+    create schema if not exists extensions;
+    create role anon nologin;
+    create role authenticated nologin;
+    grant usage on schema public, extensions to anon, authenticated;
+    alter default privileges in schema public grant all on tables to anon, authenticated;
+  `);
+  await db.exec(sql("schema.sql"));
+  const passcodeSql = sql("set_passcode.sql");
+  expect(passcodeSql.split("CHOOSE-A-PASSCODE")).toHaveLength(2); // placeholder appears exactly once
+  await db.exec(passcodeSql.replace("CHOOSE-A-PASSCODE", CODE));
+  await db.exec(sql("seed.sql"));
+}, 120_000);
+
+afterAll(async () => {
+  await db.close();
+});
+
+describe("seed data in Postgres", () => {
+  it("loads every list with the expected number of books", async () => {
+    const r = await db.query<{ source: string; n: number }>(
+      "select source, count(*)::int as n from book_sources group by source order by source",
+    );
+    expect(Object.fromEntries(r.rows.map((x) => [x.source, x.n]))).toEqual({
+      "Fantasy Top 100 UK": 100,
+      "Man Book Club": 165,
+      "NYT 50 Thrillers": 124,
+      "NYT Spy Novels": 117,
+      "Tough Guy Book Club": 100,
+    });
+    expect(await count("select count(*) as n from books")).toBe(586);
+  });
+
+  it("stores a cross-source book once with both lists", async () => {
+    expect(
+      await count("select count(*) as n from books where title = 'The Long Way to a Small, Angry Planet'"),
+    ).toBe(1);
+    const s = await db.query<{ source: string }>(
+      "select source from book_sources where book_id = (select id from books where title like 'The Long Way%') order by source",
+    );
+    expect(s.rows.map((x) => x.source)).toEqual(["Fantasy Top 100 UK", "Tough Guy Book Club"]);
+  });
+
+  it("keeps every book's original added-order, so Recently added matches the app", async () => {
+    const i = SEED_BOOKS.findIndex((b) => b.id === "bk-lonesome-dove-mcmurtry");
+    const r = await db.query<{ ts: string }>(
+      "select to_char(created_at at time zone 'utc', 'YYYY-MM-DD\"T\"HH24:MI') as ts from books where id = 'bk-lonesome-dove-mcmurtry'",
+    );
+    const expected = new Date(Date.parse("2026-08-09T12:00:00Z") - i * 60_000).toISOString().slice(0, 16);
+    expect(r.rows[0].ts).toBe(expected);
+  });
+
+  it("matches the app's own copy of the library field for field", async () => {
+    const r = await db.query<{ id: string; title: string; author: string | null; year: number | null; rating: string | null; source_note: string | null; genres: string[]; moods: string[] }>(
+      "select id, title, author, year, rating, source_note, genres, moods from books order by id",
+    );
+    expect(r.rows).toHaveLength(SEED_BOOKS.length);
+    const byId = new Map(SEED_BOOKS.map((b) => [b.id, b]));
+    for (const row of r.rows) {
+      const b = byId.get(row.id)!;
+      expect(row.title).toBe(b.title);
+      expect(row.author ?? undefined).toBe(b.author);
+      expect(row.year ?? undefined).toBe(b.year);
+      expect(row.rating === null ? undefined : Number(row.rating)).toBe(b.rating);
+      expect(row.source_note ?? undefined).toBe(b.sourceNote);
+      expect(row.genres).toEqual(b.genres);
+      expect(row.moods).toEqual(b.moods);
+    }
+  });
+
+  it("keeps scores only where a list gave one", async () => {
+    expect(await count("select count(*) as n from books where rating is not null")).toBe(158);
+    const r = await db.query<{ rating: string }>("select rating from books where title = 'Lonesome Dove'");
+    expect(Number(r.rows[0].rating)).toBe(9);
+  });
+
+  it("can be run a second time without duplicating or overwriting anything", async () => {
+    await db.query("select set_status($1, $2, 'read')", [CODE, "bk-lonesome-dove-mcmurtry"]);
+    await db.exec(sql("seed.sql"));
+    expect(await count("select count(*) as n from books")).toBe(586);
+    expect(await count("select count(*) as n from book_sources")).toBe(606);
+    const r = await db.query<{ status: string }>("select status from books where id = 'bk-lonesome-dove-mcmurtry'");
+    expect(r.rows[0].status).toBe("read");
+  });
+});
+
+describe("who can do what", () => {
+  it("lets anyone read books and their lists", async () => {
+    const n = await asAnon(() => count("select count(*) as n from books"));
+    expect(n).toBe(586);
+    expect(await asAnon(() => count("select count(*) as n from book_sources"))).toBe(606);
+  });
+
+  it("hides the passcode and the private notes from the public", async () => {
+    await expect(asAnon(() => db.query("select * from app_secret"))).rejects.toThrow(/permission denied/);
+    await expect(asAnon(() => db.query("select * from book_notes"))).rejects.toThrow(/permission denied/);
+  });
+
+  it("blocks writing to any table directly", async () => {
+    await expect(
+      asAnon(() => db.query("update books set status = 'read' where id = 'bk-dune-herbert'")),
+    ).rejects.toThrow(/permission denied/);
+    await expect(
+      asAnon(() => db.query("insert into books (id, title) values ('x', 'Sneaky')")),
+    ).rejects.toThrow(/permission denied/);
+    await expect(asAnon(() => db.query("delete from books"))).rejects.toThrow(/permission denied/);
+    await expect(
+      asAnon(() => db.query("insert into book_notes (id, book_id, body) values ('n', 'bk-dune-herbert', 'x')")),
+    ).rejects.toThrow(/permission denied/);
+  });
+
+  it("checks the passcode", async () => {
+    expect((await asAnon(() => db.query<{ ok: boolean }>("select check_code($1) as ok", [CODE]))).rows[0].ok).toBe(true);
+    expect((await asAnon(() => db.query<{ ok: boolean }>("select check_code('nope') as ok"))).rows[0].ok).toBe(false);
+    expect((await db.query<{ h: string }>("select passcode_hash as h from app_secret")).rows[0].h).not.toContain(CODE);
+  });
+
+  it("refuses every change with a wrong passcode and changes nothing", async () => {
+    const id = "bk-dune-herbert";
+    const calls: [string, unknown[]][] = [
+      ["select set_status($1, $2, 'read')", ["wrong", id]],
+      ["select set_favorite($1, $2, true)", ["wrong", id]],
+      ["select set_cover($1, $2, 'http://x')", ["wrong", id]],
+      ["select add_book($1, 'bk-new', 'New', null, null, null, 'My additions')", ["wrong"]],
+      ["select merge_book($1, $2, 'Another list')", ["wrong", id]],
+      ["select list_notes($1)", ["wrong"]],
+      ["select add_note($1, 'n1', $2, 'hello')", ["wrong", id]],
+      ["select update_note($1, 'n1', 'x')", ["wrong"]],
+      ["select delete_note($1, 'n1')", ["wrong"]],
+    ];
+    for (const [query, params] of calls) {
+      await expect(asAnon(() => db.query(query, params))).rejects.toThrow(/Wrong passcode/);
+    }
+    const r = await db.query<{ status: string; favorite: boolean; cover_url: string | null }>(
+      "select status, favorite, cover_url from books where id = $1",
+      [id],
+    );
+    expect(r.rows[0]).toEqual({ status: "want_to_read", favorite: false, cover_url: null });
+    expect(await count("select count(*) as n from books where id = 'bk-new'")).toBe(0);
+  });
+});
+
+describe("changes with the right passcode", () => {
+  const id = "bk-dune-herbert";
+
+  it("changes status and favorite, and rejects a made-up status", async () => {
+    await asAnon(() => db.query("select set_status($1, $2, 'reading')", [CODE, id]));
+    await asAnon(() => db.query("select set_favorite($1, $2, true)", [CODE, id]));
+    const r = await db.query<{ status: string; favorite: boolean }>("select status, favorite from books where id = $1", [id]);
+    expect(r.rows[0]).toEqual({ status: "reading", favorite: true });
+    await expect(
+      asAnon(() => db.query("select set_status($1, $2, 'finished')", [CODE, id])),
+    ).rejects.toThrow();
+  });
+
+  it("adds, lists, edits and deletes private notes, and rejects an empty one", async () => {
+    const q = (query: string, params: unknown[]) => asAnon(() => db.query(query, params));
+    await q("select add_note($1, 'n1', $2, '  First note  ')", [CODE, id]);
+    await q("select add_note($1, 'n2', $2, 'Second note')", [CODE, id]);
+    const list = await q("select body from list_notes($1) order by created_at, id", [CODE]);
+    expect((list.rows as { body: string }[]).map((r) => r.body)).toEqual(["First note", "Second note"]);
+
+    await q("select update_note($1, 'n1', 'Edited')", [CODE]);
+    await q("select delete_note($1, 'n2')", [CODE]);
+    const after = await q("select id, body from list_notes($1)", [CODE]);
+    expect(after.rows).toEqual([{ id: "n1", body: "Edited" }]);
+
+    await expect(q("select add_note($1, 'n3', $2, '   ')", [CODE, id])).rejects.toThrow();
+  });
+
+  it("adds a brand-new book once and ignores a repeat", async () => {
+    const add = () =>
+      asAnon(() =>
+        db.query("select add_book($1, 'bk-shogun-clavell', 'Shōgun', 'James Clavell', null, 'Via Joe', 'My additions')", [CODE]),
+      );
+    await add();
+    await add();
+    expect(await count("select count(*) as n from books where id = 'bk-shogun-clavell'")).toBe(1);
+    expect(await count("select count(*) as n from book_sources where book_id = 'bk-shogun-clavell'")).toBe(1);
+  });
+
+  it("folds an existing book into another list without a duplicate row", async () => {
+    const merge = (note: string | null) =>
+      asAnon(() => db.query("select merge_book($1, 'bk-shogun-clavell', 'Tough Guy Book Club', 12, $2)", [CODE, note]));
+    await merge("Camp pick");
+    await merge("Camp pick"); // same note again: not repeated
+    const s = await db.query<{ source: string }>(
+      "select source from book_sources where book_id = 'bk-shogun-clavell' order by source",
+    );
+    expect(s.rows.map((r) => r.source)).toEqual(["My additions", "Tough Guy Book Club"]);
+    const b = await db.query<{ source_note: string }>("select source_note from books where id = 'bk-shogun-clavell'");
+    expect(b.rows[0].source_note).toBe("Via Joe · Camp pick");
+  });
+});

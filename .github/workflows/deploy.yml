@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+# Publishes the site every time main changes. It checks the app first (types, lint, tests), so a
+# broken change never goes live.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Work out the site address
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx eslint .
+      - run: npm test
+
+      - name: Build the site
+        run: npm run build
+        env:
+          # Public by design: the web address of the database and its publishable (public) key.
+          # Set both under Settings > Secrets and variables > Actions > Variables.
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          # "/book-archive-app" for a project site, empty for a <name>.github.io site.
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

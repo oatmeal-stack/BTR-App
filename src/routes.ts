@@ -1,0 +1,24 @@
+/** Every route string lives here, never in a skin. */
+export const ROUTES = {
+  home: "/",
+  browse: "/browse",
+  library: "/library",
+  lists: "/lists",
+  profile: "/profile",
+  add: "/add",
+  book: (id: string) => `/book?id=${encodeURIComponent(id)}`,
+  browseWith: (params: { q?: string; source?: string; genre?: string; mood?: string }) => {
+    const p = new URLSearchParams();
+    for (const [k, v] of Object.entries(params)) if (v) p.set(k, v);
+    const qs = p.toString();
+    return qs ? `/browse?${qs}` : "/browse";
+  },
+} as const;
+
+export const NAV_TABS = [
+  { key: "home", label: "Home", href: ROUTES.home },
+  { key: "browse", label: "Browse", href: ROUTES.browse },
+  { key: "library", label: "Library", href: ROUTES.library },
+  { key: "lists", label: "Lists", href: ROUTES.lists },
+  { key: "profile", label: "Profile", href: ROUTES.profile },
+] as const;

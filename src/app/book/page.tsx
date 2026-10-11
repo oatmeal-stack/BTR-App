@@ -1,0 +1,139 @@
+"use client";
+
+import { Suspense } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { ArrowLeft, ExternalLink, Heart } from "lucide-react";
+import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
+import { amazonSearchUrl } from "@/domain/bookActions";
+import { useLibrary } from "@/hooks/useLibrary";
+import { ROUTES } from "@/routes";
+import { BookCover } from "@/components/books/BookCover";
+import { BookNotes } from "@/components/books/BookNotes";
+import { EmptyState } from "@/components/shared/EmptyState";
+
+export default function BookPage() {
+  return (
+    <Suspense fallback={null}>
+      <BookView />
+    </Suspense>
+  );
+}
+
+function BookView() {
+  const id = useSearchParams().get("id");
+  const { books, ready, setStatus, toggleFavorite } = useLibrary();
+  const book = books.find((b) => b.id === id);
+
+  if (!ready) {
+    return (
+      <div className="stack">
+        <p className="muted">Loading…</p>
+      </div>
+    );
+  }
+
+  if (!book) {
+    return (
+      <div className="stack">
+        <Link className="back" href={ROUTES.browse}>
+          <ArrowLeft size={16} aria-hidden="true" /> Browse
+        </Link>
+        <EmptyState
+          title="Book not found"
+          body="That book isn't in your library. It may have been removed."
+          action={
+            <Link className="btn btn--primary" href={ROUTES.browse}>
+              Browse books
+            </Link>
+          }
+        />
+      </div>
+    );
+  }
+
+  const score = book.rating !== undefined && book.sources.some((s) => s.source === "Man Book Club");
+
+  return (
+    <div className="stack">
+      <Link className="back" href={ROUTES.browse}>
+        <ArrowLeft size={16} aria-hidden="true" /> Browse
+      </Link>
+
+      <div className="detail">
+        <div className="detail__cover">
+          <BookCover book={book} />
+        </div>
+        <div style={{ minWidth: 0 }}>
+          <h1>{book.title}</h1>
+          <p className="muted" style={{ margin: "4px 0 10px" }}>
+            {[book.author, book.year].filter(Boolean).join(" · ")}
+          </p>
+          <div>
+            {book.sources.map((s) => (
+              <Link key={s.source} className="tag" href={ROUTES.browseWith({ source: s.source })}>
+                {s.source}
+              </Link>
+            ))}
+          </div>
+          <div>
+            {[...book.genres, ...book.moods].map((t, i) => (
+              <span key={`${t}-${i}`} className="tag tag--genre">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {score ? (
+        <div className="card scoreline">
+          <span className="muted">Man Book Club score</span>
+          <strong>{book.rating!.toFixed(1)} / 10</strong>
+        </div>
+      ) : null}
+
+      {book.sourceNote ? (
+        <p>
+          <span className="muted">Notes: </span>
+          {book.sourceNote}
+        </p>
+      ) : null}
+
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <button
+          type="button"
+          className={`btn${book.favorite ? " btn--primary" : ""}`}
+          aria-pressed={book.favorite}
+          onClick={() => void toggleFavorite(book.id)}
+        >
+          <Heart size={18} aria-hidden="true" /> {book.favorite ? "Favorited" : "Favorite"}
+        </button>
+        <a className="btn" href={amazonSearchUrl(book)} target="_blank" rel="noopener noreferrer">
+          <ExternalLink size={18} aria-hidden="true" /> Find on Amazon
+        </a>
+      </div>
+
+      <section aria-labelledby="status-h">
+        <h2 id="status-h" style={{ fontSize: 18, marginBottom: 10 }}>
+          Status
+        </h2>
+        <div className="statusbar" role="group" aria-label="Reading status">
+          {READING_STATUSES.map((s) => (
+            <button
+              key={s}
+              type="button"
+              className={`chip${book.status === s ? " is-on" : ""}`}
+              aria-pressed={book.status === s}
+              onClick={() => void setStatus(book.id, s)}
+            >
+              {STATUS_LABEL[s]}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <BookNotes bookId={book.id} />
+    </div>
+  );
+}

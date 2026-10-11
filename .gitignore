@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+data/raw/nyt-thrillers-comments.txt
+
+# keep the example settings file in git
+!.env.example
+
+# Local tool settings
+.claude/
