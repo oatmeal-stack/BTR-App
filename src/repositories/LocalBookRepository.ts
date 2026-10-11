@@ -1,7 +1,8 @@
-import type { Book, BookEdit, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus } from "@/domain/book";
+import * as lists from "@/domain/listActions";
 import * as actions from "@/domain/bookActions";
 import { SEED_BOOKS } from "@/data/seedBooks";
-import type { BookRepository } from "./BookRepository";
+import type { BookRepository, MyData } from "./BookRepository";
 
 /** Versioned so a later schema change can migrate instead of breaking. */
 export const STORAGE_KEY = "book-archive:v1";
@@ -10,6 +11,10 @@ interface Stored {
   version: 1;
   books: Book[];
   notes: BookNote[];
+  /** Added later; older saved data won't have them, so they default to empty. */
+  lists?: MyList[];
+  items?: ListItem[];
+  inbox?: InboxNote[];
 }
 
 function newId(prefix: string): string {
@@ -104,6 +109,50 @@ export class LocalBookRepository implements BookRepository {
     d.books = actions.mergeBooks(d.books, keep.id, drop.id, new Date().toISOString());
     d.notes = actions.mergeNotes(d.notes, keep.id, drop.id);
     write(this.storage, d);
+  }
+
+  async listMyData(): Promise<MyData> {
+    const d = read(this.storage, this.seedBooks);
+    return { lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [] };
+  }
+
+  /** Reads, lets `change` edit the private data, and saves. */
+  private editMine(change: (m: MyData) => MyData): void {
+    const d = read(this.storage, this.seedBooks);
+    const next = change({ lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [] });
+    write(this.storage, { ...d, ...next });
+  }
+
+  async createList(list: { id: string; name: string }): Promise<void> {
+    this.editMine((m) => ({ ...m, lists: lists.createList(m.lists, list.id, list.name, new Date().toISOString()) }));
+  }
+
+  async renameList(id: string, name: string): Promise<void> {
+    this.editMine((m) => ({ ...m, lists: lists.renameList(m.lists, id, name) }));
+  }
+
+  async deleteList(id: string): Promise<void> {
+    this.editMine((m) => ({ ...m, ...lists.deleteList(m.lists, m.items, id) }));
+  }
+
+  async addToList(listId: string, bookId: string): Promise<void> {
+    this.editMine((m) => ({ ...m, items: lists.addToList(m.items, listId, bookId) }));
+  }
+
+  async removeFromList(listId: string, bookId: string): Promise<void> {
+    this.editMine((m) => ({ ...m, items: lists.removeFromList(m.items, listId, bookId) }));
+  }
+
+  async reorderList(listId: string, bookIds: string[]): Promise<void> {
+    this.editMine((m) => ({ ...m, items: lists.reorderList(m.items, listId, bookIds) }));
+  }
+
+  async addDraft(note: { id: string; body: string }): Promise<void> {
+    this.editMine((m) => ({ ...m, inbox: lists.addDraft(m.inbox, note.id, note.body, new Date().toISOString()) }));
+  }
+
+  async setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void> {
+    this.editMine((m) => ({ ...m, inbox: lists.setDraftStatus(m.inbox, id, status, bookId) }));
   }
 
   async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {

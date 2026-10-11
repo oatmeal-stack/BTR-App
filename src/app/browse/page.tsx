@@ -4,6 +4,7 @@ import { Suspense, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { MOODS, STATUS_LABEL, type ReadingStatus, READING_STATUSES } from "@/domain/book";
 import { facetCounts, filterBooks, listCounts, sortBooks } from "@/domain/bookActions";
+import { booksInList } from "@/domain/listActions";
 import { useLibrary } from "@/hooks/useLibrary";
 import { BookCard } from "@/components/books/BookCard";
 import { EmptyState } from "@/components/shared/EmptyState";
@@ -21,13 +22,14 @@ export default function BrowsePage() {
 
 function BrowseView() {
   const params = useSearchParams();
-  const { books, ready, loadFailed } = useLibrary();
+  const { books, ready, loadFailed, lists: myLists, listItems } = useLibrary();
 
   // Filters start from the link (Home search, a list on Lists) and then live here.
   const [query, setQuery] = useState(params.get("q") ?? "");
   const [source, setSource] = useState(params.get("source") ?? "");
   const [genre, setGenre] = useState(params.get("genre") ?? "");
   const [mood, setMood] = useState(params.get("mood") ?? "");
+  const [myList, setMyList] = useState(params.get("list") ?? "");
   const [status, setStatus] = useState<ReadingStatus | "">("");
   const [favoritesOnly, setFavoritesOnly] = useState(false);
 
@@ -38,29 +40,31 @@ function BrowseView() {
   );
   const sources = useMemo(() => listCounts(books), [books]);
 
-  const results = useMemo(
-    () =>
-      sortBooks(
-        filterBooks(books, {
-          query,
-          source: source || undefined,
-          genre: genre || undefined,
-          mood: mood || undefined,
-          status: status || undefined,
-          favoritesOnly,
-        }),
-        "title",
-      ),
-    [books, query, source, genre, mood, status, favoritesOnly],
-  );
+  const results = useMemo(() => {
+    const found = filterBooks(books, {
+      query,
+      source: source || undefined,
+      genre: genre || undefined,
+      mood: mood || undefined,
+      status: status || undefined,
+      favoritesOnly,
+    });
+    // One of your own lists: only its books, and in the list's own order.
+    if (myList) {
+      const ids = new Set(found.map((b) => b.id));
+      return booksInList(books, listItems, myList).filter((b) => ids.has(b.id));
+    }
+    return sortBooks(found, "title");
+  }, [books, listItems, query, source, genre, mood, status, favoritesOnly, myList]);
 
-  const anyFilter = Boolean(query || source || genre || mood || status || favoritesOnly);
+  const anyFilter = Boolean(query || source || genre || mood || status || favoritesOnly || myList);
 
   function clear() {
     setQuery("");
     setSource("");
     setGenre("");
     setMood("");
+    setMyList("");
     setStatus("");
     setFavoritesOnly(false);
   }
@@ -105,6 +109,19 @@ function BrowseView() {
               ))}
             </select>
           </div>
+          {myLists.length > 0 ? (
+            <div className="field">
+              <label htmlFor="f-mylist">My list</label>
+              <select id="f-mylist" className="select" value={myList} onChange={(e) => setMyList(e.target.value)}>
+                <option value="">Any</option>
+                {myLists.map((l) => (
+                  <option key={l.id} value={l.id}>
+                    {l.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          ) : null}
           <div className="field">
             <label htmlFor="f-mood">Mood</label>
             <select id="f-mood" className="select" value={mood} onChange={(e) => setMood(e.target.value)}>

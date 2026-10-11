@@ -80,6 +80,36 @@ create table if not exists app_sessions (
   expires_at timestamptz not null
 );
 
+-- Your own lists ("Couples book club"...), what is on them, and your drafts (rough notes about books to add
+-- later). All private: nobody can read them without signing in, same as your notes.
+create table if not exists my_lists (
+  id text primary key,
+  name text not null check (length(trim(name)) > 0),
+  position int not null default 0,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create unique index if not exists my_lists_name_idx on my_lists (lower(trim(name)));
+
+-- A removed book keeps its row here too, so restoring it brings back its lists. Books are never deleted.
+create table if not exists my_list_books (
+  list_id text not null references my_lists (id) on delete cascade,
+  book_id text not null references books (id),
+  position int not null default 0,
+  added_at timestamptz not null default now(),
+  primary key (list_id, book_id)
+);
+create index if not exists my_list_books_book_idx on my_list_books (book_id);
+
+create table if not exists inbox_notes (
+  id text primary key,
+  body text not null check (length(trim(body)) > 0),
+  status text not null default 'new' check (status in ('new', 'added', 'dismissed')),
+  book_id text references books (id),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
 create index if not exists books_status_idx on books (status);
 create index if not exists book_sources_source_idx on book_sources (source);
 create index if not exists book_notes_book_idx on book_notes (book_id);
@@ -88,6 +118,9 @@ create index if not exists book_notes_book_idx on book_notes (book_id);
 
 alter table app_secret enable row level security;   -- no policy: nobody can read it
 alter table removed_keys enable row level security;   -- no policy: nobody can read it
+alter table my_lists enable row level security;       -- no policy: private
+alter table my_list_books enable row level security;
+alter table inbox_notes enable row level security;
 alter table login_failures enable row level security;
 alter table app_sessions enable row level security;
 alter table books enable row level security;
@@ -102,6 +135,9 @@ create policy "anyone can read book sources" on book_sources for select using (t
 
 revoke all on app_secret from anon, authenticated;
 revoke all on removed_keys from anon, authenticated;
+revoke all on my_lists from anon, authenticated;
+revoke all on my_list_books from anon, authenticated;
+revoke all on inbox_notes from anon, authenticated;
 revoke all on login_failures from anon, authenticated;
 revoke all on app_sessions from anon, authenticated;
 revoke all on book_notes from anon, authenticated;
@@ -372,6 +408,138 @@ begin
            else concat_ws(' · ', source_note, trim(p_note))
          end,
          updated_at = now()
+   where id = p_id;
+end;
+$$;
+
+/* ---------- your lists and drafts (private) ---------- */
+
+-- Everything private at once: your lists, what is on them, and your drafts.
+create or replace function list_my_data(p_code text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  return jsonb_build_object(
+    'lists', coalesce((select jsonb_agg(to_jsonb(l) order by l.position, l.created_at) from my_lists l), '[]'::jsonb),
+    'items', coalesce((select jsonb_agg(jsonb_build_object('list_id', i.list_id, 'book_id', i.book_id, 'position', i.position)
+                                         order by i.list_id, i.position) from my_list_books i), '[]'::jsonb),
+    'inbox', coalesce((select jsonb_agg(to_jsonb(n) order by n.created_at desc) from inbox_notes n), '[]'::jsonb)
+  );
+end;
+$$;
+
+create or replace function create_list(p_code text, p_id text, p_name text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  insert into my_lists (id, name, position)
+  select p_id, trim(p_name), coalesce(max(position), -1) + 1 from my_lists
+  on conflict (id) do nothing;
+end;
+$$;
+
+create or replace function rename_list(p_code text, p_id text, p_name text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update my_lists set name = trim(p_name), updated_at = now() where id = p_id;
+end;
+$$;
+
+-- Deleting a list never deletes books: only the list and which books were on it.
+create or replace function delete_list(p_code text, p_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  delete from my_lists where id = p_id;
+end;
+$$;
+
+create or replace function add_to_list(p_code text, p_list_id text, p_book_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  insert into my_list_books (list_id, book_id, position)
+  select p_list_id, p_book_id, coalesce(max(position), -1) + 1 from my_list_books where list_id = p_list_id
+  on conflict do nothing;
+end;
+$$;
+
+create or replace function remove_from_list(p_code text, p_list_id text, p_book_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  delete from my_list_books where list_id = p_list_id and book_id = p_book_id;
+end;
+$$;
+
+-- Put a list's books in this order (a list can be a queue). Books not named keep their place after these.
+create or replace function reorder_list(p_code text, p_list_id text, p_book_ids text[])
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update my_list_books m
+     set position = o.ord - 1
+    from unnest(p_book_ids) with ordinality as o(book_id, ord)
+   where m.list_id = p_list_id and m.book_id = o.book_id;
+  update my_list_books m
+     set position = m.position + coalesce(array_length(p_book_ids, 1), 0)
+   where m.list_id = p_list_id and not (m.book_id = any (p_book_ids));
+end;
+$$;
+
+-- Save a draft exactly as typed. Its text is never changed afterwards.
+create or replace function add_inbox_note(p_code text, p_id text, p_body text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  insert into inbox_notes (id, body) values (p_id, trim(p_body)) on conflict (id) do nothing;
+end;
+$$;
+
+-- Mark a draft waiting, added (it became a book) or dismissed. Only the status changes.
+create or replace function set_inbox_status(p_code text, p_id text, p_status text, p_book_id text default null)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update inbox_notes
+     set status = p_status, book_id = coalesce(p_book_id, book_id), updated_at = now()
    where id = p_id;
 end;
 $$;

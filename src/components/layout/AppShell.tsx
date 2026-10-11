@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useLibrary } from "@/hooks/useLibrary";
+import { QuickNote } from "@/components/drafts/QuickNote";
 import { BottomNavigation } from "./BottomNavigation";
 
 export function AppShell({ children }: { children: ReactNode }) {
@@ -26,6 +27,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </button>
         </div>
       ) : null}
+      <QuickNote />
       <BottomNavigation />
     </div>
   );

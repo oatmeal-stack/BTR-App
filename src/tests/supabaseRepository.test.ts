@@ -55,7 +55,7 @@ function makeDb(): Db {
           const call = `select * from ${fn}(${keys.map((k, i) => `${k} => $${i + 1}`).join(", ")})`;
           const r = await pg.query<Record<string, unknown>>(call, keys.map((k) => args[k]));
           const rows = plain(r.rows) as Record<string, unknown>[];
-          const data = fn === "login" ? rows[0].login : fn === "list_notes" ? rows : fn === "add_note" ? rows[0] : null;
+          const data = fn === "login" ? rows[0].login : fn === "list_my_data" ? rows[0].list_my_data : fn === "list_notes" ? rows : fn === "add_note" ? rows[0] : null;
           return { data, error: null };
         } catch (e) {
           return fail(e);
@@ -325,5 +325,52 @@ describe("editing books (shared library)", () => {
     expect(all.find((b) => b.id === made.book.id)?.removedAt).toBeTruthy();
     expect(all.find((b) => b.id === book.id)?.sources.map((s) => s.source)).toContain("Book Club Master List");
     expect((await repo.listNotes()).find((n) => n.body === "From the duplicate")?.bookId).toBe(book.id);
+  });
+});
+
+describe("your lists and drafts (shared library, private)", () => {
+  const dune = "bk-dune-herbert";
+  const road = "bk-road-mccarthy";
+
+  it("show nothing until signed in, and refuse every change", async () => {
+    const repo = new SupabaseBookRepository(makeDb(), memoryStore());
+    expect(await repo.listMyData()).toEqual({ lists: [], items: [], inbox: [] });
+    await expect(repo.createList({ id: "l-x", name: "Sneaky" })).rejects.toBeInstanceOf(PasscodeRequiredError);
+    await expect(repo.addDraft({ id: "d-x", body: "sneaky" })).rejects.toBeInstanceOf(PasscodeRequiredError);
+    await expect(repo.addToList("l-x", dune)).rejects.toBeInstanceOf(PasscodeRequiredError);
+  });
+
+  it("round-trip through the database and are seen by another device", async () => {
+    const repo = await unlockedRepo();
+    await repo.createList({ id: "l-couples", name: "Couples Book Club" });
+    await repo.createList({ id: "l-rd", name: "Rough Drafts Potentials" });
+    await repo.addToList("l-couples", dune);
+    await repo.addToList("l-couples", road);
+    await repo.addToList("l-rd", dune);
+    await repo.reorderList("l-couples", [road, dune]);
+    await repo.addDraft({ id: "d-1", body: "That spy novel about Berlin" });
+    await repo.setDraftStatus("d-1", "added", dune);
+
+    const other = await (await unlockedRepo()).listMyData();
+    expect(other.lists.map((l) => l.name)).toEqual(["Couples Book Club", "Rough Drafts Potentials"]);
+    expect(other.items.filter((i) => i.listId === "l-couples").sort((a, b) => a.position - b.position).map((i) => i.bookId)).toEqual([road, dune]);
+    expect(other.items.filter((i) => i.bookId === dune).map((i) => i.listId).sort()).toEqual(["l-couples", "l-rd"]);
+    expect(other.inbox).toMatchObject([{ id: "d-1", body: "That spy novel about Berlin", status: "added", bookId: dune }]);
+  });
+
+  it("can't be read by a device that isn't signed in, even on the same database", async () => {
+    const stranger = new SupabaseBookRepository(makeDb(), memoryStore());
+    expect((await stranger.listMyData()).lists).toEqual([]);
+  });
+
+  it("renames a list, and deleting one leaves every book in the library", async () => {
+    const repo = await unlockedRepo();
+    await repo.renameList("l-rd", "Rough Drafts Possibles");
+    expect((await repo.listMyData()).lists.map((l) => l.name)).toContain("Rough Drafts Possibles");
+    const before = (await repo.listBooks()).length;
+    await repo.deleteList("l-rd");
+    expect((await repo.listMyData()).lists.map((l) => l.id)).toEqual(["l-couples"]);
+    expect((await repo.listBooks()).length).toBe(before);
+    expect((await repo.listBooks()).find((b) => b.id === dune)).toBeTruthy();
   });
 });

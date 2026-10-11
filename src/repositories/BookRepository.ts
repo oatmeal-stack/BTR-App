@@ -2,9 +2,20 @@ import type {
   Book,
   BookNote,
   BookEdit,
+  InboxNote,
+  InboxStatus,
+  ListItem,
+  MyList,
   NewBookInput,
   ReadingStatus,
 } from "@/domain/book";
+
+/** Everything private besides notes: your own lists, what is on them, and your drafts. */
+export interface MyData {
+  lists: MyList[];
+  items: ListItem[];
+  inbox: InboxNote[];
+}
 
 /**
  * Everything the app needs from storage. The screens only know this
@@ -29,6 +40,18 @@ export interface BookRepository {
   listNotes(): Promise<BookNote[]>;
   setStatus(bookId: string, status: ReadingStatus): Promise<void>;
   setFavorite(bookId: string, favorite: boolean): Promise<void>;
+  /** Your lists and drafts. Empty until signed in on a shared library. */
+  listMyData(): Promise<MyData>;
+  createList(list: { id: string; name: string }): Promise<void>;
+  renameList(id: string, name: string): Promise<void>;
+  /** Deletes the list only: its books stay in the library. */
+  deleteList(id: string): Promise<void>;
+  addToList(listId: string, bookId: string): Promise<void>;
+  removeFromList(listId: string, bookId: string): Promise<void>;
+  reorderList(listId: string, bookIds: string[]): Promise<void>;
+  addDraft(note: { id: string; body: string }): Promise<void>;
+  setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void>;
+
   /** Saves everything the Edit screen changes (see BookEdit). */
   updateBook(bookId: string, edit: BookEdit): Promise<void>;
   /** Folds the second copy into the first: lists, notes, tags and gaps move over; the second is removed. */

@@ -266,3 +266,30 @@ ul { list-style: none; margin: 0; padding: 0; }
 .detail h1 { font-size: 24px; }
 .scoreline { display: flex; justify-content: space-between; }
 .statusbar { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- quick note + sheet ---------- */
+.fab {
+  position: fixed; right: 16px; bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 15;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary); color: var(--color-on-primary); border: 0;
+  box-shadow: var(--shadow-card); cursor: pointer;
+}
+.fab:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
+.fab__badge {
+  position: absolute; top: -4px; right: -4px; min-width: 20px; height: 20px; padding: 0 5px;
+  border-radius: 999px; font-size: 12px; font-weight: 700; line-height: 20px; text-align: center;
+  background: var(--color-surface-raised); color: var(--color-text); border: 1px solid var(--color-primary);
+}
+.quicknote__saved {
+  position: fixed; right: 16px; bottom: calc(144px + env(safe-area-inset-bottom)); z-index: 16;
+  background: var(--color-surface-raised); color: var(--color-text); border: 1px solid var(--color-primary);
+  border-radius: var(--radius-control); padding: 8px 12px; font-size: 14px; box-shadow: var(--shadow-card);
+}
+.sheet { position: fixed; inset: 0; z-index: 30; display: flex; align-items: flex-end; justify-content: center; background: rgba(0, 0, 0, 0.45); }
+.sheet__panel {
+  width: min(100%, 560px); max-height: 90vh; overflow: auto;
+  background: var(--color-surface); color: var(--color-text);
+  border-radius: var(--radius-card) var(--radius-card) 0 0; border: 1px solid var(--color-border);
+  padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 12px;
+}

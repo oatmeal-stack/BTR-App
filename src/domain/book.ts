@@ -63,6 +63,34 @@ export interface BookEdit {
   sources: string[];
 }
 
+/** One of your own lists ("Couples book club"...). Private, like notes. A book can be on any number of them. */
+export interface MyList {
+  id: string;
+  name: string;
+  /** Order of the lists themselves. */
+  position: number;
+  createdAt: string;
+}
+
+/** A book on one of your lists; `position` is its place in that list's order (a list can be a queue). */
+export interface ListItem {
+  listId: string;
+  bookId: string;
+  position: number;
+}
+
+export type InboxStatus = "new" | "added" | "dismissed";
+
+/** A rough note about a book to add later ("that spy novel about Berlin Mark mentioned"). The text is never edited. */
+export interface InboxNote {
+  id: string;
+  body: string;
+  status: InboxStatus;
+  /** The book it became, once it was added. */
+  bookId?: string;
+  createdAt: string;
+}
+
 /** Private notes. Many per book. */
 export interface BookNote {
   id: string;

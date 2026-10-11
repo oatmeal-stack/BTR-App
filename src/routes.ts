@@ -7,9 +7,11 @@ export const ROUTES = {
   profile: "/profile",
   add: "/add",
   removed: "/removed",
+  drafts: "/drafts",
+  myList: (id: string) => `/mylist?id=${encodeURIComponent(id)}`,
   edit: (id: string) => `/edit?id=${encodeURIComponent(id)}`,
   book: (id: string) => `/book?id=${encodeURIComponent(id)}`,
-  browseWith: (params: { q?: string; source?: string; genre?: string; mood?: string }) => {
+  browseWith: (params: { q?: string; source?: string; genre?: string; mood?: string; list?: string }) => {
     const p = new URLSearchParams();
     for (const [k, v] of Object.entries(params)) if (v) p.set(k, v);
     const qs = p.toString();

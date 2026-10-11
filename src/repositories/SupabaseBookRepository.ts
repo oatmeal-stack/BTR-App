@@ -1,7 +1,16 @@
-import { MY_ADDITIONS, type Book, type BookEdit, type BookNote, type NewBookInput, type ReadingStatus } from "@/domain/book";
+import {
+  MY_ADDITIONS,
+  type Book,
+  type BookEdit,
+  type BookNote,
+  type InboxNote,
+  type InboxStatus,
+  type NewBookInput,
+  type ReadingStatus,
+} from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import { browserPasscodeStore, LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
-import type { BookRepository } from "./BookRepository";
+import type { BookRepository, MyData } from "./BookRepository";
 
 /** The small part of the Supabase client this file uses (so tests can stand in for it). */
 export interface DbError {
@@ -38,6 +47,11 @@ interface SourceRow {
   book_id: string;
   source: string;
   rank: number | null;
+}
+interface MyDataRow {
+  lists: { id: string; name: string; position: number; created_at: string }[];
+  items: { list_id: string; book_id: string; position: number }[];
+  inbox: { id: string; body: string; status: InboxStatus; book_id: string | null; created_at: string }[];
 }
 interface NoteRow {
   id: string;
@@ -202,6 +216,60 @@ export class SupabaseBookRepository implements BookRepository {
       p_drop: drop.id,
       p_key: actions.importKey(drop.title, drop.author),
     });
+  }
+
+  async listMyData(): Promise<MyData> {
+    const empty: MyData = { lists: [], items: [], inbox: [] };
+    if (!this.hasPasscode()) return empty;
+    try {
+      const row = await this.call<MyDataRow>("list_my_data", {});
+      return {
+        lists: row.lists.map((l) => ({ id: l.id, name: l.name, position: l.position, createdAt: l.created_at })),
+        items: row.items.map((i) => ({ listId: i.list_id, bookId: i.book_id, position: i.position })),
+        inbox: row.inbox.map<InboxNote>((n) => ({
+          id: n.id,
+          body: n.body,
+          status: n.status,
+          bookId: n.book_id ?? undefined,
+          createdAt: n.created_at,
+        })),
+      };
+    } catch (e) {
+      if (e instanceof PasscodeRequiredError) return empty; // the saved sign-in no longer works
+      throw e;
+    }
+  }
+
+  async createList(list: { id: string; name: string }): Promise<void> {
+    await this.call("create_list", { p_id: list.id, p_name: list.name });
+  }
+
+  async renameList(id: string, name: string): Promise<void> {
+    await this.call("rename_list", { p_id: id, p_name: name });
+  }
+
+  async deleteList(id: string): Promise<void> {
+    await this.call("delete_list", { p_id: id });
+  }
+
+  async addToList(listId: string, bookId: string): Promise<void> {
+    await this.call("add_to_list", { p_list_id: listId, p_book_id: bookId });
+  }
+
+  async removeFromList(listId: string, bookId: string): Promise<void> {
+    await this.call("remove_from_list", { p_list_id: listId, p_book_id: bookId });
+  }
+
+  async reorderList(listId: string, bookIds: string[]): Promise<void> {
+    await this.call("reorder_list", { p_list_id: listId, p_book_ids: bookIds });
+  }
+
+  async addDraft(note: { id: string; body: string }): Promise<void> {
+    await this.call("add_inbox_note", { p_id: note.id, p_body: note.body });
+  }
+
+  async setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void> {
+    await this.call("set_inbox_status", { p_id: id, p_status: status, p_book_id: bookId ?? null });
   }
 
   async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {

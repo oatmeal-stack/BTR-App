@@ -35,6 +35,16 @@ voting tool). Keep them separate.
   without article + author last name) in `removed_keys`, and `seed.sql` skips any row whose key is there, so a
   re-import can't bring it back even under a different spelling. Adding a removed title again finds the old row
   (it stays removed) and the Add screen offers Restore. Restoring clears the key.
+- **My lists** (`my_lists`, `my_list_books`) are private (readable only through `list_my_data(token)`), unlike the
+  public source tags in `book_sources`. A book can be on many lists; deleting a list deletes only the list and its
+  memberships, never a book. Memberships survive a book's removal (the app just hides removed books), so
+  restoring brings the place back. Lists have an order (a queue), reorderable with up/down arrows on the list
+  screen (`/mylist?id=`). The three starting lists (couples club, Rough Drafts potentials, personal) were created
+  directly in the database; their names are deliberately NOT in the public repo.
+- **Drafts** (`inbox_notes`, screen `/drafts`, floating Quick note button) are private rough notes. There is no
+  function to delete or rewrite one: only the status changes (new / added / dismissed), so the original text is
+  never lost. "Make it a book" opens Add with a guessed title and author (`guessBookFromNote`) for you to correct.
+  The mic uses the browser's speech recognition and is simply not shown where unsupported.
 - **Edit a book** (`/edit?id=`): one form replaces title, author, year, pages, cover, genres, moods, lists and the
   imported note together (`update_book`; ids never change). If the edit makes the book match another visible one
   (`findDuplicate`), it asks: merge (`merge_books`: lists, notes, tags and gaps move to the kept book, the other

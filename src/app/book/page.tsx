@@ -10,6 +10,7 @@ import { useLibrary } from "@/hooks/useLibrary";
 import { ROUTES } from "@/routes";
 import { BookCover } from "@/components/books/BookCover";
 import { BookNotes } from "@/components/books/BookNotes";
+import { AddToList } from "@/components/lists/AddToList";
 import { EmptyState } from "@/components/shared/EmptyState";
 
 export default function BookPage() {
@@ -153,6 +154,8 @@ function BookView() {
           <Trash2 size={18} aria-hidden="true" /> Remove this book
         </button>
       </div>
+
+      <AddToList bookId={book.id} />
 
       <section aria-labelledby="status-h">
         <h2 id="status-h" style={{ fontSize: 18, marginBottom: 10 }}>

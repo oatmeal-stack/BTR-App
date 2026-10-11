@@ -10,8 +10,9 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Book, BookEdit, BookNote, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
+import * as listActions from "@/domain/listActions";
 import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
 import { getRepository } from "@/repositories";
 import type { BookRepository } from "@/repositories/BookRepository";
@@ -37,6 +38,21 @@ interface LibraryApi {
   updateBook: (id: string, edit: BookEdit) => Promise<boolean>;
   /** Folds one copy of a book into another (the second is removed). */
   mergeBooks: (keepId: string, dropId: string) => Promise<boolean>;
+  /** Your own lists, in order. Private: empty until signed in on the shared library. */
+  lists: MyList[];
+  listItems: ListItem[];
+  /** Create a list. Returns its id, or the reason it couldn't be made (blank or already used). */
+  createList: (name: string) => Promise<{ id: string } | { error: string }>;
+  renameList: (id: string, name: string) => Promise<{ ok: true } | { error: string }>;
+  /** Deletes the list only: every book on it stays in your library. */
+  deleteList: (id: string) => Promise<boolean>;
+  addToList: (listId: string, bookId: string) => Promise<boolean>;
+  removeFromList: (listId: string, bookId: string) => Promise<boolean>;
+  reorderList: (listId: string, bookIds: string[]) => Promise<boolean>;
+  /** Drafts: rough notes about books to add later, newest first. Private. */
+  drafts: InboxNote[];
+  addDraft: (body: string) => Promise<boolean>;
+  setDraftStatus: (id: string, status: InboxStatus, bookId?: string) => Promise<boolean>;
   removeBook: (id: string) => Promise<boolean>;
   restoreBook: (id: string) => Promise<boolean>;
   undoRemove: () => Promise<void>;
@@ -61,6 +77,22 @@ interface LibraryApi {
   /** "locked" means too many wrong tries: the database is refusing every sign-in for a while. */
   unlock: (code: string) => Promise<UnlockResult>;
   lock: () => void;
+}
+
+interface Data {
+  books: Book[];
+  notes: BookNote[];
+  lists: MyList[];
+  items: ListItem[];
+  inbox: InboxNote[];
+}
+
+function newId(prefix: string): string {
+  const rand =
+    typeof crypto !== "undefined" && "randomUUID" in crypto
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  return `${prefix}-${rand}`;
 }
 
 export type UnlockResult = "ok" | "wrong" | "locked" | "error";
@@ -90,17 +122,24 @@ export function LibraryProvider({
   const [allBooks, setBooks] = useState<Book[]>([]);
   const [undoable, setUndoable] = useState<{ id: string; title: string } | null>(null);
   const [notes, setNotes] = useState<BookNote[]>([]);
+  const [myLists, setMyLists] = useState<MyList[]>([]);
+  const [listItems, setListItems] = useState<ListItem[]>([]);
+  const [drafts, setDrafts] = useState<InboxNote[]>([]);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [home, setHome] = useState<HomeState>({ pickId: null, forYouIds: [] });
   const [unlocked, setUnlocked] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
-  const data = useRef<{ books: Book[]; notes: BookNote[] }>({ books: [], notes: [] });
+  const data = useRef<Data>({ books: [], notes: [], lists: [], items: [], inbox: [] });
 
-  const commit = useCallback((next: { books: Book[]; notes: BookNote[] }) => {
-    data.current = next;
-    setBooks(next.books);
-    setNotes(next.notes);
+  /** Replaces whichever pieces are given and leaves the rest as they were. */
+  const commit = useCallback((next: Partial<Data>) => {
+    data.current = { ...data.current, ...next };
+    setBooks(data.current.books);
+    setNotes(data.current.notes);
+    setMyLists(data.current.lists);
+    setListItems(data.current.items);
+    setDrafts(data.current.inbox);
   }, []);
 
   // Storage is only read after the page has loaded, so server and browser agree.
@@ -108,9 +147,9 @@ export function LibraryProvider({
     let cancelled = false;
     (async () => {
       try {
-        const [b, n] = await Promise.all([repo.listBooks(), repo.listNotes()]);
+        const [b, n, mine] = await Promise.all([repo.listBooks(), repo.listNotes(), repo.listMyData()]);
         if (cancelled) return;
-        commit({ books: b, notes: n });
+        commit({ books: b, notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox });
         setHome(makeHome(b.filter(actions.isActive)));
         setUnlocked(repo.hasPasscode());
       } catch {
@@ -130,11 +169,11 @@ export function LibraryProvider({
   /** Show the change at once; undo it and say so if saving fails. */
   const optimistic = useCallback(
     async (
-      next: { books?: Book[]; notes?: BookNote[] },
+      next: Partial<Data>,
       persist: () => Promise<void>,
     ): Promise<boolean> => {
       const prev = data.current;
-      commit({ books: next.books ?? prev.books, notes: next.notes ?? prev.notes });
+      commit(next);
       try {
         await persist();
         return true;
@@ -207,6 +246,73 @@ export function LibraryProvider({
   const deleteNote = useCallback(
     (id: string) =>
       optimistic({ notes: actions.deleteNote(data.current.notes, id) }, () => repo.deleteNote(id)),
+    [optimistic, repo],
+  );
+
+  const lists = useMemo(() => listActions.sortedLists(myLists), [myLists]);
+
+  const createList = useCallback(
+    async (name: string): Promise<{ id: string } | { error: string }> => {
+      const problem = listActions.listNameProblem(data.current.lists, name);
+      if (problem) return { error: problem };
+      const id = newId("list");
+      const ok = await optimistic(
+        { lists: listActions.createList(data.current.lists, id, name, new Date().toISOString()) },
+        () => repo.createList({ id, name: name.trim() }),
+      );
+      return ok ? { id } : { error: "Couldn't save the list. Try again." };
+    },
+    [optimistic, repo],
+  );
+
+  const renameList = useCallback(
+    async (id: string, name: string): Promise<{ ok: true } | { error: string }> => {
+      const problem = listActions.listNameProblem(data.current.lists, name, id);
+      if (problem) return { error: problem };
+      const ok = await optimistic({ lists: listActions.renameList(data.current.lists, id, name) }, () => repo.renameList(id, name.trim()));
+      return ok ? { ok: true } : { error: "Couldn't rename the list. Try again." };
+    },
+    [optimistic, repo],
+  );
+
+  const deleteList = useCallback(
+    (id: string) => optimistic(listActions.deleteList(data.current.lists, data.current.items, id), () => repo.deleteList(id)),
+    [optimistic, repo],
+  );
+
+  const addToList = useCallback(
+    (listId: string, bookId: string) =>
+      optimistic({ items: listActions.addToList(data.current.items, listId, bookId) }, () => repo.addToList(listId, bookId)),
+    [optimistic, repo],
+  );
+
+  const removeFromList = useCallback(
+    (listId: string, bookId: string) =>
+      optimistic({ items: listActions.removeFromList(data.current.items, listId, bookId) }, () => repo.removeFromList(listId, bookId)),
+    [optimistic, repo],
+  );
+
+  const reorderList = useCallback(
+    (listId: string, bookIds: string[]) =>
+      optimistic({ items: listActions.reorderList(data.current.items, listId, bookIds) }, () => repo.reorderList(listId, bookIds)),
+    [optimistic, repo],
+  );
+
+  const addDraft = useCallback(
+    (body: string) => {
+      if (!body.trim()) return Promise.resolve(false);
+      const id = newId("draft");
+      return optimistic(
+        { inbox: listActions.addDraft(data.current.inbox, id, body, new Date().toISOString()) },
+        () => repo.addDraft({ id, body: body.trim() }),
+      );
+    },
+    [optimistic, repo],
+  );
+
+  const setDraftStatus = useCallback(
+    (id: string, status: InboxStatus, bookId?: string) =>
+      optimistic({ inbox: listActions.setDraftStatus(data.current.inbox, id, status, bookId) }, () => repo.setDraftStatus(id, status, bookId)),
     [optimistic, repo],
   );
 
@@ -304,7 +410,8 @@ export function LibraryProvider({
       try {
         if (!(await repo.unlock(code))) return "wrong";
         setUnlocked(true);
-        commit({ books: data.current.books, notes: await repo.listNotes() });
+        const [n, mine] = await Promise.all([repo.listNotes(), repo.listMyData()]);
+        commit({ notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox });
         return "ok";
       } catch (e) {
         if (e instanceof LockedOutError) return "locked";
@@ -318,8 +425,8 @@ export function LibraryProvider({
   const lock = useCallback(() => {
     repo.lock();
     setUnlocked(false);
-    // Private notes are only visible while unlocked on a shared library.
-    if (repo.requiresPasscode) commit({ books: data.current.books, notes: [] });
+    // Notes, lists and drafts are only visible while unlocked on a shared library.
+    if (repo.requiresPasscode) commit({ notes: [], lists: [], items: [], inbox: [] });
   }, [repo, commit]);
 
   const shuffle = useCallback(() => {
@@ -337,6 +444,17 @@ export function LibraryProvider({
       removeBook,
       restoreBook,
       undoRemove,
+      lists,
+      listItems,
+      createList,
+      renameList,
+      deleteList,
+      addToList,
+      removeFromList,
+      reorderList,
+      drafts,
+      addDraft,
+      setDraftStatus,
       updateBook,
       mergeBooks,
       notes,
@@ -358,7 +476,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;
