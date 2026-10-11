@@ -5,11 +5,20 @@ import { useLibrary } from "@/hooks/useLibrary";
 import { BottomNavigation } from "./BottomNavigation";
 
 export function AppShell({ children }: { children: ReactNode }) {
-  const { notice, clearNotice } = useLibrary();
+  const { notice, clearNotice, undoable, undoRemove } = useLibrary();
   return (
     <div className="app">
       <main className="shell">{children}</main>
-      {notice ? (
+      {undoable ? (
+        <div className="toast" role="status">
+          <span>
+            Removed <strong>{undoable.title}</strong>
+          </span>
+          <button type="button" className="btn btn--small btn--primary" onClick={() => void undoRemove()}>
+            Undo
+          </button>
+        </div>
+      ) : notice ? (
         <div className="toast" role="status">
           <span>{notice}</span>
           <button type="button" className="btn btn--small" onClick={clearNotice}>

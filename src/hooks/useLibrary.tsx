@@ -21,8 +21,21 @@ interface HomeState {
   forYouIds: string[];
 }
 
+/** How long the "Removed. Undo" bar stays up. */
+export const UNDO_MS = 8000;
+
 interface LibraryApi {
+  /** The books you can see: removed ones are never in here, so nothing downstream can show them. */
   books: Book[];
+  /** Removed books, most recently removed first (for the Removed books screen). */
+  removedBooks: Book[];
+  /** Find any book by id, removed or not (a removed book's link still opens, to say so and offer Restore). */
+  findBook: (id: string) => Book | undefined;
+  /** The book just removed, while its Undo bar is showing. */
+  undoable: { id: string; title: string } | null;
+  removeBook: (id: string) => Promise<boolean>;
+  restoreBook: (id: string) => Promise<boolean>;
+  undoRemove: () => Promise<void>;
   notes: BookNote[];
   ready: boolean;
   /** True when the library could not be loaded at all. */
@@ -70,7 +83,8 @@ export function LibraryProvider({
   repository?: BookRepository;
 }) {
   const repo = useMemo(() => repository ?? getRepository(), [repository]);
-  const [books, setBooks] = useState<Book[]>([]);
+  const [allBooks, setBooks] = useState<Book[]>([]);
+  const [undoable, setUndoable] = useState<{ id: string; title: string } | null>(null);
   const [notes, setNotes] = useState<BookNote[]>([]);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
@@ -93,7 +107,7 @@ export function LibraryProvider({
         const [b, n] = await Promise.all([repo.listBooks(), repo.listNotes()]);
         if (cancelled) return;
         commit({ books: b, notes: n });
-        setHome(makeHome(b));
+        setHome(makeHome(b.filter(actions.isActive)));
         setUnlocked(repo.hasPasscode());
       } catch {
         if (!cancelled) {
@@ -192,6 +206,51 @@ export function LibraryProvider({
     [optimistic, repo],
   );
 
+  const books = useMemo(() => allBooks.filter(actions.isActive), [allBooks]);
+  const removedBooks = useMemo(
+    () => allBooks.filter((b) => !actions.isActive(b)).sort((a, b) => (b.removedAt ?? "").localeCompare(a.removedAt ?? "")),
+    [allBooks],
+  );
+  const findBook = useCallback((id: string) => allBooks.find((b) => b.id === id), [allBooks]);
+
+  // The Undo bar goes away by itself.
+  useEffect(() => {
+    if (!undoable) return;
+    const t = setTimeout(() => setUndoable(null), UNDO_MS);
+    return () => clearTimeout(t);
+  }, [undoable]);
+
+  const removeBook = useCallback(
+    async (id: string) => {
+      const book = data.current.books.find((b) => b.id === id);
+      if (!book || book.removedAt) return false;
+      const ok = await optimistic(
+        { books: actions.removeBook(data.current.books, id, new Date().toISOString()) },
+        () => repo.removeBook(book),
+      );
+      if (ok) {
+        setUndoable({ id, title: book.title });
+        // If the book on the Home screen was the one removed, pick another so it doesn't linger.
+        setHome((h) => (h.pickId === id || h.forYouIds.includes(id) ? makeHome(data.current.books.filter(actions.isActive)) : h));
+      }
+      return ok;
+    },
+    [optimistic, repo],
+  );
+
+  const restoreBook = useCallback(
+    (id: string) =>
+      optimistic({ books: actions.restoreBook(data.current.books, id, new Date().toISOString()) }, () => repo.restoreBook(id)),
+    [optimistic, repo],
+  );
+
+  const undoRemove = useCallback(async () => {
+    if (!undoable) return;
+    const { id } = undoable;
+    setUndoable(null);
+    await restoreBook(id);
+  }, [undoable, restoreBook]);
+
   const addBook = useCallback(
     async (input: NewBookInput) => {
       try {
@@ -235,7 +294,7 @@ export function LibraryProvider({
   }, [repo, commit]);
 
   const shuffle = useCallback(() => {
-    setHome((h) => ({ ...h, ...makeHome(data.current.books, h.pickId) }));
+    setHome((h) => ({ ...h, ...makeHome(data.current.books.filter(actions.isActive), h.pickId) }));
   }, []);
 
   const clearNotice = useCallback(() => setNotice(null), []);
@@ -243,6 +302,12 @@ export function LibraryProvider({
   const value = useMemo<LibraryApi>(
     () => ({
       books,
+      removedBooks,
+      findBook,
+      undoable,
+      removeBook,
+      restoreBook,
+      undoRemove,
       notes,
       ready,
       loadFailed,
@@ -262,7 +327,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

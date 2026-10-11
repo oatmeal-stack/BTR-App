@@ -25,6 +25,7 @@ interface BookRow {
   status: ReadingStatus;
   rating: number | string | null;
   cover_url: string | null;
+  removed_at: string | null;
   source_note: string | null;
   favorite: boolean;
   genres: string[] | null;
@@ -130,6 +131,7 @@ export class SupabaseBookRepository implements BookRepository {
       status: r.status,
       rating: r.rating === null ? undefined : Number(r.rating),
       coverUrl: r.cover_url ?? undefined,
+      removedAt: r.removed_at ?? undefined,
       sourceNote: r.source_note ?? undefined,
       favorite: r.favorite,
       genres: r.genres ?? [],
@@ -175,6 +177,15 @@ export class SupabaseBookRepository implements BookRepository {
 
   async setFavorite(bookId: string, favorite: boolean): Promise<void> {
     await this.call("set_favorite", { p_id: bookId, p_favorite: favorite });
+  }
+
+  async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {
+    // The key lets the database ignore this book if an import brings it back under another spelling.
+    await this.call("remove_book", { p_id: book.id, p_key: actions.importKey(book.title, book.author) });
+  }
+
+  async restoreBook(bookId: string): Promise<void> {
+    await this.call("restore_book", { p_id: bookId });
   }
 
   async addNote(bookId: string, body: string): Promise<BookNote> {

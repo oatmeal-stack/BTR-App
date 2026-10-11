@@ -29,6 +29,15 @@ voting tool). Keep them separate.
   author last name, see `isSameBook`).
 - Scores (out of 10) exist only for Man Book Club and show only on the book page.
 - Amazon links are plain search links, never affiliate links.
+- **Remove is a soft delete** (`books.removed_at`). A removed book keeps its row, sources, notes and lists and is
+  hidden everywhere: the provider's `books` never contains it (`removedBooks`/`findBook` do), and every
+  find/pick/count function also skips it. `remove_book` stores the book's normalized key (`importKey`: title
+  without article + author last name) in `removed_keys`, and `seed.sql` skips any row whose key is there, so a
+  re-import can't bring it back even under a different spelling. Adding a removed title again finds the old row
+  (it stays removed) and the Add screen offers Restore. Restoring clears the key.
+- **Supabase rejects a DELETE or UPDATE with no WHERE** (safeupdate), but the in-memory test database doesn't.
+  A bare `delete from login_failures;` once made every CORRECT sign-in fail with a 400 on the live site while
+  all tests passed. `src/tests/sqlSafety.test.ts` now scans the SQL files; write `where true` when you mean all rows.
 - No accounts. The library is publicly readable; every write needs a login token checked inside the
   database. Private notes are not publicly readable.
 - **Sign-in and lockout**: the passcode is only ever sent to `login(p_code)`, which returns a random 90-day

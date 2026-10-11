@@ -28,6 +28,11 @@ export interface Book {
   /** Only Man Book Club rows have a score (out of 10). Never invented. */
   rating?: number;
   coverUrl?: string;
+  /**
+   * Set when the book has been removed. A removed book is hidden everywhere (browse, search, the
+   * random pick, every list) but is never deleted, so it can be restored with everything intact.
+   */
+  removedAt?: string;
   /** Short note that came with the book (imported, or typed at quick add). */
   sourceNote?: string;
   favorite: boolean;

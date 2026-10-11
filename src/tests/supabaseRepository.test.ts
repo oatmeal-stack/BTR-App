@@ -235,3 +235,43 @@ describe("changes once unlocked", () => {
     ]);
   });
 });
+
+describe("removing books (shared library)", () => {
+  const frankenstein = { id: "bk-frankenstein-shelley", title: "Frankenstein", author: "Mary Shelley" };
+
+  it("refuses while locked", async () => {
+    const repo = new SupabaseBookRepository(makeDb(), memoryStore());
+    await expect(repo.removeBook(frankenstein)).rejects.toBeInstanceOf(PasscodeRequiredError);
+    await expect(repo.restoreBook(frankenstein.id)).rejects.toBeInstanceOf(PasscodeRequiredError);
+    const book = (await repo.listBooks()).find((b) => b.id === frankenstein.id)!;
+    expect(book.removedAt).toBeUndefined();
+  });
+
+  it("is seen by a fresh load (another device), keeps the notes, and restores cleanly", async () => {
+    const repo = await unlockedRepo();
+    await repo.addNote(frankenstein.id, "Borrow Ana's copy");
+    await repo.removeBook(frankenstein);
+
+    const other = await unlockedRepo(); // a second device
+    const gone = (await other.listBooks()).find((b) => b.id === frankenstein.id)!;
+    expect(gone.removedAt).toBeTruthy();
+    expect((await other.listNotes()).map((x) => x.body)).toContain("Borrow Ana's copy"); // kept, not deleted
+
+    await other.restoreBook(frankenstein.id);
+    const back = (await (await unlockedRepo()).listBooks()).find((b) => b.id === frankenstein.id)!;
+    expect(back.removedAt).toBeUndefined();
+    expect(back.sources.length).toBeGreaterThan(0);
+  });
+
+  it("adding a removed book again doesn't create a second copy or bring it back", async () => {
+    const repo = await unlockedRepo();
+    await repo.removeBook(frankenstein);
+    const r = await repo.addBook({ title: "frankenstein", author: "Shelley" });
+    expect(r.created).toBe(false);
+    expect(r.book.removedAt).toBeTruthy();
+    const all = (await repo.listBooks()).filter((b) => b.title === "Frankenstein");
+    expect(all).toHaveLength(1);
+    expect(all[0].removedAt).toBeTruthy();
+    await repo.restoreBook(frankenstein.id);
+  });
+});

@@ -22,11 +22,16 @@ export interface BookRepository {
   /** Forgets the passcode on this device. */
   lock(): void;
 
+  /** Every book, including removed ones (they carry `removedAt`). The app hides those itself. */
   listBooks(): Promise<Book[]>;
   /** Private notes. Empty until unlocked on a shared library. */
   listNotes(): Promise<BookNote[]>;
   setStatus(bookId: string, status: ReadingStatus): Promise<void>;
   setFavorite(bookId: string, favorite: boolean): Promise<void>;
+  /** Hides a book everywhere without deleting anything. A re-import will not bring it back. */
+  removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void>;
+  /** Brings a removed book back exactly as it was. */
+  restoreBook(bookId: string): Promise<void>;
   addNote(bookId: string, body: string): Promise<BookNote>;
   updateNote(noteId: string, body: string): Promise<void>;
   deleteNote(noteId: string): Promise<void>;

@@ -43,6 +43,15 @@ export function isSameBook(
   return lastName(a.author) === lastName(b.author);
 }
 
+/**
+ * A book's identity for removals: the normalized title (no leading article) and the author's last
+ * name. A removal records this, so re-importing the book under a slightly different spelling
+ * ("The Road" / "Road", accents, punctuation) still doesn't bring it back.
+ */
+export function importKey(title: string, author?: string): string {
+  return `${normalizeTitle(title)}|${author ? lastName(author) : ""}`;
+}
+
 export function amazonSearchUrl(book: { title: string; author?: string }): string {
   const q = [book.title, book.author].filter(Boolean).join(" ");
   return `https://www.amazon.com/s?k=${encodeURIComponent(q).replace(/%20/g, "+")}`;
@@ -129,6 +138,23 @@ export function setFavorite(
   return books.map((b) => (b.id === id ? { ...b, favorite, updatedAt: now } : b));
 }
 
+/** A removed book is hidden everywhere. Every "find a book" function below skips them. */
+export const isActive = (b: Book): boolean => !b.removedAt;
+
+/** Soft delete: the book stays (with its notes, lists and tags) but is hidden. */
+export function removeBook(books: Book[], id: string, now: string): Book[] {
+  return books.map((b) => (b.id === id && !b.removedAt ? { ...b, removedAt: now, updatedAt: now } : b));
+}
+
+export function restoreBook(books: Book[], id: string, now: string): Book[] {
+  return books.map((b) => {
+    if (b.id !== id || !b.removedAt) return b;
+    const { removedAt: _removedAt, ...rest } = b;
+    void _removedAt;
+    return { ...rest, updatedAt: now };
+  });
+}
+
 export function addNote(
   notes: BookNote[],
   bookId: string,
@@ -170,6 +196,7 @@ export interface BookFilter {
 export function filterBooks(books: Book[], f: BookFilter): Book[] {
   const words = f.query ? normalizeText(f.query).split(" ").filter(Boolean) : [];
   return books.filter((b) => {
+    if (b.removedAt) return false;
     if (f.source && !b.sources.some((s) => s.source === f.source)) return false;
     if (f.status && b.status !== f.status) return false;
     if (f.genre && !b.genres.includes(f.genre)) return false;
@@ -205,8 +232,9 @@ export function pickRandom(
   excludeId?: string | null,
   rng: () => number = Math.random,
 ): Book | undefined {
-  const pool = books.filter((b) => b.id !== excludeId);
-  const from = pool.length ? pool : books;
+  const live = books.filter(isActive);
+  const pool = live.filter((b) => b.id !== excludeId);
+  const from = pool.length ? pool : live;
   return from[Math.floor(rng() * from.length)];
 }
 
@@ -217,7 +245,7 @@ export function pickForYou(
   excludeId?: string | null,
   rng: () => number = Math.random,
 ): Book[] {
-  const pool = books.filter((b) => b.status === "want_to_read" && b.id !== excludeId);
+  const pool = books.filter((b) => isActive(b) && b.status === "want_to_read" && b.id !== excludeId);
   for (let i = pool.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [pool[i], pool[j]] = [pool[j], pool[i]];
@@ -227,7 +255,7 @@ export function pickForYou(
 
 export function listCounts(books: Book[]): { source: string; count: number }[] {
   const counts = new Map<string, number>();
-  for (const b of books) {
+  for (const b of books.filter(isActive)) {
     for (const s of b.sources) counts.set(s.source, (counts.get(s.source) ?? 0) + 1);
   }
   const known = SOURCE_LISTS.filter((s) => counts.has(s)).map((s) => ({
@@ -246,7 +274,7 @@ export function facetCounts(
   key: "genres" | "moods",
 ): { value: string; count: number }[] {
   const counts = new Map<string, number>();
-  for (const b of books) for (const v of b[key]) counts.set(v, (counts.get(v) ?? 0) + 1);
+  for (const b of books.filter(isActive)) for (const v of b[key]) counts.set(v, (counts.get(v) ?? 0) + 1);
   return [...counts.entries()]
     .map(([value, count]) => ({ value, count }))
     .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value));

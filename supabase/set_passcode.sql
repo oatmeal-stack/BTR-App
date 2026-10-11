@@ -7,5 +7,5 @@ insert into app_secret (id, passcode_hash)
 values (true, extensions.crypt('CHOOSE-A-PASSCODE', extensions.gen_salt('bf')))
 on conflict (id) do update set passcode_hash = excluded.passcode_hash;
 -- Changing the passcode signs every device out and clears any lockout.
-delete from app_sessions;
-delete from login_failures;
+delete from app_sessions where true;
+delete from login_failures where true;

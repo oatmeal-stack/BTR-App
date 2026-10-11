@@ -9,13 +9,14 @@ import { ROUTES } from "@/routes";
 import { ScenicBanner } from "@/components/shared/ScenicBanner";
 
 export default function AddPage() {
-  const { addBook, requiresPasscode, unlocked, ready } = useLibrary();
+  const { addBook, restoreBook, requiresPasscode, unlocked, ready } = useLibrary();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [note, setNote] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState<{ book: Book; created: boolean } | null>(null);
+  const [restored, setRestored] = useState(false);
 
   async function submit(e: FormEvent) {
     e.preventDefault();
@@ -29,6 +30,7 @@ export default function AddPage() {
     setBusy(false);
     if (!result) return;
     setDone(result);
+    setRestored(false);
     setTitle("");
     setAuthor("");
     setNote("");
@@ -82,7 +84,23 @@ export default function AddPage() {
           </button>
         </form>
 
-        {done ? (
+        {done?.book.removedAt && !restored ? (
+          <div className="card" role="status">
+            <p>
+              You removed <strong>{done.book.title}</strong> earlier, so it wasn&apos;t added again. Bring it back?
+            </p>
+            <button
+              type="button"
+              className="btn btn--primary"
+              style={{ marginTop: 10 }}
+              onClick={async () => {
+                if (await restoreBook(done.book.id)) setRestored(true);
+              }}
+            >
+              Restore it
+            </button>
+          </div>
+        ) : done ? (
           <p className="card" role="status">
             {done.created ? (
               <>Added <strong>{done.book.title}</strong> to your library. </>

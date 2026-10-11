@@ -93,6 +93,18 @@ export class LocalBookRepository implements BookRepository {
     write(this.storage, d);
   }
 
+  async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = actions.removeBook(d.books, book.id, new Date().toISOString());
+    write(this.storage, d);
+  }
+
+  async restoreBook(bookId: string): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = actions.restoreBook(d.books, bookId, new Date().toISOString());
+    write(this.storage, d);
+  }
+
   async setFavorite(bookId: string, favorite: boolean): Promise<void> {
     const d = read(this.storage, this.seedBooks);
     d.books = actions.setFavorite(d.books, bookId, favorite, new Date().toISOString());

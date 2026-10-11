@@ -15,8 +15,14 @@ const when = (iso: string) =>
   new Date(iso).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
 
 export default function ProfilePage() {
-  const { books, notes, ready } = useLibrary();
+  const { books, notes: allNotes, removedBooks, ready } = useLibrary();
   const [query, setQuery] = useState("");
+
+  // Notes on a removed book come back with it, but aren't listed while it's removed.
+  const notes = useMemo(() => {
+    const hidden = new Set(removedBooks.map((b) => b.id));
+    return allNotes.filter((n) => !hidden.has(n.bookId));
+  }, [allNotes, removedBooks]);
 
   const rows = useMemo(() => {
     const words = normalizeText(query).split(" ").filter(Boolean);
@@ -67,6 +73,18 @@ export default function ProfilePage() {
               </div>
             ))
           )}
+        </section>
+
+        <section aria-labelledby="removed-h" className="stack" style={{ padding: 0 }}>
+          <h2 id="removed-h" style={{ fontSize: 18 }}>
+            Removed books
+          </h2>
+          <p className="muted" style={{ fontSize: 14 }}>
+            Books you&apos;ve removed are hidden, not deleted, and re-importing a list won&apos;t bring them back.
+          </p>
+          <Link className="btn" href={ROUTES.removed}>
+            See removed books ({removedBooks.length})
+          </Link>
         </section>
 
         <PasscodeSection />

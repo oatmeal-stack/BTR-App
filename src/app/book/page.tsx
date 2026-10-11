@@ -2,8 +2,8 @@
 
 import { Suspense } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { ArrowLeft, ExternalLink, Heart } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ArrowLeft, ExternalLink, Heart, Trash2, Undo2 } from "lucide-react";
 import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
 import { amazonSearchUrl } from "@/domain/bookActions";
 import { useLibrary } from "@/hooks/useLibrary";
@@ -22,8 +22,9 @@ export default function BookPage() {
 
 function BookView() {
   const id = useSearchParams().get("id");
-  const { books, ready, setStatus, toggleFavorite } = useLibrary();
-  const book = books.find((b) => b.id === id);
+  const { findBook, ready, setStatus, toggleFavorite, removeBook, restoreBook } = useLibrary();
+  const router = useRouter();
+  const book = id ? findBook(id) : undefined;
 
   if (!ready) {
     return (
@@ -50,6 +51,30 @@ function BookView() {
         />
       </div>
     );
+  }
+
+  if (book.removedAt) {
+    return (
+      <div className="stack">
+        <Link className="back" href={ROUTES.browse}>
+          <ArrowLeft size={16} aria-hidden="true" /> Browse
+        </Link>
+        <EmptyState
+          title="This book was removed"
+          body={`${book.title} is hidden everywhere, but nothing was deleted. Restore it to bring it back with its notes and lists.`}
+          action={
+            <button type="button" className="btn btn--primary" onClick={() => void restoreBook(book.id)}>
+              <Undo2 size={18} aria-hidden="true" /> Restore this book
+            </button>
+          }
+        />
+      </div>
+    );
+  }
+
+  async function remove() {
+    if (!book) return;
+    if (await removeBook(book.id)) router.replace(ROUTES.browse);
   }
 
   const score = book.rating !== undefined && book.sources.some((s) => s.source === "Man Book Club");
@@ -112,6 +137,9 @@ function BookView() {
         <a className="btn" href={amazonSearchUrl(book)} target="_blank" rel="noopener noreferrer">
           <ExternalLink size={18} aria-hidden="true" /> Find on Amazon
         </a>
+        <button type="button" className="btn" onClick={() => void remove()}>
+          <Trash2 size={18} aria-hidden="true" /> Remove this book
+        </button>
       </div>
 
       <section aria-labelledby="status-h">

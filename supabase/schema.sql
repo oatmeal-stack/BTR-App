@@ -38,6 +38,17 @@ create table if not exists books (
   updated_at timestamptz not null default now()
 );
 
+-- A removed book is hidden by the app but never deleted (so it can be restored with its notes, lists and
+-- tags). removed_keys remembers what was removed, by normalized title + author, so that re-running an
+-- import doesn't bring it back even if the new copy is spelled a little differently.
+alter table books add column if not exists removed_at timestamptz;
+
+create table if not exists removed_keys (
+  key text primary key,
+  book_id text,
+  removed_at timestamptz not null default now()
+);
+
 create table if not exists book_sources (
   book_id text not null references books (id) on delete cascade,
   source text not null,
@@ -73,6 +84,7 @@ create index if not exists book_notes_book_idx on book_notes (book_id);
 /* ---------- who can read ---------- */
 
 alter table app_secret enable row level security;   -- no policy: nobody can read it
+alter table removed_keys enable row level security;   -- no policy: nobody can read it
 alter table login_failures enable row level security;
 alter table app_sessions enable row level security;
 alter table books enable row level security;
@@ -86,6 +98,7 @@ drop policy if exists "anyone can read book sources" on book_sources;
 create policy "anyone can read book sources" on book_sources for select using (true);
 
 revoke all on app_secret from anon, authenticated;
+revoke all on removed_keys from anon, authenticated;
 revoke all on login_failures from anon, authenticated;
 revoke all on app_sessions from anon, authenticated;
 revoke all on book_notes from anon, authenticated;
@@ -141,7 +154,7 @@ begin
   token := encode(gen_random_bytes(24), 'hex');
   insert into app_sessions (token_hash, expires_at)
   values (encode(digest(token, 'sha256'), 'hex'), now() + interval '90 days');
-  delete from login_failures;
+  delete from login_failures where true;  -- Supabase refuses a DELETE or UPDATE that has no WHERE
   return token;
 end;
 $$;
@@ -180,6 +193,36 @@ as $$
 begin
   perform require_code(p_code);
   update books set status = p_status, updated_at = now() where id = p_id;
+end;
+$$;
+
+-- Hide a book everywhere without deleting anything. p_key is its normalized title + author.
+create or replace function remove_book(p_code text, p_id text, p_key text default null)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books set removed_at = coalesce(removed_at, now()), updated_at = now() where id = p_id;
+  if p_key is not null and found then
+    insert into removed_keys (key, book_id) values (p_key, p_id) on conflict (key) do nothing;
+  end if;
+end;
+$$;
+
+-- Bring a removed book back exactly as it was.
+create or replace function restore_book(p_code text, p_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books set removed_at = null, updated_at = now() where id = p_id;
+  delete from removed_keys where book_id = p_id;
 end;
 $$;
 
