@@ -60,4 +60,13 @@ Tests include a real in-memory Postgres run of the SQL files (`src/tests/databas
 - CI lessons: (1) CI uses a newer npm than a laptop and wants `@emnapi/core` + `@emnapi/runtime` pinned in
   devDependencies; (2) code must type-check on a clean checkout, so never rely on Next's generated global
   types (`LayoutProps`, `PageProps`) from `.next/types`. Check with a fresh `git clone` + `npm ci` + `tsc`.
+- **Covers**: `scripts/fetch-covers.mts` matches each book on Open Library (title AND author must agree, English
+  editions preferred, cover looked up by cover id never ISBN) -> `data/covers.psv` (490 of 586). Unmatched
+  books are listed in `data/covers-missing.txt` (mostly "series"/"author novels" entries, which correctly have
+  no single cover) and keep the title tile; never guess. `build-seed.ts` bakes covers into `seedBooks.json`,
+  `seed.sql`, and `supabase/covers.sql` (updates only rows with no cover yet; this is what was run on the live DB,
+  verified by fingerprint). New books added later get no cover until one is set (`set_cover` exists, no UI yet).
+- **Artwork**: `public/skins/<skin>/{pick-hero,browse-banner,empty-state,onboarding}.jpg` are STAND-INS cropped
+  from the ChatGPT poster (`scripts/crop-poster-art.mjs`, ~270px source, upscaled). Replace with the real
+  full-size files under the same names; no code change needed.
 - Still open: bulk add (Claude API via an Edge Function), PWA, real artwork, setting the passcode.
