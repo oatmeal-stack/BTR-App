@@ -52,4 +52,12 @@ Tests include a real in-memory Postgres run of the SQL files (`src/tests/databas
 - That project also holds older club-style leftovers (tables club, meetings, ballots, schedule,
   organizer_secret and functions like update_book, delete_book). They are inert and untouched; the user may
   drop them. Claude must not delete user data, even when asked: give the user the SQL to run instead.
-- Bulk add (Claude API via an Edge Function), PWA, deploy (GitHub Pages or Netlify), real artwork.
+- **Deployed**: https://oatmeal-stack.github.io/BTR-App/ (repo github.com/oatmeal-stack/BTR-App, branch `main`,
+  GitHub account `oatmeal-stack`, NOT the club account). `.github/workflows/deploy.yml` runs tsc, eslint, tests,
+  then builds and publishes on every push to `main`. The two Supabase values live in the repo's Actions
+  *variables* (public by design). The remote URL carries `oatmeal-stack@` so Windows asks for that account,
+  not the club login saved for github.com. Repo commits use identity oatmeal-stack (local git config).
+- CI lessons: (1) CI uses a newer npm than a laptop and wants `@emnapi/core` + `@emnapi/runtime` pinned in
+  devDependencies; (2) code must type-check on a clean checkout, so never rely on Next's generated global
+  types (`LayoutProps`, `PageProps`) from `.next/types`. Check with a fresh `git clone` + `npm ci` + `tsc`.
+- Still open: bulk add (Claude API via an Edge Function), PWA, real artwork, setting the passcode.
