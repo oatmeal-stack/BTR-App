@@ -19,7 +19,7 @@ export const viewport: Viewport = {
   themeColor: getSkin(DEFAULT_SKIN_ID).tokens.color.canvas,
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   // Default skin is baked into the HTML; the boot script swaps in a saved
   // choice before first paint, so suppressHydrationWarning covers that one edit.
   const defaultVars = skinToCssVars(getSkin(DEFAULT_SKIN_ID)) as CSSProperties;
