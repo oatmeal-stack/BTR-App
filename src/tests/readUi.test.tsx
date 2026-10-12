@@ -430,3 +430,79 @@ describe("the Books I've read import", () => {
     expect(screen.getByLabelText("The books you've read")).toHaveValue("");
   });
 });
+
+describe("putting what you import on a list", () => {
+  const stub = () => vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => ({ docs: [] }) }) as Response));
+  const text = "Dune by Frank Herbert - loved\nZebra Tales by Anna Smith - ok\nThe Road";
+
+  async function start(repo = newRepo()) {
+    stub();
+    const user = userEvent.setup();
+    renderApp(<ReadImportPage />, repo);
+    await user.type(await screen.findByLabelText("The books you've read"), text);
+    await user.click(screen.getByRole("button", { name: "Review matches" }));
+    return { user, repo };
+  }
+
+  it("makes a new list and puts every imported book on it, in the order pasted", async () => {
+    const { user, repo } = await start();
+    await user.selectOptions(await screen.findByLabelText(/Also put these books on a list/), "__new");
+    expect(screen.getByRole("button", { name: "Import 3 books" })).toBeDisabled(); // a new list needs a name
+    await user.type(screen.getByLabelText("New list name"), "Books previously read");
+    await user.click(screen.getByRole("button", { name: "Import 3 books" }));
+
+    expect(await screen.findByText(/Put/, { selector: "p" })).toHaveTextContent(/Put 3 on Books previously read/);
+    const mine = await repo.listMyData();
+    expect(mine.lists.map((l) => l.name)).toEqual(["Books previously read"]);
+    const books = await repo.listBooks();
+    const titles = mine.items.sort((a, b) => a.position - b.position).map((i) => books.find((b) => b.id === i.bookId)!.title);
+    expect(titles).toEqual(["Dune", "Zebra Tales", "The Road"]);
+    expect(screen.getByRole("link", { name: "Books previously read" })).toHaveAttribute("href", "/mylist?id=" + encodeURIComponent(mine.lists[0].id));
+  });
+
+  it("can use a list you already have, adding after what's there", async () => {
+    const repo = newRepo();
+    await repo.createList({ id: "l1", name: "Personal Books" });
+    await repo.addToList("l1", dove.id);
+    const { user } = await start(repo);
+    await user.selectOptions(await screen.findByLabelText(/Also put these books on a list/), "l1");
+    await user.click(screen.getByRole("button", { name: "Import 3 books" }));
+    expect(await screen.findByText(/Put/, { selector: "p" })).toHaveTextContent(/Put 3 on/);
+    const ids = (await repo.listMyData()).items.sort((a, b) => a.position - b.position).map((i) => i.bookId);
+    expect(ids[0]).toBe(dove.id);
+    expect(ids).toHaveLength(4);
+  });
+
+  it("reuses an existing list when the new name matches one you have, instead of failing", async () => {
+    const repo = newRepo();
+    await repo.createList({ id: "l1", name: "Books previously read" });
+    const { user } = await start(repo);
+    await user.selectOptions(await screen.findByLabelText(/Also put these books on a list/), "__new");
+    await user.type(screen.getByLabelText("New list name"), "  books PREVIOUSLY read ");
+    await user.click(screen.getByRole("button", { name: "Import 3 books" }));
+    expect(await screen.findByText(/Put/, { selector: "p" })).toHaveTextContent(/Put 3 on/);
+    const mine = await repo.listMyData();
+    expect(mine.lists).toHaveLength(1);
+    expect(mine.items).toHaveLength(3);
+  });
+
+  it("puts nothing on a list unless you choose one", async () => {
+    const { user, repo } = await start();
+    await user.click(await screen.findByRole("button", { name: "Import 3 books" }));
+    await screen.findByText(/Marked/, { selector: "p" });
+    expect((await repo.listMyData()).items).toEqual([]);
+    expect(screen.queryByText(/Put 3 on/)).toBeNull();
+  });
+
+  it("leaves skipped and undecided lines off the list", async () => {
+    const { user, repo } = await start();
+    await user.selectOptions(await screen.findByLabelText(/What is .The Road.\?/), "skip");
+    await user.selectOptions(screen.getByLabelText(/Also put these books on a list/), "__new");
+    await user.type(screen.getByLabelText("New list name"), "Read");
+    await user.click(screen.getByRole("button", { name: "Import 2 books" }));
+    expect(await screen.findByText(/Put/, { selector: "p" })).toHaveTextContent(/Put 2 on/);
+    const books = await repo.listBooks();
+    const onList = (await repo.listMyData()).items.map((i) => books.find((b) => b.id === i.bookId)!.title).sort();
+    expect(onList).toEqual(["Dune", "Zebra Tales"]);
+  });
+});

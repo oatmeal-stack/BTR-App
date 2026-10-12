@@ -34,6 +34,11 @@ export function addToList(items: ListItem[], listId: string, bookId: string): Li
   return [...items, { listId, bookId, position }];
 }
 
+/** Puts several books on a list, after what's there, in the order given (a book already on it keeps its place). */
+export function addManyToList(items: ListItem[], listId: string, bookIds: string[]): ListItem[] {
+  return bookIds.reduce((acc, id) => addToList(acc, listId, id), items);
+}
+
 export function removeFromList(items: ListItem[], listId: string, bookId: string): ListItem[] {
   return items.filter((i) => !(i.listId === listId && i.bookId === bookId));
 }

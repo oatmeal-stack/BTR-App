@@ -49,6 +49,8 @@ export interface BookRepository {
   deleteList(id: string): Promise<void>;
   addToList(listId: string, bookId: string): Promise<void>;
   removeFromList(listId: string, bookId: string): Promise<void>;
+  /** Puts many books on a list at once, in order. */
+  addManyToList(listId: string, bookIds: string[]): Promise<void>;
   reorderList(listId: string, bookIds: string[]): Promise<void>;
   addDraft(note: { id: string; body: string }): Promise<void>;
   setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void>;

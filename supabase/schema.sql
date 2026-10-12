@@ -539,6 +539,27 @@ begin
 end;
 $$;
 
+-- Put many books on a list at once, after whatever is already on it, in the order given. A book that is
+-- already on the list keeps its place; a book that doesn't exist is skipped.
+create or replace function add_many_to_list(p_code text, p_list_id text, p_book_ids text[])
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+declare
+  base int;
+begin
+  perform require_code(p_code);
+  select coalesce(max(position), -1) + 1 into base from my_list_books where list_id = p_list_id;
+  insert into my_list_books (list_id, book_id, position)
+  select p_list_id, b.id, base + o.ord::int
+    from unnest(p_book_ids) with ordinality as o(book_id, ord)
+    join books b on b.id = o.book_id
+  on conflict do nothing;
+end;
+$$;
+
 create or replace function remove_from_list(p_code text, p_list_id text, p_book_id text)
 returns void
 language plpgsql

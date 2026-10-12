@@ -139,6 +139,10 @@ export class LocalBookRepository implements BookRepository {
     this.editMine((m) => ({ ...m, items: lists.addToList(m.items, listId, bookId) }));
   }
 
+  async addManyToList(listId: string, bookIds: string[]): Promise<void> {
+    this.editMine((m) => ({ ...m, items: lists.addManyToList(m.items, listId, bookIds) }));
+  }
+
   async removeFromList(listId: string, bookId: string): Promise<void> {
     this.editMine((m) => ({ ...m, items: lists.removeFromList(m.items, listId, bookId) }));
   }

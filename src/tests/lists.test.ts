@@ -190,3 +190,27 @@ describe("lists and drafts on this device", () => {
     expect((await newRepo(storage).listMyData()).lists).toHaveLength(1);
   });
 });
+
+describe("putting many books on a list at once", () => {
+  it("adds them after what's there, in the order given, skipping any already on it", () => {
+    const start = [item("l1", a.id, 0), item("l1", b.id, 1)];
+    const out = L.addManyToList(start, "l1", [c.id, a.id, d.id]);
+    expect(L.booksInList(SAMPLE_BOOKS, out, "l1").map((x) => x.id)).toEqual([a.id, b.id, c.id, d.id]);
+    expect(out.filter((i) => i.bookId === a.id)).toHaveLength(1); // a kept its place
+  });
+
+  it("starts a new list at the first position, and an empty add changes nothing", () => {
+    const out = L.addManyToList([], "l9", [d.id, c.id]);
+    expect(out.map((i) => [i.bookId, i.position])).toEqual([[d.id, 0], [c.id, 1]]);
+    const some = [item("l1", a.id, 0)];
+    expect(L.addManyToList(some, "l1", [])).toBe(some);
+  });
+
+  it("works through the device store too", async () => {
+    const repo = new LocalBookRepository(memoryStorage(), SAMPLE_BOOKS);
+    await repo.createList({ id: "l1", name: "Books previously read" });
+    await repo.addManyToList("l1", [c.id, a.id, b.id]);
+    const mine = await repo.listMyData();
+    expect(L.booksInList(SAMPLE_BOOKS, mine.items, "l1").map((x) => x.id)).toEqual([c.id, a.id, b.id]);
+  });
+});

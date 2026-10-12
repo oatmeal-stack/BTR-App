@@ -37,6 +37,8 @@ const fromValue = (v: string): Choice =>
   v.startsWith("book:") ? { kind: "book", id: v.slice(5) } : v === "new" ? { kind: "new" } : v === "skip" ? { kind: "skip" } : { kind: "undecided" };
 
 interface Result {
+  /** The list they were put on, if you chose one. */
+  list?: { id: string; name: string; count: number };
   marked: number;
   added: number;
   restored: number;
@@ -59,13 +61,16 @@ export default function ReadImportPage() {
 
 function ReadImportView() {
   const draftId = useSearchParams().get("draft");
-  const { books, removedBooks, ready, addBook, updateBook, markManyRead, drafts, setDraftStatus, requiresPasscode, unlocked } = useLibrary();
+  const { books, removedBooks, ready, addBook, updateBook, markManyRead, drafts, setDraftStatus, lists, createList, addManyToList, requiresPasscode, unlocked } = useLibrary();
   const allBooks = useMemo(() => [...books, ...removedBooks], [books, removedBooks]);
   const [text, setText] = useState("");
   const [rows, setRows] = useState<Row[] | null>(null);
   const [busy, setBusy] = useState<{ done: number; total: number } | null>(null);
   const [result, setResult] = useState<Result | null>(null);
   const [empty, setEmpty] = useState(false);
+  // Optionally put everything imported on a list: "" for none, "__new" for a new one, or a list's id.
+  const [listChoice, setListChoice] = useState("");
+  const [newListName, setNewListName] = useState("");
 
   // Opened from a draft: its text is the list, ready to review (and the draft is marked added once imported).
   const draft = draftId ? drafts.find((d) => d.id === draftId) : undefined;
@@ -141,9 +146,36 @@ function ReadImportView() {
     let marked = 0;
     if (readRows.length && (await markManyRead(readRows))) marked = readRows.length;
     else if (readRows.length) failed.push(`${readRows.length} books couldn't be marked read`);
+    // Put them all on the chosen list, in the order you pasted them.
+    let list: Result["list"];
+    if (marked > 0 && listChoice) {
+      let listId: string | undefined = listChoice === "__new" ? undefined : listChoice;
+      let listName = lists.find((l) => l.id === listId)?.name ?? "";
+      if (listChoice === "__new") {
+        const wanted = newListName.trim();
+        const same = lists.find((l) => l.name.trim().toLowerCase() === wanted.toLowerCase());
+        if (same) {
+          listId = same.id;
+          listName = same.name;
+        } else {
+          const made = await createList(wanted);
+          if ("id" in made) {
+            listId = made.id;
+            listName = wanted;
+          } else {
+            failed.push(`couldn't make the list ${wanted}`);
+          }
+        }
+      }
+      if (listId) {
+        const ids = [...new Set(readRows.map((r) => r.id))];
+        if (await addManyToList(listId, ids)) list = { id: listId, name: listName, count: ids.length };
+        else failed.push(`couldn't put them on ${listName}`);
+      }
+    }
     setBusy(null);
     if (draft && marked > 0 && failed.length === 0) await setDraftStatus(draft.id, "added");
-    setResult({ marked, added, restored, skipped: skipped + undecided, failed });
+    setResult({ marked, added, restored, skipped: skipped + undecided, failed, list });
   }
 
   return (
@@ -168,6 +200,11 @@ function ReadImportView() {
               {result.added ? <>, including <strong>{result.added}</strong> new {result.added === 1 ? "book" : "books"} added to your archive</> : null}
               {result.restored ? <>, and brought back {result.restored} you&apos;d removed</> : null}.
             </p>
+            {result.list ? (
+              <p>
+                Put <strong>{result.list.count}</strong> on <Link href={ROUTES.myList(result.list.id)}>{result.list.name}</Link>.
+              </p>
+            ) : null}
             {result.skipped ? <p className="muted">{result.skipped} left alone.</p> : null}
             {result.failed.length ? (
               <p className="error">
@@ -311,12 +348,35 @@ function ReadImportView() {
               })}
             </ul>
 
+            {!requiresPasscode || unlocked ? (
+              <section className="card stack" style={{ gap: 10 }} aria-label="Put them on a list">
+                <div className="field">
+                  <label htmlFor="read-list">Also put these books on a list (optional)</label>
+                  <select id="read-list" className="select" value={listChoice} onChange={(e) => setListChoice(e.target.value)}>
+                    <option value="">No list</option>
+                    {lists.map((l) => (
+                      <option key={l.id} value={l.id}>
+                        {l.name}
+                      </option>
+                    ))}
+                    <option value="__new">New list…</option>
+                  </select>
+                </div>
+                {listChoice === "__new" ? (
+                  <div className="field">
+                    <label htmlFor="read-list-name">New list name</label>
+                    <input id="read-list-name" className="input" value={newListName} placeholder="Books previously read" onChange={(e) => setNewListName(e.target.value)} />
+                  </div>
+                ) : null}
+              </section>
+            ) : null}
+
             {busy ? (
               <p className="card" role="status">
                 Importing… {busy.done} of {busy.total}
               </p>
             ) : null}
-            <button type="button" className="btn btn--primary btn--block" disabled={todo.length === 0 || busy !== null} onClick={() => void run()}>
+            <button type="button" className="btn btn--primary btn--block" disabled={todo.length === 0 || busy !== null || (listChoice === "__new" && !newListName.trim())} onClick={() => void run()}>
               {busy ? "Importing…" : `Import ${todo.length} ${todo.length === 1 ? "book" : "books"}`}
             </button>
             <button type="button" className="btn btn--block" disabled={busy !== null} onClick={() => setRows(null)}>

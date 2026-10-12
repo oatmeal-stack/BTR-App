@@ -261,6 +261,10 @@ export class SupabaseBookRepository implements BookRepository {
     await this.call("add_to_list", { p_list_id: listId, p_book_id: bookId });
   }
 
+  async addManyToList(listId: string, bookIds: string[]): Promise<void> {
+    await this.call("add_many_to_list", { p_list_id: listId, p_book_ids: bookIds });
+  }
+
   async removeFromList(listId: string, bookId: string): Promise<void> {
     await this.call("remove_from_list", { p_list_id: listId, p_book_id: bookId });
   }

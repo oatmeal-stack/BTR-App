@@ -181,3 +181,29 @@ describe("drafts", () => {
     expect(await one<{ n: number }>("select count(*)::int as n from inbox_notes")).toEqual({ n: 2 });
   });
 });
+
+describe("add_many_to_list", () => {
+  it("needs the sign-in token", async () => {
+    await expect(rpc("select add_many_to_list($1, 'l2', array['b1'])", ["wrong"])).rejects.toThrow(/Wrong passcode/);
+    await expect(rpc("select add_many_to_list($1, 'l2', array['b1'])", [PASSCODE])).rejects.toThrow(/Wrong passcode/);
+  });
+
+  it("puts many books on a list in the order given, after what's there, and is safe to repeat", async () => {
+    await rpc("select create_list($1, 'l5', 'Books previously read')", [T]);
+    await rpc("select add_to_list($1, 'l5', 'b2')", [T]);
+    await rpc("select add_many_to_list($1, 'l5', array['b3', 'b1', 'b2'])", [T]);
+    await rpc("select add_many_to_list($1, 'l5', array['b3', 'b1'])", [T]);
+    const order = (await mine()).d.items.filter((i) => i.list_id === "l5").sort((a, b) => a.position - b.position).map((i) => i.book_id);
+    expect(order).toEqual(["b2", "b3", "b1"]);
+  });
+
+  it("skips a book that doesn't exist instead of failing the rest", async () => {
+    await rpc("select create_list($1, 'l6', 'Another')", [T]);
+    await rpc("select add_many_to_list($1, 'l6', array['nope', 'b1'])", [T]);
+    expect((await mine()).d.items.filter((i) => i.list_id === "l6").map((i) => i.book_id)).toEqual(["b1"]);
+  });
+
+  it("an empty list of books does nothing", async () => {
+    await rpc("select add_many_to_list($1, 'l6', array[]::text[])", [T]);
+  });
+});

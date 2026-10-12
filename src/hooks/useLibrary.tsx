@@ -49,6 +49,8 @@ interface LibraryApi {
   deleteList: (id: string) => Promise<boolean>;
   addToList: (listId: string, bookId: string) => Promise<boolean>;
   removeFromList: (listId: string, bookId: string) => Promise<boolean>;
+  /** Puts many books on a list at once, in order. */
+  addManyToList: (listId: string, bookIds: string[]) => Promise<boolean>;
   reorderList: (listId: string, bookIds: string[]) => Promise<boolean>;
   /** Drafts: rough notes about books to add later, newest first. Private. */
   drafts: InboxNote[];
@@ -321,6 +323,12 @@ export function LibraryProvider({
     [optimistic, repo],
   );
 
+  const addManyToList = useCallback(
+    (listId: string, bookIds: string[]) =>
+      optimistic({ items: listActions.addManyToList(data.current.items, listId, bookIds) }, () => repo.addManyToList(listId, bookIds)),
+    [optimistic, repo],
+  );
+
   const removeFromList = useCallback(
     (listId: string, bookId: string) =>
       optimistic({ items: listActions.removeFromList(data.current.items, listId, bookId) }, () => repo.removeFromList(listId, bookId)),
@@ -488,6 +496,7 @@ export function LibraryProvider({
       deleteList,
       addToList,
       removeFromList,
+      addManyToList,
       reorderList,
       drafts,
       addDraft,
@@ -513,7 +522,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, addManyToList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

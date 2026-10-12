@@ -408,3 +408,15 @@ describe("what you've read (shared library)", () => {
     expect(notes.filter((n) => n.bookId === dune).map((n) => n.body)).toContain("loved - a favorite of all time");
   });
 });
+
+describe("putting many books on a list at once (shared library)", () => {
+  it("refuses while locked, and otherwise keeps the order", async () => {
+    const locked = new SupabaseBookRepository(makeDb(), memoryStore());
+    await expect(locked.addManyToList("l-x", ["bk-dune-herbert"])).rejects.toBeInstanceOf(PasscodeRequiredError);
+    const repo = await unlockedRepo();
+    await repo.createList({ id: "l-many", name: "Books previously read" });
+    await repo.addManyToList("l-many", ["bk-road-mccarthy", "bk-dune-herbert", "bk-frankenstein-shelley"]);
+    const items = (await (await unlockedRepo()).listMyData()).items.filter((i) => i.listId === "l-many").sort((a, b) => a.position - b.position);
+    expect(items.map((i) => i.bookId)).toEqual(["bk-road-mccarthy", "bk-dune-herbert", "bk-frankenstein-shelley"]);
+  });
+});
