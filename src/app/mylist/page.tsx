@@ -8,6 +8,7 @@ import type { Book } from "@/domain/book";
 import { filterBooks, pickRandom } from "@/domain/bookActions";
 import { booksInList } from "@/domain/listActions";
 import { useLibrary } from "@/hooks/useLibrary";
+import { useIncludeRead } from "@/lib/prefs";
 import { ROUTES } from "@/routes";
 import { BookCard } from "@/components/books/BookCard";
 import { BookCover } from "@/components/books/BookCover";
@@ -68,6 +69,8 @@ function ListBody({ listId, name, books: members }: { listId: string; name: stri
   const [reorder, setReorder] = useState(false);
   const [pick, setPick] = useState<Book | null>(null);
   const [query, setQuery] = useState("");
+  const [includeRead] = useIncludeRead();
+  const [pickNote, setPickNote] = useState("");
 
   const onList = useMemo(() => new Set(members.map((b) => b.id)), [members]);
   const matches = useMemo(
@@ -107,7 +110,11 @@ function ListBody({ listId, name, books: members }: { listId: string; name: stri
         </Link>
 
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <button type="button" className="btn btn--small" disabled={members.length === 0} onClick={() => setPick(pickRandom(members, pick?.id) ?? null)}>
+          <button type="button" className="btn btn--small" disabled={members.length === 0} onClick={() => {
+              const pool = includeRead ? members : members.filter((b) => b.status !== "read");
+              setPick(pickRandom(pool, pick?.id) ?? null);
+              setPickNote(pool.length ? "" : "You've read everything on this list.");
+            }}>
             <Dices size={16} aria-hidden="true" /> Pick one for me
           </button>
           <button type="button" className={`btn btn--small${reorder ? " btn--primary" : ""}`} aria-pressed={reorder} onClick={() => setReorder(!reorder)}>
@@ -153,6 +160,12 @@ function ListBody({ listId, name, books: members }: { listId: string; name: stri
               </button>
             </div>
           </div>
+        ) : null}
+
+        {pickNote ? (
+          <p className="muted" role="status">
+            {pickNote}
+          </p>
         ) : null}
 
         {pick ? (

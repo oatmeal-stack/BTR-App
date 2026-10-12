@@ -8,6 +8,7 @@ import type {
   MyList,
   NewBookInput,
   ReadingStatus,
+  ReadRow,
 } from "@/domain/book";
 
 /** Everything private besides notes: your own lists, what is on them, and your drafts. */
@@ -56,6 +57,10 @@ export interface BookRepository {
   updateBook(bookId: string, edit: BookEdit): Promise<void>;
   /** Folds the second copy into the first: lists, notes, tags and gaps move over; the second is removed. */
   mergeBooks(keep: Pick<Book, "id">, drop: Pick<Book, "id" | "title" | "author">): Promise<void>;
+  /** Your finish date and rating (a blank clears it). */
+  setReadDetails(bookId: string, details: { finishedOn?: string; myRating?: number }): Promise<void>;
+  /** Marks many books read at once, with ratings, favorites and notes (the Already Read import). */
+  markManyRead(rows: ReadRow[]): Promise<void>;
   /** Hides a book everywhere without deleting anything. A re-import will not bring it back. */
   removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void>;
   /** Brings a removed book back exactly as it was. */

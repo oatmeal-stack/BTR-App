@@ -98,6 +98,29 @@ export function sanePageCount(n: number | undefined): number | undefined {
   return n !== undefined && Number.isInteger(n) && n >= 40 && n <= 3000 ? n : undefined;
 }
 
+/**
+ * Likely authors for a book you only know the title of, most-catalogued first (up to 3). Only works whose
+ * title is the same count. They are suggestions for you to accept, never filled in on their own.
+ */
+export async function suggestAuthors(title: string, fetcher: typeof fetch = fetch): Promise<string[]> {
+  try {
+    const qs = new URLSearchParams({ title, limit: "15", fields: "title,author_name,edition_count" });
+    const res = await fetcher(`https://openlibrary.org/search.json?${qs}`);
+    if (!res.ok) return [];
+    const docs = (((await res.json()) as { docs?: OlDoc[] }).docs ?? []) as OlDoc[];
+    const want = mainTitle(title);
+    const seen = new Set<string>();
+    return docs
+      .filter((d) => d.title && mainTitle(d.title) === want && d.author_name?.[0] && /[A-Za-z]/.test(d.author_name[0]))
+      .sort((a, b) => (b.edition_count ?? 0) - (a.edition_count ?? 0))
+      .map((d) => d.author_name![0])
+      .filter((a) => (seen.has(a.toLowerCase()) ? false : (seen.add(a.toLowerCase()), true)))
+      .slice(0, 3);
+  } catch {
+    return [];
+  }
+}
+
 export const SEARCH_FIELDS =
   "key,title,author_name,cover_i,edition_count,first_publish_year,number_of_pages_median,editions,editions.cover_i,editions.language";
 

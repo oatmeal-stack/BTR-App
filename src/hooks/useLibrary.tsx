@@ -10,10 +10,11 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus, ReadRow } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import * as listActions from "@/domain/listActions";
 import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
+import { useIncludeRead } from "@/lib/prefs";
 import { getRepository } from "@/repositories";
 import type { BookRepository } from "@/repositories/BookRepository";
 
@@ -53,6 +54,10 @@ interface LibraryApi {
   drafts: InboxNote[];
   addDraft: (body: string) => Promise<boolean>;
   setDraftStatus: (id: string, status: InboxStatus, bookId?: string) => Promise<boolean>;
+  /** Your finish date and star rating for a book (a blank clears it). */
+  setReadDetails: (id: string, details: { finishedOn?: string; myRating?: number }) => Promise<boolean>;
+  /** Marks many books read at once, with ratings, favorites and notes. */
+  markManyRead: (rows: ReadRow[]) => Promise<boolean>;
   removeBook: (id: string) => Promise<boolean>;
   restoreBook: (id: string) => Promise<boolean>;
   undoRemove: () => Promise<void>;
@@ -103,6 +108,9 @@ const SAVE_FAILED = "Couldn't save that. Your change was undone. Try again.";
 const NEEDS_PASSCODE = "Enter your passcode in Profile to make changes.";
 const LOAD_FAILED = "Couldn't load your library. Check your connection, then refresh.";
 
+/** Books a random pick may choose: visible, and not already read unless you've said read books are fine. */
+const pickable = (includeRead: boolean) => (b: Book) => actions.isActive(b) && (includeRead || b.status !== "read");
+
 function makeHome(books: Book[], excludePick?: string | null): HomeState {
   const pick = actions.pickRandom(books, excludePick);
   return {
@@ -130,6 +138,11 @@ export function LibraryProvider({
   const [home, setHome] = useState<HomeState>({ pickId: null, forYouIds: [] });
   const [unlocked, setUnlocked] = useState(false);
   const [loadFailed, setLoadFailed] = useState(false);
+  const [includeRead] = useIncludeRead();
+  const includeReadRef = useRef(includeRead);
+  useEffect(() => {
+    includeReadRef.current = includeRead;
+  }, [includeRead]);
   const data = useRef<Data>({ books: [], notes: [], lists: [], items: [], inbox: [] });
 
   /** Replaces whichever pieces are given and leaves the rest as they were. */
@@ -150,7 +163,7 @@ export function LibraryProvider({
         const [b, n, mine] = await Promise.all([repo.listBooks(), repo.listNotes(), repo.listMyData()]);
         if (cancelled) return;
         commit({ books: b, notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox });
-        setHome(makeHome(b.filter(actions.isActive)));
+        setHome(makeHome(b.filter(pickable(includeReadRef.current))));
         setUnlocked(repo.hasPasscode());
       } catch {
         if (!cancelled) {
@@ -192,11 +205,33 @@ export function LibraryProvider({
   );
 
   const setStatus = useCallback(
-    (id: string, status: ReadingStatus) =>
-      optimistic(
+    async (id: string, status: ReadingStatus) => {
+      const ok = await optimistic(
         { books: actions.setStatus(data.current.books, id, status, new Date().toISOString()) },
         () => repo.setStatus(id, status),
+      );
+      // A book you've just read shouldn't stay up as the "next read" (unless read books are allowed).
+      if (ok && status === "read" && !includeReadRef.current) {
+        setHome((h) => (h.pickId === id || h.forYouIds.includes(id) ? makeHome(data.current.books.filter(pickable(false))) : h));
+      }
+      return ok;
+    },
+    [optimistic, repo],
+  );
+
+  const setReadDetails = useCallback(
+    (id: string, details: { finishedOn?: string; myRating?: number }) =>
+      optimistic({ books: actions.setReadDetails(data.current.books, id, details, new Date().toISOString()) }, () =>
+        repo.setReadDetails(id, details),
       ),
+    [optimistic, repo],
+  );
+
+  const markManyRead = useCallback(
+    (rows: ReadRow[]) => {
+      const out = actions.markManyRead(data.current.books, data.current.notes, rows, new Date().toISOString());
+      return optimistic({ books: out.books, notes: out.notes }, () => repo.markManyRead(rows));
+    },
     [optimistic, repo],
   );
 
@@ -366,7 +401,7 @@ export function LibraryProvider({
       if (ok) {
         setUndoable({ id, title: book.title });
         // If the book on the Home screen was the one removed, pick another so it doesn't linger.
-        setHome((h) => (h.pickId === id || h.forYouIds.includes(id) ? makeHome(data.current.books.filter(actions.isActive)) : h));
+        setHome((h) => (h.pickId === id || h.forYouIds.includes(id) ? makeHome(data.current.books.filter(pickable(includeReadRef.current))) : h));
       }
       return ok;
     },
@@ -430,7 +465,7 @@ export function LibraryProvider({
   }, [repo, commit]);
 
   const shuffle = useCallback(() => {
-    setHome((h) => ({ ...h, ...makeHome(data.current.books.filter(actions.isActive), h.pickId) }));
+    setHome((h) => ({ ...h, ...makeHome(data.current.books.filter(pickable(includeReadRef.current)), h.pickId) }));
   }, []);
 
   const clearNotice = useCallback(() => setNotice(null), []);
@@ -444,6 +479,8 @@ export function LibraryProvider({
       removeBook,
       restoreBook,
       undoRemove,
+      setReadDetails,
+      markManyRead,
       lists,
       listItems,
       createList,
@@ -476,7 +513,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

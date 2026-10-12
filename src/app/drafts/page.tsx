@@ -74,6 +74,9 @@ export default function DraftsPage() {
                       <Link className="btn btn--small btn--primary" href={`${ROUTES.add}?draft=${encodeURIComponent(d.id)}`}>
                         Make it a book
                       </Link>
+                      <Link className="btn btn--small" href={`${ROUTES.readImport}?draft=${encodeURIComponent(d.id)}`}>
+                        Review as books I&apos;ve read
+                      </Link>
                       <button type="button" className="btn btn--small" onClick={() => void setDraftStatus(d.id, "dismissed")}>
                         Dismiss
                       </button>

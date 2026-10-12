@@ -49,15 +49,27 @@ export default function HomePage() {
         ) : loadFailed ? (
           <LoadProblem />
         ) : !pick ? (
-          <EmptyState
-            title="Your library is empty"
-            body="Add a book to get started."
-            action={
-              <Link className="btn btn--primary" href={ROUTES.add}>
-                Add a book
-              </Link>
-            }
-          />
+          books.length > 0 ? (
+            <EmptyState
+              title="Nothing unread to pick"
+              body="You've read everything in your library. Add more books, or let random picks include books you've read in Profile."
+              action={
+                <Link className="btn btn--primary" href={ROUTES.add}>
+                  Add a book
+                </Link>
+              }
+            />
+          ) : (
+            <EmptyState
+              title="Your library is empty"
+              body="Add a book to get started."
+              action={
+                <Link className="btn btn--primary" href={ROUTES.add}>
+                  Add a book
+                </Link>
+              }
+            />
+          )
         ) : (
           <section className="card" aria-label="Random pick">
             <div className="pick">

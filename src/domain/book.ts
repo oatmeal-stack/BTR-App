@@ -27,6 +27,10 @@ export interface Book {
   year?: number;
   pageCount?: number;
   status: ReadingStatus;
+  /** When you finished it (YYYY-MM-DD), if you said. */
+  finishedOn?: string;
+  /** Your own rating, 1 to 5 stars. Not the Man Book Club score (that is `rating`). */
+  myRating?: number;
   /** Only Man Book Club rows have a score (out of 10). Never invented. */
   rating?: number;
   coverUrl?: string;
@@ -98,6 +102,20 @@ export interface BookNote {
   body: string;
   createdAt: string;
   updatedAt: string;
+}
+
+/** What the Already Read import changes on one book. Anything left out is left as it was. */
+export interface ReadRow {
+  id: string;
+  myRating?: number;
+  finishedOn?: string;
+  /** True to heart it; never used to un-heart. */
+  favorite?: boolean;
+  /** A private note to add (once), with the id it will have. */
+  note?: string;
+  noteId?: string;
+  /** Bring the book back if it was removed. */
+  restore?: boolean;
 }
 
 export interface NewBookInput {

@@ -32,6 +32,7 @@ function BrowseView() {
   const [myList, setMyList] = useState(params.get("list") ?? "");
   const [status, setStatus] = useState<ReadingStatus | "">("");
   const [favoritesOnly, setFavoritesOnly] = useState(false);
+  const [hideRead, setHideRead] = useState(false);
 
   const genres = useMemo(() => facetCounts(books, "genres"), [books]);
   const moods = useMemo(
@@ -41,23 +42,26 @@ function BrowseView() {
   const sources = useMemo(() => listCounts(books), [books]);
 
   const results = useMemo(() => {
-    const found = filterBooks(books, {
+    const found = filterBooks(
+      hideRead ? books.filter((b) => b.status !== "read") : books,
+      {
       query,
       source: source || undefined,
       genre: genre || undefined,
       mood: mood || undefined,
       status: status || undefined,
       favoritesOnly,
-    });
+      },
+    );
     // One of your own lists: only its books, and in the list's own order.
     if (myList) {
       const ids = new Set(found.map((b) => b.id));
       return booksInList(books, listItems, myList).filter((b) => ids.has(b.id));
     }
     return sortBooks(found, "title");
-  }, [books, listItems, query, source, genre, mood, status, favoritesOnly, myList]);
+  }, [books, listItems, query, source, genre, mood, status, favoritesOnly, myList, hideRead]);
 
-  const anyFilter = Boolean(query || source || genre || mood || status || favoritesOnly || myList);
+  const anyFilter = Boolean(query || source || genre || mood || status || favoritesOnly || myList || hideRead);
 
   function clear() {
     setQuery("");
@@ -67,6 +71,7 @@ function BrowseView() {
     setMyList("");
     setStatus("");
     setFavoritesOnly(false);
+    setHideRead(false);
   }
 
   return (
@@ -143,6 +148,19 @@ function BrowseView() {
                 </option>
               ))}
             </select>
+          </div>
+          <div className="field">
+            <label htmlFor="f-hide">Read books</label>
+            <button
+              id="f-hide"
+              type="button"
+              className={`chip${hideRead ? " is-on" : ""}`}
+              style={{ minHeight: 44 }}
+              aria-pressed={hideRead}
+              onClick={() => setHideRead(!hideRead)}
+            >
+              {hideRead ? "Hiding read" : "Showing read"}
+            </button>
           </div>
           <div className="field">
             <label htmlFor="f-fav">Favorites</label>

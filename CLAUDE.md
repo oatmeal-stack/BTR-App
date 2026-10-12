@@ -35,6 +35,17 @@ voting tool). Keep them separate.
   without article + author last name) in `removed_keys`, and `seed.sql` skips any row whose key is there, so a
   re-import can't bring it back even under a different spelling. Adding a removed title again finds the old row
   (it stays removed) and the Add screen offers Restore. Restoring clears the key.
+- **Read**: `status = 'read'` plus `finished_on` (date) and `my_rating` (1-5; NOT the Man Book Club `rating`),
+  both kept when you un-mark it. Book page: "Mark as read" toggle + a "Your reading" card (date, stars, notes
+  stay in the normal private notes). Cover tiles get a Read badge; Browse has "Hide read"; random picks (Home,
+  a list's "Pick one for me") skip read books unless Profile > "Include books I've read" (per-device, `prefs.ts`).
+- **Books I've read import** (`/read-import`, reachable from Library and from a Draft): paste lines like
+  "Title by Author – loved - a favorite of all time". `readImport.ts` parses them (your verdict -> stars via
+  `VERDICT_STARS`, the full phrase -> a private note, "favorite of all time" -> heart) and matches each line to the
+  archive. Confident matches are ready; doubtful ones (and any series line, which has no single book) are NEVER
+  decided for you; unmatched lines are added as new books (source "Already read", cover + pages looked up when an
+  author is known, never an Open Library year). A removed book that matches is restored. Applied in one
+  `mark_read_bulk` call. Starter list text lives in `data/private/` (gitignored: never commit reading history).
 - **My lists** (`my_lists`, `my_list_books`) are private (readable only through `list_my_data(token)`), unlike the
   public source tags in `book_sources`. A book can be on many lists; deleting a list deletes only the list and its
   memberships, never a book. Memberships survive a book's removal (the app just hides removed books), so

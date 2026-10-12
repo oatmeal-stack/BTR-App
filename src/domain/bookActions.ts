@@ -4,6 +4,7 @@ import {
   type Book,
   type BookEdit,
   type BookNote,
+  type ReadRow,
   type NewBookInput,
   type ReadingStatus,
   type SourceTag,
@@ -242,6 +243,54 @@ export function bookFacts(b: Pick<Book, "year" | "pageCount">): string {
   if (b.year) parts.push(`Published ${b.year}`);
   if (b.pageCount) parts.push(`${b.pageCount.toLocaleString("en-US")} pages`);
   return parts.join(" · ");
+}
+
+/** Your finish date and rating for a book. A blank clears it. */
+export function setReadDetails(
+  books: Book[],
+  id: string,
+  details: { finishedOn?: string; myRating?: number },
+  now: string,
+): Book[] {
+  const stars = details.myRating !== undefined && details.myRating >= 1 && details.myRating <= 5 ? Math.round(details.myRating) : undefined;
+  const day = details.finishedOn && /^\d{4}-\d{2}-\d{2}$/.test(details.finishedOn) ? details.finishedOn : undefined;
+  return books.map((b) => (b.id === id ? { ...b, finishedOn: day, myRating: stars, updatedAt: now } : b));
+}
+
+/**
+ * Marks many books read at once. Only what a row gives is changed (a missing rating or date leaves the old
+ * one), a favorite is only ever added, a removed book comes back when asked, and a note is added once.
+ */
+export function markManyRead(
+  books: Book[],
+  notes: BookNote[],
+  rows: ReadRow[],
+  now: string,
+): { books: Book[]; notes: BookNote[] } {
+  const byId = new Map(rows.map((r) => [r.id, r]));
+  let nextNotes = notes;
+  for (const r of rows) {
+    const text = r.note?.trim();
+    if (text && r.noteId && !nextNotes.some((n) => n.id === r.noteId || (n.bookId === r.id && n.body === text))) {
+      nextNotes = addNote(nextNotes, r.id, text, now, r.noteId);
+    }
+  }
+  const nextBooks = books.map((b) => {
+    const r = byId.get(b.id);
+    if (!r) return b;
+    const { removedAt, ...rest } = b;
+    const keepRemoved = removedAt && !r.restore ? { removedAt } : {};
+    return {
+      ...rest,
+      ...keepRemoved,
+      status: "read" as const,
+      myRating: r.myRating ?? b.myRating,
+      finishedOn: r.finishedOn ?? b.finishedOn,
+      favorite: r.favorite ? true : b.favorite,
+      updatedAt: now,
+    };
+  });
+  return { books: nextBooks, notes: nextNotes };
 }
 
 export function addNote(

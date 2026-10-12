@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ExternalLink, Heart, Pencil, Trash2, Undo2 } from "lucide-react";
+import { ArrowLeft, CircleCheck, ExternalLink, Heart, Pencil, Star, Trash2, Undo2 } from "lucide-react";
 import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
 import { amazonSearchUrl, bookFacts } from "@/domain/bookActions";
 import { useLibrary } from "@/hooks/useLibrary";
@@ -23,7 +23,7 @@ export default function BookPage() {
 
 function BookView() {
   const id = useSearchParams().get("id");
-  const { findBook, ready, setStatus, toggleFavorite, removeBook, restoreBook } = useLibrary();
+  const { findBook, ready, setStatus, setReadDetails, toggleFavorite, removeBook, restoreBook } = useLibrary();
   const router = useRouter();
   const book = id ? findBook(id) : undefined;
 
@@ -144,6 +144,14 @@ function BookView() {
         >
           <Heart size={18} aria-hidden="true" /> {book.favorite ? "Favorited" : "Favorite"}
         </button>
+        <button
+          type="button"
+          className={`btn${book.status === "read" ? " btn--primary" : ""}`}
+          aria-pressed={book.status === "read"}
+          onClick={() => void setStatus(book.id, book.status === "read" ? "want_to_read" : "read")}
+        >
+          <CircleCheck size={18} aria-hidden="true" /> Mark as read
+        </button>
         <a className="btn" href={amazonSearchUrl(book)} target="_blank" rel="noopener noreferrer">
           <ExternalLink size={18} aria-hidden="true" /> Find on Amazon
         </a>
@@ -154,6 +162,44 @@ function BookView() {
           <Trash2 size={18} aria-hidden="true" /> Remove this book
         </button>
       </div>
+
+      {book.status === "read" ? (
+        <section aria-labelledby="reading-h" className="card stack" style={{ gap: 12 }}>
+          <h2 id="reading-h" style={{ fontSize: 18 }}>
+            Your reading
+          </h2>
+          <div className="field">
+            <label htmlFor="finished-on">Date finished (optional)</label>
+            <input
+              id="finished-on"
+              type="date"
+              className="input"
+              value={book.finishedOn ?? ""}
+              onChange={(e) => void setReadDetails(book.id, { finishedOn: e.target.value || undefined, myRating: book.myRating })}
+            />
+          </div>
+          <div role="group" aria-label="Your rating" className="stars">
+            <span className="muted" style={{ fontSize: 14, marginRight: 6 }}>
+              Your rating
+            </span>
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button
+                key={n}
+                type="button"
+                className={`star${(book.myRating ?? 0) >= n ? " is-on" : ""}`}
+                aria-label={`${n} ${n === 1 ? "star" : "stars"}`}
+                aria-pressed={book.myRating === n}
+                onClick={() => void setReadDetails(book.id, { finishedOn: book.finishedOn, myRating: book.myRating === n ? undefined : n })}
+              >
+                <Star size={26} aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+          <p className="muted" style={{ fontSize: 13 }}>
+            Add a short note below. Notes are private.
+          </p>
+        </section>
+      ) : null}
 
       <AddToList bookId={book.id} />
 

@@ -293,3 +293,18 @@ ul { list-style: none; margin: 0; padding: 0; }
   border-radius: var(--radius-card) var(--radius-card) 0 0; border: 1px solid var(--color-border);
   padding: 16px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 12px;
 }
+
+/* ---------- read badge + rating stars ---------- */
+.tile__read {
+  position: absolute; top: 6px; left: 6px; width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--color-primary); color: var(--color-on-primary); border-radius: 50%;
+}
+.stars { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.star {
+  min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  background: transparent; border: 0; border-radius: var(--radius-control); color: var(--color-text-muted); cursor: pointer;
+}
+.star.is-on { color: var(--color-primary); }
+.star.is-on svg { fill: currentColor; }
+.star:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }

@@ -46,6 +46,12 @@ alter table books add column if not exists removed_at timestamptz;
 -- Page count (the year first published is the existing `year` column).
 alter table books add column if not exists page_count int check (page_count is null or page_count > 0);
 
+-- When you finished a book and what you thought of it (1 to 5 stars). Both optional; kept even if the book
+-- is moved off "Read", so toggling it back doesn't lose them. Not the same as `rating`, which is the Man Book
+-- Club score.
+alter table books add column if not exists finished_on date;
+alter table books add column if not exists my_rating int check (my_rating is null or my_rating between 1 and 5);
+
 create table if not exists removed_keys (
   key text primary key,
   book_id text,
@@ -309,6 +315,54 @@ begin
   if p_key is not null then
     insert into removed_keys (key, book_id) values (p_key, p_drop) on conflict (key) do nothing;
   end if;
+end;
+$$;
+
+-- Your reading details for one book. A blank value clears the field.
+create or replace function set_read_details(p_code text, p_id text, p_finished_on date, p_my_rating int)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books set finished_on = p_finished_on, my_rating = p_my_rating, updated_at = now() where id = p_id;
+end;
+$$;
+
+-- Mark many books read at once (the "books I've read" import). Each row: id, my_rating, finished_on, favorite
+-- (true to heart it, otherwise left alone), note_id + note (a private note, added once), restore (bring back a
+-- book that was removed). Values you don't give are left as they were.
+create or replace function mark_read_bulk(p_code text, p_rows jsonb)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+declare
+  r record;
+begin
+  perform require_code(p_code);
+  for r in
+    select * from jsonb_to_recordset(p_rows)
+      as x(id text, my_rating int, finished_on date, favorite boolean, note_id text, note text, restore boolean)
+  loop
+    update books
+       set status = 'read',
+           my_rating = coalesce(r.my_rating, my_rating),
+           finished_on = coalesce(r.finished_on, finished_on),
+           favorite = coalesce(r.favorite, favorite),
+           removed_at = case when coalesce(r.restore, false) then null else removed_at end,
+           updated_at = now()
+     where id = r.id;
+    if coalesce(r.restore, false) then
+      delete from removed_keys where book_id = r.id;
+    end if;
+    if nullif(trim(coalesce(r.note, '')), '') is not null and r.note_id is not null then
+      insert into book_notes (id, book_id, body) values (r.note_id, r.id, trim(r.note)) on conflict (id) do nothing;
+    end if;
+  end loop;
 end;
 $$;
 

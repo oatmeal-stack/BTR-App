@@ -1,4 +1,4 @@
-import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus } from "@/domain/book";
+import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus, ReadRow } from "@/domain/book";
 import * as lists from "@/domain/listActions";
 import * as actions from "@/domain/bookActions";
 import { SEED_BOOKS } from "@/data/seedBooks";
@@ -153,6 +153,18 @@ export class LocalBookRepository implements BookRepository {
 
   async setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void> {
     this.editMine((m) => ({ ...m, inbox: lists.setDraftStatus(m.inbox, id, status, bookId) }));
+  }
+
+  async setReadDetails(bookId: string, details: { finishedOn?: string; myRating?: number }): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = actions.setReadDetails(d.books, bookId, details, new Date().toISOString());
+    write(this.storage, d);
+  }
+
+  async markManyRead(rows: ReadRow[]): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    const out = actions.markManyRead(d.books, d.notes, rows, new Date().toISOString());
+    write(this.storage, { ...d, books: out.books, notes: out.notes });
   }
 
   async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {

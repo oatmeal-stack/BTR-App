@@ -70,6 +70,10 @@ export default function LibraryPage() {
           ))}
         </div>
 
+        <Link className="btn btn--small" href={ROUTES.readImport} style={{ alignSelf: "flex-start" }}>
+          Add books I&apos;ve read
+        </Link>
+
         <div className="field">
           <label htmlFor="sort">Sort by</label>
           <select id="sort" className="select" value={sort} onChange={(e) => setSort(e.target.value as BookSort)}>

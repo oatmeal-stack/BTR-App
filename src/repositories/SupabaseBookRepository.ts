@@ -7,6 +7,7 @@ import {
   type InboxStatus,
   type NewBookInput,
   type ReadingStatus,
+  type ReadRow,
 } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import { browserPasscodeStore, LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
@@ -36,6 +37,8 @@ interface BookRow {
   cover_url: string | null;
   removed_at: string | null;
   page_count: number | null;
+  finished_on: string | null;
+  my_rating: number | null;
   source_note: string | null;
   favorite: boolean;
   genres: string[] | null;
@@ -148,6 +151,8 @@ export class SupabaseBookRepository implements BookRepository {
       coverUrl: r.cover_url ?? undefined,
       removedAt: r.removed_at ?? undefined,
       pageCount: r.page_count ?? undefined,
+      finishedOn: r.finished_on ? r.finished_on.slice(0, 10) : undefined, // a date, however the service writes it
+      myRating: r.my_rating ?? undefined,
       sourceNote: r.source_note ?? undefined,
       favorite: r.favorite,
       genres: r.genres ?? [],
@@ -270,6 +275,24 @@ export class SupabaseBookRepository implements BookRepository {
 
   async setDraftStatus(id: string, status: InboxStatus, bookId?: string): Promise<void> {
     await this.call("set_inbox_status", { p_id: id, p_status: status, p_book_id: bookId ?? null });
+  }
+
+  async setReadDetails(bookId: string, details: { finishedOn?: string; myRating?: number }): Promise<void> {
+    await this.call("set_read_details", { p_id: bookId, p_finished_on: details.finishedOn ?? null, p_my_rating: details.myRating ?? null });
+  }
+
+  async markManyRead(rows: ReadRow[]): Promise<void> {
+    await this.call("mark_read_bulk", {
+      p_rows: rows.map((r) => ({
+        id: r.id,
+        my_rating: r.myRating ?? null,
+        finished_on: r.finishedOn ?? null,
+        favorite: r.favorite ?? null,
+        note_id: r.noteId ?? null,
+        note: r.note ?? null,
+        restore: r.restore ?? false,
+      })),
+    });
   }
 
   async removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void> {

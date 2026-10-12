@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import { CircleCheck, Heart } from "lucide-react";
 import type { Book } from "@/domain/book";
 import { ROUTES } from "@/routes";
 import { BookCover } from "./BookCover";
@@ -10,6 +10,11 @@ export function BookCard({ book }: { book: Book }) {
     <Link className="tile" href={ROUTES.book(book.id)}>
       <span className="tile__cover">
         <BookCover book={book} decorative />
+        {book.status === "read" ? (
+          <span className="tile__read" role="img" aria-label="Read">
+            <CircleCheck size={14} aria-hidden="true" />
+          </span>
+        ) : null}
         {book.favorite ? (
           <span className="tile__fav" role="img" aria-label="Favorite">
             <Heart size={14} aria-hidden="true" />

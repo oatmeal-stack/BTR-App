@@ -374,3 +374,37 @@ describe("your lists and drafts (shared library, private)", () => {
     expect((await repo.listBooks()).find((b) => b.id === dune)).toBeTruthy();
   });
 });
+
+describe("what you've read (shared library)", () => {
+  const dune = "bk-dune-herbert";
+  const road = "bk-road-mccarthy";
+
+  it("refuses while locked", async () => {
+    const repo = new SupabaseBookRepository(makeDb(), memoryStore());
+    await expect(repo.setReadDetails(dune, { myRating: 5 })).rejects.toBeInstanceOf(PasscodeRequiredError);
+    await expect(repo.markManyRead([{ id: dune }])).rejects.toBeInstanceOf(PasscodeRequiredError);
+  });
+
+  it("saves a date and a rating that another device sees", async () => {
+    const repo = await unlockedRepo();
+    await repo.setStatus(dune, "read");
+    await repo.setReadDetails(dune, { finishedOn: "2024-05-17", myRating: 4 });
+    const seen = (await (await unlockedRepo()).listBooks()).find((b) => b.id === dune)!;
+    expect(seen).toMatchObject({ status: "read", finishedOn: "2024-05-17", myRating: 4 });
+    await repo.setReadDetails(dune, {});
+    expect((await repo.listBooks()).find((b) => b.id === dune)).toMatchObject({ finishedOn: undefined, myRating: undefined });
+  });
+
+  it("marks many books read at once with ratings, favorites and notes", async () => {
+    const repo = await unlockedRepo();
+    await repo.markManyRead([
+      { id: dune, myRating: 5, favorite: true, note: "loved - a favorite of all time", noteId: "note-import-1" },
+      { id: road, myRating: 3, note: "ok", noteId: "note-import-2" },
+    ]);
+    const books = await (await unlockedRepo()).listBooks();
+    expect(books.find((b) => b.id === dune)).toMatchObject({ status: "read", myRating: 5, favorite: true });
+    expect(books.find((b) => b.id === road)).toMatchObject({ status: "read", myRating: 3, favorite: false });
+    const notes = await (await unlockedRepo()).listNotes();
+    expect(notes.filter((n) => n.bookId === dune).map((n) => n.body)).toContain("loved - a favorite of all time");
+  });
+});

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { normalizeText } from "@/domain/bookActions";
 import { useLibrary } from "@/hooks/useLibrary";
+import { useIncludeRead } from "@/lib/prefs";
 import { ROUTES } from "@/routes";
 import { EmptyState } from "@/components/shared/EmptyState";
 import { ScenicBanner } from "@/components/shared/ScenicBanner";
@@ -17,6 +18,7 @@ const when = (iso: string) =>
 export default function ProfilePage() {
   const { books, notes: allNotes, removedBooks, ready } = useLibrary();
   const [query, setQuery] = useState("");
+  const [includeRead, setIncludeRead] = useIncludeRead();
 
   // Notes on a removed book come back with it, but aren't listed while it's removed.
   const notes = useMemo(() => {
@@ -48,6 +50,21 @@ export default function ProfilePage() {
             Changes colors, fonts and pictures only. Your books and notes stay exactly as they are.
           </p>
           <SkinSelector />
+        </section>
+
+        <section aria-labelledby="picks-h" className="stack" style={{ padding: 0 }}>
+          <h2 id="picks-h" style={{ fontSize: 18 }}>
+            Random picks
+          </h2>
+          <label className="card" style={{ display: "flex", gap: 12, alignItems: "center", cursor: "pointer" }}>
+            <input type="checkbox" checked={includeRead} onChange={(e) => setIncludeRead(e.target.checked)} style={{ width: 22, height: 22 }} />
+            <span>
+              Include books I&apos;ve read
+              <span className="muted" style={{ display: "block", fontSize: 14 }}>
+                Off: the book on the home screen and &ldquo;Pick one for me&rdquo; skip anything you&apos;ve read.
+              </span>
+            </span>
+          </label>
         </section>
 
         <section aria-labelledby="notes-h" className="stack" style={{ padding: 0 }}>

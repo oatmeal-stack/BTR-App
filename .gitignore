@@ -46,3 +46,6 @@ data/raw/nyt-thrillers-comments.txt
 
 # Local tool settings
 .claude/
+
+# Personal data that must never be committed (your reading history, starter lists)
+data/private/

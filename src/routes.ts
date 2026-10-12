@@ -8,6 +8,7 @@ export const ROUTES = {
   add: "/add",
   removed: "/removed",
   drafts: "/drafts",
+  readImport: "/read-import",
   myList: (id: string) => `/mylist?id=${encodeURIComponent(id)}`,
   edit: (id: string) => `/edit?id=${encodeURIComponent(id)}`,
   book: (id: string) => `/book?id=${encodeURIComponent(id)}`,
