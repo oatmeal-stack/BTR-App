@@ -45,7 +45,8 @@ voting tool). Keep them separate.
   archive. Confident matches are ready; doubtful ones (and any series line, which has no single book) are NEVER
   decided for you; unmatched lines are added as new books (source "Already read", cover + pages looked up when an
   author is known, never an Open Library year). A removed book that matches is restored. Applied in one
-  `mark_read_bulk` call. Starter list text lives in `data/private/` (gitignored: never commit reading history).
+  `mark_read_bulk` call, and can put every imported book on a new or existing list (`add_many_to_list`, in pasted
+  order). The owner's 54-book starter list was imported this way into the list "Books previously read". Starter list text lives in `data/private/` (gitignored: never commit reading history).
 - **My lists** (`my_lists`, `my_list_books`) are private (readable only through `list_my_data(token)`), unlike the
   public source tags in `book_sources`. A book can be on many lists; deleting a list deletes only the list and its
   memberships, never a book. Memberships survive a book's removal (the app just hides removed books), so
