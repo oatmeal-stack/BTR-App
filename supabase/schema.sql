@@ -49,6 +49,10 @@ alter table books add column if not exists page_count int check (page_count is n
 -- When you finished a book and what you thought of it (1 to 5 stars). Both optional; kept even if the book
 -- is moved off "Read", so toggling it back doesn't lose them. Not the same as `rating`, which is the Man Book
 -- Club score.
+-- Amazon's product id (the ten-character code in a /dp/ link; for most books it is the ISBN-10), so a book can
+-- link straight to its Amazon page. Never an affiliate tag.
+alter table books add column if not exists asin text;
+
 alter table books add column if not exists finished_on date;
 alter table books add column if not exists my_rating int check (my_rating is null or my_rating between 1 and 5);
 
@@ -363,6 +367,25 @@ begin
       insert into book_notes (id, book_id, body) values (r.note_id, r.id, trim(r.note)) on conflict (id) do nothing;
     end if;
   end loop;
+end;
+$$;
+
+-- Fill in details a book is missing (from an Amazon link, say). Only blanks are filled: a page count, cover or
+-- Amazon id already there is never replaced.
+create or replace function fill_book_details(p_code text, p_id text, p_page_count int, p_cover_url text, p_asin text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books
+     set page_count = coalesce(page_count, p_page_count),
+         cover_url = coalesce(cover_url, nullif(trim(p_cover_url), '')),
+         asin = coalesce(asin, nullif(upper(trim(p_asin)), '')),
+         updated_at = now()
+   where id = p_id;
 end;
 $$;
 

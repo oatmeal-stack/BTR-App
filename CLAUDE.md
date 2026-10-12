@@ -57,6 +57,15 @@ voting tool). Keep them separate.
   function to delete or rewrite one: only the status changes (new / added / dismissed), so the original text is
   never lost. "Make it a book" opens Add with a guessed title and author (`guessBookFromNote`) for you to correct.
   The mic uses the browser's speech recognition and is simply not shown where unsupported.
+- **Add from an Amazon link** (Add screen): paste a product link, an `a.co` share link, an ISBN, or a Kindle id and
+  the title (short form, `shortTitle`), author, pages and cover fill the form for you to check; nothing saves until
+  Add. A browser can't read Amazon pages or follow `a.co` redirects, so the edge function `amazon-book`
+  (`supabase/functions/amazon-book`, deployed with verify_jwt OFF because it checks the owner's sign-in token itself via
+  `check_code`) does it: Amazon hosts only (every redirect hop checked), returns a few fields, never the page. If
+  Amazon blocks it, the client falls back to Open Library by ISBN (`api/books`) and then a strict title + author
+  search. Cover prefers Amazon's own image of that edition. The Amazon id (`books.asin`) makes a book's Amazon
+  button go straight to its page (still no affiliate tag). `fill_book_details` fills blanks only. Redeploy the
+  function after editing `parse.ts`/`index.ts` (the tests cover `parse.ts`; index.ts is Deno-only and excluded from tsc/eslint).
 - **Edit a book** (`/edit?id=`): one form replaces title, author, year, pages, cover, genres, moods, lists and the
   imported note together (`update_book`; ids never change). If the edit makes the book match another visible one
   (`findDuplicate`), it asks: merge (`merge_books`: lists, notes, tags and gaps move to the kept book, the other

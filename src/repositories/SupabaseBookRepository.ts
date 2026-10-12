@@ -10,6 +10,7 @@ import {
   type ReadRow,
 } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
+import type { AmazonFunctionResult } from "@/lib/amazon";
 import { browserPasscodeStore, LockedOutError, PasscodeRequiredError, type PasscodeStore } from "@/lib/passcode";
 import type { BookRepository, MyData } from "./BookRepository";
 
@@ -25,6 +26,8 @@ export interface Db {
     };
   };
   rpc(fn: string, args: Record<string, unknown>): PromiseLike<{ data: unknown; error: DbError | null }>;
+  /** Calls a server-side function (the Amazon link reader). Missing in tests that don't need it. */
+  invoke?(fn: string, body: unknown): PromiseLike<{ data: unknown; error: DbError | null }>;
 }
 
 interface BookRow {
@@ -37,6 +40,7 @@ interface BookRow {
   cover_url: string | null;
   removed_at: string | null;
   page_count: number | null;
+  asin: string | null;
   finished_on: string | null;
   my_rating: number | null;
   source_note: string | null;
@@ -151,6 +155,7 @@ export class SupabaseBookRepository implements BookRepository {
       coverUrl: r.cover_url ?? undefined,
       removedAt: r.removed_at ?? undefined,
       pageCount: r.page_count ?? undefined,
+      asin: r.asin ?? undefined,
       finishedOn: r.finished_on ? r.finished_on.slice(0, 10) : undefined, // a date, however the service writes it
       myRating: r.my_rating ?? undefined,
       sourceNote: r.source_note ?? undefined,
@@ -221,6 +226,14 @@ export class SupabaseBookRepository implements BookRepository {
       p_drop: drop.id,
       p_key: actions.importKey(drop.title, drop.author),
     });
+  }
+
+  async readAmazonLink(url: string): Promise<AmazonFunctionResult | null> {
+    const token = this.passcode.get();
+    if (!token || !this.db.invoke) return null;
+    const { data, error } = await this.db.invoke("amazon-book", { token, url });
+    if (error || !data || typeof data !== "object") return null;
+    return data as AmazonFunctionResult;
   }
 
   async listMyData(): Promise<MyData> {
@@ -342,6 +355,15 @@ export class SupabaseBookRepository implements BookRepository {
     } else {
       const own = input.sources?.length ? input.sources : [result.book.sources[0]];
       for (const s of own) await this.merge(result.book.id, s.source, s.rank, input.note);
+    }
+    // Pages, a cover or the Amazon id from a link: only blanks are filled, whether the book is new or not.
+    if (input.pageCount || input.coverUrl || input.asin) {
+      await this.call("fill_book_details", {
+        p_id: result.book.id,
+        p_page_count: input.pageCount ?? null,
+        p_cover_url: input.coverUrl ?? null,
+        p_asin: input.asin ?? null,
+      });
     }
     return { book: result.book, created: result.created };
   }

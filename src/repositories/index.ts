@@ -15,12 +15,15 @@ export function getRepository(): BookRepository {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
     const forceLocal = process.env.NEXT_PUBLIC_STORAGE === "local";
-    instance =
-      url && key && !forceLocal
-        ? new SupabaseBookRepository(
-            createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } }) as unknown as Db,
-          )
-        : new LocalBookRepository();
+    if (url && key && !forceLocal) {
+      const client = createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } });
+      const db = client as unknown as Db;
+      // The Amazon link reader is a server-side function: the browser can't read Amazon pages itself.
+      db.invoke = (fn, body) => client.functions.invoke(fn, { body: body as Record<string, unknown> });
+      instance = new SupabaseBookRepository(db);
+    } else {
+      instance = new LocalBookRepository();
+    }
   }
   return instance;
 }

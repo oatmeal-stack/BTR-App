@@ -14,6 +14,7 @@ import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList
 import * as actions from "@/domain/bookActions";
 import * as listActions from "@/domain/listActions";
 import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
+import { readAmazonLink, type AmazonResult } from "@/lib/amazon";
 import { useIncludeRead } from "@/lib/prefs";
 import { getRepository } from "@/repositories";
 import type { BookRepository } from "@/repositories/BookRepository";
@@ -60,6 +61,8 @@ interface LibraryApi {
   setReadDetails: (id: string, details: { finishedOn?: string; myRating?: number }) => Promise<boolean>;
   /** Marks many books read at once, with ratings, favorites and notes. */
   markManyRead: (rows: ReadRow[]) => Promise<boolean>;
+  /** Reads an Amazon link (or ISBN) for its title, author, pages and cover. Suggestions only; nothing is saved. */
+  lookupAmazon: (text: string) => Promise<AmazonResult>;
   removeBook: (id: string) => Promise<boolean>;
   restoreBook: (id: string) => Promise<boolean>;
   undoRemove: () => Promise<void>;
@@ -398,6 +401,11 @@ export function LibraryProvider({
     [optimistic, repo],
   );
 
+  const lookupAmazon = useCallback(
+    (text: string) => readAmazonLink(text, { ask: repo.readAmazonLink ? (url) => repo.readAmazonLink!(url) : undefined }),
+    [repo],
+  );
+
   const removeBook = useCallback(
     async (id: string) => {
       const book = data.current.books.find((b) => b.id === id);
@@ -487,6 +495,7 @@ export function LibraryProvider({
       removeBook,
       restoreBook,
       undoRemove,
+      lookupAmazon,
       setReadDetails,
       markManyRead,
       lists,
@@ -522,7 +531,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, addManyToList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, lookupAmazon, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, addManyToList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

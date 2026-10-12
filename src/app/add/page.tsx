@@ -8,6 +8,7 @@ import type { Book } from "@/domain/book";
 import { guessBookFromNote } from "@/domain/listActions";
 import { useLibrary } from "@/hooks/useLibrary";
 import { ROUTES } from "@/routes";
+import { BookCover } from "@/components/books/BookCover";
 import { ScenicBanner } from "@/components/shared/ScenicBanner";
 
 export default function AddPage() {
@@ -20,7 +21,7 @@ export default function AddPage() {
 
 function AddView() {
   const draftId = useSearchParams().get("draft");
-  const { addBook, restoreBook, requiresPasscode, unlocked, ready, lists, addToList, drafts, setDraftStatus } = useLibrary();
+  const { addBook, restoreBook, requiresPasscode, unlocked, ready, lists, addToList, drafts, setDraftStatus, lookupAmazon } = useLibrary();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [note, setNote] = useState("");
@@ -29,6 +30,43 @@ function AddView() {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState<{ book: Book; created: boolean } | null>(null);
   const [restored, setRestored] = useState(false);
+
+  // From an Amazon link: what was found fills the form for you to check; nothing is saved until Add.
+  const [link, setLink] = useState("");
+  const [looking, setLooking] = useState(false);
+  const [amazonMsg, setAmazonMsg] = useState("");
+  const [pages, setPages] = useState("");
+  const [cover, setCover] = useState("");
+  const [asin, setAsin] = useState("");
+  const [fullTitle, setFullTitle] = useState("");
+
+  async function fromAmazon() {
+    if (!link.trim()) return;
+    setLooking(true);
+    setAmazonMsg("");
+    const r = await lookupAmazon(link);
+    setLooking(false);
+    if (!r.ok) {
+      setAmazonMsg(
+        r.reason === "short-needs-signin"
+          ? "Short Amazon share links need your passcode (Profile). Or paste the full link, or the ISBN."
+          : r.reason === "not-found"
+            ? "I couldn't find that book from the link. You can type the title instead."
+            : "I couldn't read that. Paste an Amazon book link or an ISBN.",
+      );
+      return;
+    }
+    const b = r.book;
+    setTitle(b.title);
+    setAuthor(b.author ?? "");
+    setPages(b.pages ? String(b.pages) : "");
+    setCover(b.coverUrl ?? "");
+    setAsin(b.asin ?? "");
+    setFullTitle(b.fullTitle ?? "");
+    setError("");
+    const found = [b.pages ? `${b.pages} pages` : null, b.coverUrl ? "a cover" : null].filter(Boolean);
+    setAmazonMsg(`Found ${b.title}${b.author ? ` by ${b.author}` : ""}${found.length ? ` (${found.join(", ")})` : ""}. Check it, then Add.`);
+  }
 
   // Coming from a draft: its text stays visible, and a title and author are guessed for you to correct.
   const draft = draftId ? drafts.find((d) => d.id === draftId) : undefined;
@@ -51,7 +89,15 @@ function AddView() {
     }
     setError("");
     setBusy(true);
-    const result = await addBook({ title, author, note });
+    const pageNumber = Number(pages.trim());
+    const result = await addBook({
+      title,
+      author,
+      note,
+      pageCount: pages.trim() && Number.isInteger(pageNumber) && pageNumber > 0 ? pageNumber : undefined,
+      coverUrl: cover.trim() || undefined,
+      asin: asin || undefined,
+    });
     if (result) {
       for (const listId of chosen) await addToList(listId, result.book.id);
       if (draft && !result.book.removedAt) await setDraftStatus(draft.id, "added", result.book.id);
@@ -64,6 +110,12 @@ function AddView() {
     setAuthor("");
     setNote("");
     setChosen([]);
+    setLink("");
+    setPages("");
+    setCover("");
+    setAsin("");
+    setFullTitle("");
+    setAmazonMsg("");
   }
 
   return (
@@ -89,6 +141,37 @@ function AddView() {
           </section>
         ) : null}
 
+        <section className="card stack" style={{ gap: 10 }} aria-labelledby="amazon-h">
+          <h2 id="amazon-h" style={{ fontSize: 18 }}>
+            From an Amazon link
+          </h2>
+          <p className="muted" style={{ fontSize: 14 }}>
+            Paste a link from Amazon (the Share button works), or an ISBN, and the title, author, pages and cover fill in below.
+          </p>
+          <div style={{ display: "flex", gap: 8 }}>
+            <input
+              aria-label="Amazon link"
+              className="input"
+              value={link}
+              autoComplete="off"
+              inputMode="url"
+              placeholder="https://a.co/d/… or amazon.com/dp/…"
+              onChange={(e) => {
+                setLink(e.target.value);
+                setAmazonMsg("");
+              }}
+            />
+            <button type="button" className="btn" style={{ whiteSpace: "nowrap", flexShrink: 0 }} disabled={looking || !link.trim()} onClick={() => void fromAmazon()}>
+              {looking ? "Reading…" : "Fill in"}
+            </button>
+          </div>
+          {amazonMsg ? (
+            <p className="muted" role="status" style={{ fontSize: 14 }}>
+              {amazonMsg}
+            </p>
+          ) : null}
+        </section>
+
         <form className="stack" style={{ padding: 0 }} onSubmit={submit} noValidate>
           <div className="field">
             <label htmlFor="add-title">Title</label>
@@ -106,6 +189,25 @@ function AddView() {
           <div className="field">
             <label htmlFor="add-author">Author (optional)</label>
             <input id="add-author" className="input" value={author} autoComplete="off" onChange={(e) => setAuthor(e.target.value)} />
+          </div>
+          {fullTitle ? (
+            <p className="muted" style={{ fontSize: 14 }}>
+              Amazon calls it &ldquo;{fullTitle}&rdquo;.{" "}
+              <button type="button" className="btn btn--small" onClick={() => setTitle(fullTitle)}>
+                Use the full title
+              </button>
+            </p>
+          ) : null}
+          <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+            <div className="field" style={{ flex: 1 }}>
+              <label htmlFor="add-pages">Pages (optional)</label>
+              <input id="add-pages" className="input" inputMode="numeric" value={pages} autoComplete="off" onChange={(e) => setPages(e.target.value)} />
+            </div>
+            {cover ? (
+              <div style={{ width: 64, flexShrink: 0 }} aria-label="Cover found">
+                <BookCover book={{ title: title || "Cover", coverUrl: cover }} decorative />
+              </div>
+            ) : null}
           </div>
           <div className="field">
             <label htmlFor="add-note">Note (optional)</label>

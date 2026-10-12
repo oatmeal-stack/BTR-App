@@ -27,6 +27,8 @@ export interface Book {
   year?: number;
   pageCount?: number;
   status: ReadingStatus;
+  /** Amazon's product id, when the book was added from an Amazon link. Lets the Amazon button go straight to the book. */
+  asin?: string;
   /** When you finished it (YYYY-MM-DD), if you said. */
   finishedOn?: string;
   /** Your own rating, 1 to 5 stars. Not the Man Book Club score (that is `rating`). */
@@ -122,6 +124,9 @@ export interface NewBookInput {
   title: string;
   author?: string;
   year?: number;
+  pageCount?: number;
+  coverUrl?: string;
+  asin?: string;
   note?: string;
   sources?: SourceTag[];
 }

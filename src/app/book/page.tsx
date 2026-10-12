@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, CircleCheck, ExternalLink, Heart, Pencil, Star, Trash2, Undo2 } from "lucide-react";
 import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
-import { amazonSearchUrl, bookFacts } from "@/domain/bookActions";
+import { amazonUrl, bookFacts } from "@/domain/bookActions";
 import { useLibrary } from "@/hooks/useLibrary";
 import { ROUTES } from "@/routes";
 import { BookCover } from "@/components/books/BookCover";
@@ -152,7 +152,7 @@ function BookView() {
         >
           <CircleCheck size={18} aria-hidden="true" /> Mark as read
         </button>
-        <a className="btn" href={amazonSearchUrl(book)} target="_blank" rel="noopener noreferrer">
+        <a className="btn" href={amazonUrl(book)} target="_blank" rel="noopener noreferrer">
           <ExternalLink size={18} aria-hidden="true" /> Find on Amazon
         </a>
         <Link className="btn" href={ROUTES.edit(book.id)}>

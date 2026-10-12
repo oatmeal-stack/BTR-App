@@ -41,6 +41,12 @@ export interface BookRepository {
   listNotes(): Promise<BookNote[]>;
   setStatus(bookId: string, status: ReadingStatus): Promise<void>;
   setFavorite(bookId: string, favorite: boolean): Promise<void>;
+  /**
+   * Asks the server-side helper to read an Amazon link (it can follow short share links and read the page).
+   * Only the shared library has one, and only while signed in; elsewhere it's missing or returns null.
+   */
+  readAmazonLink?(url: string): Promise<import("@/lib/amazon").AmazonFunctionResult | null>;
+
   /** Your lists and drafts. Empty until signed in on a shared library. */
   listMyData(): Promise<MyData>;
   createList(list: { id: string; name: string }): Promise<void>;

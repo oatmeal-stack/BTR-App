@@ -54,6 +54,11 @@ export function importKey(title: string, author?: string): string {
   return `${normalizeTitle(title)}|${author ? lastName(author) : ""}`;
 }
 
+/** The book's own Amazon page when its id is known, otherwise a plain search. Never an affiliate link. */
+export function amazonUrl(book: { title: string; author?: string; asin?: string }): string {
+  return book.asin ? `https://www.amazon.com/dp/${encodeURIComponent(book.asin)}` : amazonSearchUrl(book);
+}
+
 export function amazonSearchUrl(book: { title: string; author?: string }): string {
   const q = [book.title, book.author].filter(Boolean).join(" ");
   return `https://www.amazon.com/s?k=${encodeURIComponent(q).replace(/%20/g, "+")}`;
@@ -92,10 +97,14 @@ export function addBookToLibrary(
       note && !existing.sourceNote?.includes(note)
         ? [existing.sourceNote, note].filter(Boolean).join(". ")
         : existing.sourceNote;
+    // A book you already have only gains what it was missing (a cover, pages, its Amazon id); nothing is replaced.
     const merged: Book = {
       ...existing,
       sources: mergeSources(existing.sources, input.sources ?? []),
       sourceNote,
+      pageCount: existing.pageCount ?? input.pageCount,
+      coverUrl: existing.coverUrl ?? input.coverUrl,
+      asin: existing.asin ?? input.asin,
       updatedAt: now,
     };
     return {
@@ -110,6 +119,9 @@ export function addBookToLibrary(
     title,
     author,
     year: input.year,
+    pageCount: input.pageCount,
+    coverUrl: input.coverUrl,
+    asin: input.asin,
     status: "want_to_read",
     sourceNote: note,
     favorite: false,

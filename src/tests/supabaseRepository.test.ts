@@ -420,3 +420,48 @@ describe("putting many books on a list at once (shared library)", () => {
     expect(items.map((i) => i.bookId)).toEqual(["bk-road-mccarthy", "bk-dune-herbert", "bk-frankenstein-shelley"]);
   });
 });
+
+describe("adding from an Amazon link (shared library)", () => {
+  it("saves the pages, cover and Amazon id with a new book", async () => {
+    const repo = await unlockedRepo();
+    const r = await repo.addBook({ title: "Pompeii", author: "Robert Harris", pageCount: 304, coverUrl: "https://m.media-amazon.com/images/I/61WHiS5vrRL.jpg", asin: "0812974611" });
+    expect(r.created).toBe(true);
+    const saved = (await (await unlockedRepo()).listBooks()).find((b) => b.id === r.book.id)!;
+    expect(saved).toMatchObject({ title: "Pompeii", pageCount: 304, asin: "0812974611", coverUrl: "https://m.media-amazon.com/images/I/61WHiS5vrRL.jpg" });
+  });
+
+  it("only fills blanks on a book you already have", async () => {
+    const repo = await unlockedRepo();
+    const before = (await repo.listBooks()).find((b) => b.id === "bk-dune-herbert")!;
+    const r = await repo.addBook({ title: "Dune", author: "Frank Herbert", pageCount: 999, coverUrl: "https://example.com/other.jpg", asin: "0441172717" });
+    expect(r.created).toBe(false);
+    const after = (await repo.listBooks()).find((b) => b.id === "bk-dune-herbert")!;
+    expect(after.coverUrl).toBe(before.coverUrl ?? "https://example.com/other.jpg");
+    expect(after.pageCount).toBe(before.pageCount ?? 999);
+    expect(after.asin).toBe(before.asin ?? "0441172717");
+  });
+
+  it("reads a link through the server-side helper, only while signed in", async () => {
+    const calls: unknown[] = [];
+    const withInvoke = (store: PasscodeStore) =>
+      new SupabaseBookRepository({ ...makeDb(), invoke: async (fn, body) => { calls.push([fn, body]); return { data: { asin: "0743273567", title: "The Great Gatsby", pages: 180 }, error: null }; } }, store);
+    expect(await withInvoke(memoryStore()).readAmazonLink("https://a.co/d/x")).toBeNull(); // not signed in: never asked
+    expect(calls).toEqual([]);
+
+    const signedIn = memoryStore();
+    const repo = withInvoke(signedIn);
+    await repo.unlock(CODE);
+    const token = signedIn.get()!;
+    expect(await repo.readAmazonLink("https://a.co/d/x")).toMatchObject({ title: "The Great Gatsby", pages: 180 });
+    expect(calls).toEqual([["amazon-book", { token, url: "https://a.co/d/x" }]]);
+  });
+
+  it("returns nothing when the helper is missing or fails", async () => {
+    const store = memoryStore();
+    const noHelper = new SupabaseBookRepository(makeDb(), store);
+    await noHelper.unlock(CODE);
+    expect(await noHelper.readAmazonLink("https://a.co/d/x")).toBeNull();
+    const failing = new SupabaseBookRepository({ ...makeDb(), invoke: async () => ({ data: null, error: { message: "boom" } }) }, store);
+    expect(await failing.readAmazonLink("https://a.co/d/x")).toBeNull();
+  });
+});
