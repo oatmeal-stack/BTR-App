@@ -356,7 +356,7 @@ describe("Quick note", () => {
   });
 
   it("gets out of the way on screens that have a form of their own", async () => {
-    for (const path of ["/add/", "/edit/", "/drafts/"]) {
+    for (const path of ["/add/", "/edit/", "/drafts/", "/read-import/"]) {
       nav.path = path;
       const view = renderApp(<div>page</div>);
       await screen.findByText("page");

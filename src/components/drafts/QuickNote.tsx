@@ -10,7 +10,7 @@ import { ROUTES } from "@/routes";
 import { DraftComposer } from "./DraftComposer";
 
 /** Screens with a form of their own, where a floating button would only get in the way. */
-const HIDE_ON = ["/add", "/edit", "/drafts"];
+const HIDE_ON = ["/add", "/edit", "/drafts", "/read-import"];
 
 /** A button that is always reachable and opens a one-box note. A count shows how many drafts are waiting. */
 export function QuickNote() {
