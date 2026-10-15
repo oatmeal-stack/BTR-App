@@ -1,6 +1,6 @@
 @AGENTS.md
 
-# Book Archive App
+# Bookshelf
 
 A personal, searchable library of "books worth reading" (586 books from five lists), browsed on
 phone and desktop. **Not related to the `bookclubapp` repo** (a different app: a monthly
@@ -18,7 +18,7 @@ voting tool). Keep them separate.
   `data/tags.psv` genres, moods and full author names (made by Claude, reviewable).
   `scripts/build-seed.ts` merges them into `src/data/seedBooks.json` and `supabase/seed.sql`.
   Do not hand-edit the generated files. Run `npx tsx scripts/build-seed.ts` after changing data.
-- `supabase/schema.sql` + `set_passcode.sql` + `seed.sql`: run in that order in the SQL editor.
+- `supabase/schema.sql` + `set_passcode.sql` + `seed.sql` (+ optionally `currently_reading.sql`): run in that order in the SQL editor.
 
 ## Rules that were settled (don't re-litigate)
 
@@ -57,6 +57,30 @@ voting tool). Keep them separate.
   function to delete or rewrite one: only the status changes (new / added / dismissed), so the original text is
   never lost. "Make it a book" opens Add with a guessed title and author (`guessBookFromNote`) for you to correct.
   The mic uses the browser's speech recognition and is simply not shown where unsupported.
+- **The app is named Bookshelf** (page title, package, docs). The repo and live address stay `BTR-App` (renaming
+  would move the site) and the internal `book-archive:*` localStorage keys are deliberately unchanged (renaming
+  would sign every device out and drop its skin/prefs). "Man Book Club" / "Tough Guy Book Club" are source *tags*
+  on books, not the app's name; nothing here is related to the Rough Drafts club app.
+- **Reading tab** (`/reading`, between Browse and Library; `?tab=next|finished` opens a section) has three sections:
+  - *Reading now* = every visible book whose status is `reading` (several at once). Each card has **Start**
+    (`start_reading`: sets `books.started_on` to the phone's own calendar day; nothing else ever sets it, and
+    moving a book to Reading, e.g. from the queue, leaves it undated) and **Finish** (`finish_reading`: status
+    `read`, `finished_on` = today, optional 1-5 rating, optional take; the start date is kept). The same controls
+    are on the book page. Finish is a sheet that asks for rating + My Take; both can be skipped.
+  - *Next books* = a ranked queue (`next_books`, private, via `list_my_data`). Added from the cover button on Browse
+    tiles (`BookCard`'s `queue` prop, Browse only) or "Add to Next books" on a book page; reordered with up/down
+    arrows; "Move to Reading now" sets status `reading`. A DB trigger (`books_leave_next`) removes a book from the
+    queue whenever its status becomes reading/read by any route, and `nextQueue()` also filters at read time, so a
+    stale row can never show. It is separate from the random pick, which is unchanged.
+  - *Finished* = the archive: read books, newest finish first. A finished book's page (`/book?id=`) is the single
+    page with everything: details, source tags, started/finished dates, rating, **My Take** (`book_takes`, private,
+    editable), and all notes. `book_takes` is deliberately a private table, not a column on public `books`.
+- **Notes** (`book_notes`) gained an optional `chapter` tag; bodies render through `linkify()` so http/https links
+  (websites, YouTube) are tappable (`target=_blank rel=noopener`, nothing else is ever linked); shown oldest first
+  with date + time. `add_note`/`update_note` gained `p_chapter` (null on update = keep, blank = clear); the old
+  signatures were dropped, not overloaded (PostgREST would call two overloads ambiguous).
+- The four starting books are `supabase/currently_reading.sql` (already applied live). The Hobbit and The Alchemist
+  kept their real list tags (Fantasy Top 100 UK / Man Book Club); the two new ones have no source tag until set in Edit.
 - **Add from an Amazon link** (Add screen): paste a product link, an `a.co` share link, an ISBN, or a Kindle id and
   the title (short form, `shortTitle`), author, pages and cover fill the form for you to check; nothing saves until
   Add. A browser can't read Amazon pages or follow `a.co` redirects, so the edge function `amazon-book`

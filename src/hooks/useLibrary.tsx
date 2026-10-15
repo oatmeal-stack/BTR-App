@@ -10,9 +10,10 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus, ReadRow } from "@/domain/book";
+import type { Book, BookEdit, BookNote, BookTake, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, NextItem, ReadingStatus, ReadRow } from "@/domain/book";
 import * as actions from "@/domain/bookActions";
 import * as listActions from "@/domain/listActions";
+import * as readingActions from "@/domain/readingActions";
 import { LockedOutError, PasscodeRequiredError } from "@/lib/passcode";
 import { readAmazonLink, type AmazonResult } from "@/lib/amazon";
 import { useIncludeRead } from "@/lib/prefs";
@@ -57,6 +58,20 @@ interface LibraryApi {
   drafts: InboxNote[];
   addDraft: (body: string) => Promise<boolean>;
   setDraftStatus: (id: string, status: InboxStatus, bookId?: string) => Promise<boolean>;
+  /** The Next books queue (visible, still-unread books only), first in line first. */
+  nextBooks: Book[];
+  /** Raw queue entries, to tell whether a book is in it. */
+  nextItems: NextItem[];
+  addToNext: (bookId: string) => Promise<boolean>;
+  removeFromNext: (bookId: string) => Promise<boolean>;
+  reorderNext: (bookIds: string[]) => Promise<boolean>;
+  /** The Start button: reading, from today. */
+  startReading: (id: string) => Promise<boolean>;
+  /** The Finish button: read today, with an optional rating and take. */
+  finishReading: (id: string, details: { rating?: number; take?: string }) => Promise<boolean>;
+  /** "My Take" on finished books. */
+  takes: BookTake[];
+  setTake: (id: string, body: string) => Promise<boolean>;
   /** Your finish date and star rating for a book (a blank clears it). */
   setReadDetails: (id: string, details: { finishedOn?: string; myRating?: number }) => Promise<boolean>;
   /** Marks many books read at once, with ratings, favorites and notes. */
@@ -76,8 +91,9 @@ interface LibraryApi {
   shuffle: () => void;
   setStatus: (id: string, status: ReadingStatus) => Promise<boolean>;
   toggleFavorite: (id: string) => Promise<boolean>;
-  addNote: (bookId: string, body: string) => Promise<boolean>;
-  updateNote: (id: string, body: string) => Promise<boolean>;
+  addNote: (bookId: string, body: string, chapter?: string) => Promise<boolean>;
+  /** A chapter left out keeps the note's chapter; a blank one clears it. */
+  updateNote: (id: string, body: string, chapter?: string) => Promise<boolean>;
   deleteNote: (id: string) => Promise<boolean>;
   addBook: (input: NewBookInput) => Promise<{ book: Book; created: boolean } | null>;
   /** Where the library lives, and whether changes need a passcode that this device has. */
@@ -95,6 +111,8 @@ interface Data {
   lists: MyList[];
   items: ListItem[];
   inbox: InboxNote[];
+  next: NextItem[];
+  takes: BookTake[];
 }
 
 function newId(prefix: string): string {
@@ -138,6 +156,8 @@ export function LibraryProvider({
   const [myLists, setMyLists] = useState<MyList[]>([]);
   const [listItems, setListItems] = useState<ListItem[]>([]);
   const [drafts, setDrafts] = useState<InboxNote[]>([]);
+  const [nextItems, setNextItems] = useState<NextItem[]>([]);
+  const [takes, setTakes] = useState<BookTake[]>([]);
   const [ready, setReady] = useState(false);
   const [notice, setNotice] = useState<string | null>(null);
   const [home, setHome] = useState<HomeState>({ pickId: null, forYouIds: [] });
@@ -148,7 +168,7 @@ export function LibraryProvider({
   useEffect(() => {
     includeReadRef.current = includeRead;
   }, [includeRead]);
-  const data = useRef<Data>({ books: [], notes: [], lists: [], items: [], inbox: [] });
+  const data = useRef<Data>({ books: [], notes: [], lists: [], items: [], inbox: [], next: [], takes: [] });
 
   /** Replaces whichever pieces are given and leaves the rest as they were. */
   const commit = useCallback((next: Partial<Data>) => {
@@ -158,6 +178,8 @@ export function LibraryProvider({
     setMyLists(data.current.lists);
     setListItems(data.current.items);
     setDrafts(data.current.inbox);
+    setNextItems(data.current.next);
+    setTakes(data.current.takes);
   }, []);
 
   // Storage is only read after the page has loaded, so server and browser agree.
@@ -167,7 +189,7 @@ export function LibraryProvider({
       try {
         const [b, n, mine] = await Promise.all([repo.listBooks(), repo.listNotes(), repo.listMyData()]);
         if (cancelled) return;
-        commit({ books: b, notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox });
+        commit({ books: b, notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox, next: mine.next, takes: mine.takes });
         setHome(makeHome(b.filter(pickable(includeReadRef.current))));
         setUnlocked(repo.hasPasscode());
       } catch {
@@ -211,8 +233,12 @@ export function LibraryProvider({
 
   const setStatus = useCallback(
     async (id: string, status: ReadingStatus) => {
+      const leavesQueue = status === "reading" || status === "read";
       const ok = await optimistic(
-        { books: actions.setStatus(data.current.books, id, status, new Date().toISOString()) },
+        {
+          books: actions.setStatus(data.current.books, id, status, new Date().toISOString()),
+          ...(leavesQueue ? { next: readingActions.removeFromNext(data.current.next, id) } : {}),
+        },
         () => repo.setStatus(id, status),
       );
       // A book you've just read shouldn't stay up as the "next read" (unless read books are allowed).
@@ -229,6 +255,67 @@ export function LibraryProvider({
       optimistic({ books: actions.setReadDetails(data.current.books, id, details, new Date().toISOString()) }, () =>
         repo.setReadDetails(id, details),
       ),
+    [optimistic, repo],
+  );
+
+  const nextBooks = useMemo(() => readingActions.nextQueue(allBooks, nextItems), [allBooks, nextItems]);
+
+  const addToNext = useCallback(
+    (bookId: string) => {
+      const book = data.current.books.find((b) => b.id === bookId);
+      if (!book || !readingActions.canQueue(book)) return Promise.resolve(false);
+      return optimistic({ next: readingActions.addToNext(data.current.next, bookId) }, () => repo.addToNext(bookId));
+    },
+    [optimistic, repo],
+  );
+
+  const removeFromNext = useCallback(
+    (bookId: string) => optimistic({ next: readingActions.removeFromNext(data.current.next, bookId) }, () => repo.removeFromNext(bookId)),
+    [optimistic, repo],
+  );
+
+  const reorderNext = useCallback(
+    (bookIds: string[]) => optimistic({ next: readingActions.reorderNext(data.current.next, bookIds) }, () => repo.reorderNext(bookIds)),
+    [optimistic, repo],
+  );
+
+  const startReading = useCallback(
+    (id: string) => {
+      const on = readingActions.todayLocal();
+      return optimistic(
+        {
+          books: readingActions.startReading(data.current.books, id, on, new Date().toISOString()),
+          next: readingActions.removeFromNext(data.current.next, id),
+        },
+        () => repo.startReading(id, on),
+      );
+    },
+    [optimistic, repo],
+  );
+
+  const finishReading = useCallback(
+    async (id: string, details: { rating?: number; take?: string }) => {
+      const on = readingActions.todayLocal();
+      const now = new Date().toISOString();
+      const ok = await optimistic(
+        {
+          books: readingActions.finishReading(data.current.books, id, { on, rating: details.rating }, now),
+          next: readingActions.removeFromNext(data.current.next, id),
+          takes: readingActions.setTake(data.current.takes, id, details.take ?? "", now),
+        },
+        () => repo.finishReading(id, { on, rating: details.rating, take: details.take }),
+      );
+      if (ok && !includeReadRef.current) {
+        setHome((h) => (h.pickId === id || h.forYouIds.includes(id) ? makeHome(data.current.books.filter(pickable(false))) : h));
+      }
+      return ok;
+    },
+    [optimistic, repo],
+  );
+
+  const setTake = useCallback(
+    (id: string, body: string) =>
+      optimistic({ takes: readingActions.setTake(data.current.takes, id, body, new Date().toISOString()) }, () => repo.setTake(id, body)),
     [optimistic, repo],
   );
 
@@ -254,14 +341,15 @@ export function LibraryProvider({
   );
 
   const addNote = useCallback(
-    (bookId: string, body: string) => {
+    (bookId: string, body: string, chapter?: string) => {
       const text = body.trim();
       if (!text) return Promise.resolve(false);
       const tempId = `tmp-${Date.now()}`;
+      const tag = readingActions.cleanChapter(chapter);
       return optimistic(
-        { notes: actions.addNote(data.current.notes, bookId, text, new Date().toISOString(), tempId) },
+        { notes: actions.addNote(data.current.notes, bookId, text, new Date().toISOString(), tempId, tag) },
         async () => {
-          const saved = await repo.addNote(bookId, text);
+          const saved = await repo.addNote(bookId, text, tag);
           commit({
             books: data.current.books,
             notes: data.current.notes.map((n) => (n.id === tempId ? saved : n)),
@@ -273,11 +361,12 @@ export function LibraryProvider({
   );
 
   const updateNote = useCallback(
-    (id: string, body: string) => {
+    (id: string, body: string, chapter?: string) => {
       if (!body.trim()) return Promise.resolve(false);
+      const tag = chapter === undefined ? undefined : (readingActions.cleanChapter(chapter) ?? "");
       return optimistic(
-        { notes: actions.updateNote(data.current.notes, id, body, new Date().toISOString()) },
-        () => repo.updateNote(id, body),
+        { notes: actions.updateNote(data.current.notes, id, body, new Date().toISOString(), tag) },
+        () => repo.updateNote(id, body, tag),
       );
     },
     [optimistic, repo],
@@ -462,7 +551,7 @@ export function LibraryProvider({
         if (!(await repo.unlock(code))) return "wrong";
         setUnlocked(true);
         const [n, mine] = await Promise.all([repo.listNotes(), repo.listMyData()]);
-        commit({ notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox });
+        commit({ notes: n, lists: mine.lists, items: mine.items, inbox: mine.inbox, next: mine.next, takes: mine.takes });
         return "ok";
       } catch (e) {
         if (e instanceof LockedOutError) return "locked";
@@ -477,7 +566,7 @@ export function LibraryProvider({
     repo.lock();
     setUnlocked(false);
     // Notes, lists and drafts are only visible while unlocked on a shared library.
-    if (repo.requiresPasscode) commit({ notes: [], lists: [], items: [], inbox: [] });
+    if (repo.requiresPasscode) commit({ notes: [], lists: [], items: [], inbox: [], next: [], takes: [] });
   }, [repo, commit]);
 
   const shuffle = useCallback(() => {
@@ -496,6 +585,15 @@ export function LibraryProvider({
       restoreBook,
       undoRemove,
       lookupAmazon,
+      nextBooks,
+      nextItems,
+      addToNext,
+      removeFromNext,
+      reorderNext,
+      startReading,
+      finishReading,
+      takes,
+      setTake,
       setReadDetails,
       markManyRead,
       lists,
@@ -531,7 +629,7 @@ export function LibraryProvider({
       unlock,
       lock,
     }),
-    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, lookupAmazon, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, addManyToList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
+    [books, removedBooks, findBook, undoable, removeBook, restoreBook, undoRemove, lookupAmazon, nextBooks, nextItems, addToNext, removeFromNext, reorderNext, startReading, finishReading, takes, setTake, setReadDetails, markManyRead, lists, listItems, createList, renameList, deleteList, addToList, removeFromList, addManyToList, reorderList, drafts, addDraft, setDraftStatus, updateBook, mergeBooks, notes, ready, loadFailed, notice, clearNotice, home, shuffle, setStatus, toggleFavorite, addNote, updateNote, deleteNote, addBook, repo, unlocked, unlock, lock],
   );
 
   return <LibraryContext.Provider value={value}>{children}</LibraryContext.Provider>;

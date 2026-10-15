@@ -2,20 +2,26 @@ import type {
   Book,
   BookNote,
   BookEdit,
+  BookTake,
   InboxNote,
   InboxStatus,
   ListItem,
   MyList,
   NewBookInput,
+  NextItem,
   ReadingStatus,
   ReadRow,
 } from "@/domain/book";
 
-/** Everything private besides notes: your own lists, what is on them, and your drafts. */
+/** Everything private besides notes: your own lists, what is on them, your drafts, the Next books queue and your takes. */
 export interface MyData {
   lists: MyList[];
   items: ListItem[];
   inbox: InboxNote[];
+  /** The Next books queue. */
+  next: NextItem[];
+  /** "My Take" on finished books. */
+  takes: BookTake[];
 }
 
 /**
@@ -73,8 +79,19 @@ export interface BookRepository {
   removeBook(book: Pick<Book, "id" | "title" | "author">): Promise<void>;
   /** Brings a removed book back exactly as it was. */
   restoreBook(bookId: string): Promise<void>;
-  addNote(bookId: string, body: string): Promise<BookNote>;
-  updateNote(noteId: string, body: string): Promise<void>;
+  /** Next books: a ranked queue. A book that is started or read leaves it by itself. */
+  addToNext(bookId: string): Promise<void>;
+  removeFromNext(bookId: string): Promise<void>;
+  reorderNext(bookIds: string[]): Promise<void>;
+  /** The Start button: reading, from this day (YYYY-MM-DD). */
+  startReading(bookId: string, on: string): Promise<void>;
+  /** The Finish button: read on this day, with an optional rating and take. */
+  finishReading(bookId: string, details: { on: string; rating?: number; take?: string }): Promise<void>;
+  /** Writes or clears (blank) the take on a book. */
+  setTake(bookId: string, body: string): Promise<void>;
+  addNote(bookId: string, body: string, chapter?: string): Promise<BookNote>;
+  /** A chapter left out keeps the note's chapter; a blank one clears it. */
+  updateNote(noteId: string, body: string, chapter?: string): Promise<void>;
   deleteNote(noteId: string): Promise<void>;
   addBook(input: NewBookInput): Promise<{ book: Book; created: boolean }>;
 }

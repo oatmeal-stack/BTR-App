@@ -334,7 +334,7 @@ describe("your lists and drafts (shared library, private)", () => {
 
   it("show nothing until signed in, and refuse every change", async () => {
     const repo = new SupabaseBookRepository(makeDb(), memoryStore());
-    expect(await repo.listMyData()).toEqual({ lists: [], items: [], inbox: [] });
+    expect(await repo.listMyData()).toEqual({ lists: [], items: [], inbox: [], next: [], takes: [] });
     await expect(repo.createList({ id: "l-x", name: "Sneaky" })).rejects.toBeInstanceOf(PasscodeRequiredError);
     await expect(repo.addDraft({ id: "d-x", body: "sneaky" })).rejects.toBeInstanceOf(PasscodeRequiredError);
     await expect(repo.addToList("l-x", dune)).rejects.toBeInstanceOf(PasscodeRequiredError);

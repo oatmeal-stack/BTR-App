@@ -22,7 +22,8 @@ export default function BrowsePage() {
 
 function BrowseView() {
   const params = useSearchParams();
-  const { books, ready, loadFailed, lists: myLists, listItems } = useLibrary();
+  const { books, ready, loadFailed, lists: myLists, listItems, nextItems, addToNext, removeFromNext } = useLibrary();
+  const queuedIds = useMemo(() => new Set(nextItems.map((n) => n.bookId)), [nextItems]);
 
   // Filters start from the link (Home search, a list on Lists) and then live here.
   const [query, setQuery] = useState(params.get("q") ?? "");
@@ -208,7 +209,11 @@ function BrowseView() {
             </p>
             <div className="grid">
               {results.map((b) => (
-                <BookCard key={b.id} book={b} />
+                <BookCard
+                  key={b.id}
+                  book={b}
+                  queue={{ queued: queuedIds.has(b.id), onToggle: () => void (queuedIds.has(b.id) ? removeFromNext(b.id) : addToNext(b.id)) }}
+                />
               ))}
             </div>
           </>

@@ -49,7 +49,7 @@ class LockedRepo extends LocalBookRepository {
     return false;
   }
   async listMyData() {
-    return { lists: [], items: [], inbox: [] };
+    return { lists: [], items: [], inbox: [], next: [], takes: [] };
   }
 }
 

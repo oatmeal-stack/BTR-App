@@ -75,7 +75,7 @@ describe("privacy", () => {
 
 describe("lists", () => {
   it("starts empty", async () => {
-    expect((await mine()).d).toEqual({ lists: [], items: [], inbox: [] });
+    expect((await mine()).d).toEqual({ lists: [], items: [], inbox: [], next: [], takes: [] });
   });
 
   it("creates lists in order, trimmed, once per id", async () => {

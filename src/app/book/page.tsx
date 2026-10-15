@@ -3,15 +3,18 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, CircleCheck, ExternalLink, Heart, Pencil, Star, Trash2, Undo2 } from "lucide-react";
+import { ArrowLeft, Check, CircleCheck, ExternalLink, Heart, ListPlus, Pencil, Star, Trash2, Undo2 } from "lucide-react";
 import { READING_STATUSES, STATUS_LABEL } from "@/domain/book";
 import { amazonUrl, bookFacts } from "@/domain/bookActions";
+import { canQueue, dayLabel, isQueued, takeFor } from "@/domain/readingActions";
 import { useLibrary } from "@/hooks/useLibrary";
 import { ROUTES } from "@/routes";
 import { BookCover } from "@/components/books/BookCover";
 import { BookNotes } from "@/components/books/BookNotes";
 import { AddToList } from "@/components/lists/AddToList";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { ReadingControls } from "@/components/reading/ReadingControls";
+import { TakeEditor } from "@/components/reading/TakeEditor";
 
 export default function BookPage() {
   return (
@@ -23,7 +26,7 @@ export default function BookPage() {
 
 function BookView() {
   const id = useSearchParams().get("id");
-  const { findBook, ready, setStatus, setReadDetails, toggleFavorite, removeBook, restoreBook } = useLibrary();
+  const { findBook, ready, setStatus, setReadDetails, toggleFavorite, removeBook, restoreBook, nextItems, addToNext, removeFromNext, takes } = useLibrary();
   const router = useRouter();
   const book = id ? findBook(id) : undefined;
 
@@ -144,6 +147,17 @@ function BookView() {
         >
           <Heart size={18} aria-hidden="true" /> {book.favorite ? "Favorited" : "Favorite"}
         </button>
+        {canQueue(book) ? (
+          <button
+            type="button"
+            className={`btn${isQueued(nextItems, book.id) ? " btn--primary" : ""}`}
+            aria-pressed={isQueued(nextItems, book.id)}
+            onClick={() => void (isQueued(nextItems, book.id) ? removeFromNext(book.id) : addToNext(book.id))}
+          >
+            {isQueued(nextItems, book.id) ? <Check size={18} aria-hidden="true" /> : <ListPlus size={18} aria-hidden="true" />}{" "}
+            {isQueued(nextItems, book.id) ? "In Next books" : "Add to Next books"}
+          </button>
+        ) : null}
         <button
           type="button"
           className={`btn${book.status === "read" ? " btn--primary" : ""}`}
@@ -163,11 +177,29 @@ function BookView() {
         </button>
       </div>
 
+      {book.status === "reading" ? (
+        <section aria-labelledby="now-h" className="card stack" style={{ gap: 10 }}>
+          <h2 id="now-h" style={{ fontSize: 18 }}>
+            Reading now
+          </h2>
+          <ReadingControls book={book} />
+          <p className="muted" style={{ fontSize: 13 }}>
+            Start records today&apos;s date, and Finish asks for a rating and your take. Add notes below as you go.
+          </p>
+        </section>
+      ) : null}
+
       {book.status === "read" ? (
         <section aria-labelledby="reading-h" className="card stack" style={{ gap: 12 }}>
           <h2 id="reading-h" style={{ fontSize: 18 }}>
             Your reading
           </h2>
+          {book.startedOn ? (
+            <p>
+              <span className="muted">Started: </span>
+              {dayLabel(book.startedOn)}
+            </p>
+          ) : null}
           <div className="field">
             <label htmlFor="finished-on">Date finished (optional)</label>
             <input
@@ -195,8 +227,9 @@ function BookView() {
               </button>
             ))}
           </div>
+          <TakeEditor key={takeFor(takes, book.id)?.body ?? ""} bookId={book.id} />
           <p className="muted" style={{ fontSize: 13 }}>
-            Add a short note below. Notes are private.
+            Add notes below. Notes and your take are private.
           </p>
         </section>
       ) : null}

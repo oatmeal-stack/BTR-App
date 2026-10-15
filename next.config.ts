@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   basePath,
   images: { unoptimized: true },
+  // Dev server only: lets a browser that opens http://127.0.0.1:3000 (rather than localhost) hydrate the page.
+  allowedDevOrigins: ["127.0.0.1"],
 };
 
 export default nextConfig;

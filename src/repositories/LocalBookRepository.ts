@@ -1,5 +1,6 @@
-import type { Book, BookEdit, BookNote, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, ReadingStatus, ReadRow } from "@/domain/book";
+import type { Book, BookEdit, BookNote, BookTake, InboxNote, InboxStatus, ListItem, MyList, NewBookInput, NextItem, ReadingStatus, ReadRow } from "@/domain/book";
 import * as lists from "@/domain/listActions";
+import * as reading from "@/domain/readingActions";
 import * as actions from "@/domain/bookActions";
 import { SEED_BOOKS } from "@/data/seedBooks";
 import type { BookRepository, MyData } from "./BookRepository";
@@ -15,6 +16,8 @@ interface Stored {
   lists?: MyList[];
   items?: ListItem[];
   inbox?: InboxNote[];
+  next?: NextItem[];
+  takes?: BookTake[];
 }
 
 function newId(prefix: string): string {
@@ -95,7 +98,7 @@ export class LocalBookRepository implements BookRepository {
   async setStatus(bookId: string, status: ReadingStatus): Promise<void> {
     const d = read(this.storage, this.seedBooks);
     d.books = actions.setStatus(d.books, bookId, status, new Date().toISOString());
-    write(this.storage, d);
+    write(this.storage, status === "reading" || status === "read" ? { ...d, next: reading.removeFromNext(d.next ?? [], bookId) } : d);
   }
 
   async updateBook(bookId: string, edit: BookEdit): Promise<void> {
@@ -113,13 +116,13 @@ export class LocalBookRepository implements BookRepository {
 
   async listMyData(): Promise<MyData> {
     const d = read(this.storage, this.seedBooks);
-    return { lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [] };
+    return { lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [], next: d.next ?? [], takes: d.takes ?? [] };
   }
 
   /** Reads, lets `change` edit the private data, and saves. */
   private editMine(change: (m: MyData) => MyData): void {
     const d = read(this.storage, this.seedBooks);
-    const next = change({ lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [] });
+    const next = change({ lists: d.lists ?? [], items: d.items ?? [], inbox: d.inbox ?? [], next: d.next ?? [], takes: d.takes ?? [] });
     write(this.storage, { ...d, ...next });
   }
 
@@ -189,19 +192,55 @@ export class LocalBookRepository implements BookRepository {
     write(this.storage, d);
   }
 
-  async addNote(bookId: string, body: string): Promise<BookNote> {
+  async addToNext(bookId: string): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    const book = d.books.find((b) => b.id === bookId);
+    if (!book || !reading.canQueue(book)) return;
+    write(this.storage, { ...d, next: reading.addToNext(d.next ?? [], bookId) });
+  }
+
+  async removeFromNext(bookId: string): Promise<void> {
+    this.editMine((m) => ({ ...m, next: reading.removeFromNext(m.next, bookId) }));
+  }
+
+  async reorderNext(bookIds: string[]): Promise<void> {
+    this.editMine((m) => ({ ...m, next: reading.reorderNext(m.next, bookIds) }));
+  }
+
+  async startReading(bookId: string, on: string): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    d.books = reading.startReading(d.books, bookId, on, new Date().toISOString());
+    write(this.storage, { ...d, next: reading.removeFromNext(d.next ?? [], bookId) });
+  }
+
+  async finishReading(bookId: string, details: { on: string; rating?: number; take?: string }): Promise<void> {
+    const d = read(this.storage, this.seedBooks);
+    const now = new Date().toISOString();
+    d.books = reading.finishReading(d.books, bookId, { on: details.on, rating: details.rating }, now);
+    write(this.storage, {
+      ...d,
+      next: reading.removeFromNext(d.next ?? [], bookId),
+      takes: reading.setTake(d.takes ?? [], bookId, details.take ?? "", now),
+    });
+  }
+
+  async setTake(bookId: string, body: string): Promise<void> {
+    this.editMine((m) => ({ ...m, takes: reading.setTake(m.takes, bookId, body, new Date().toISOString()) }));
+  }
+
+  async addNote(bookId: string, body: string, chapter?: string): Promise<BookNote> {
     const d = read(this.storage, this.seedBooks);
     const id = newId("note");
-    d.notes = actions.addNote(d.notes, bookId, body, new Date().toISOString(), id);
+    d.notes = actions.addNote(d.notes, bookId, body, new Date().toISOString(), id, chapter);
     write(this.storage, d);
     const note = d.notes.find((n) => n.id === id);
     if (!note) throw new Error("Note was empty");
     return note;
   }
 
-  async updateNote(noteId: string, body: string): Promise<void> {
+  async updateNote(noteId: string, body: string, chapter?: string): Promise<void> {
     const d = read(this.storage, this.seedBooks);
-    d.notes = actions.updateNote(d.notes, noteId, body, new Date().toISOString());
+    d.notes = actions.updateNote(d.notes, noteId, body, new Date().toISOString(), chapter);
     write(this.storage, d);
   }
 

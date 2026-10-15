@@ -22,7 +22,7 @@ export function normalizeText(s: string): string {
     .trim();
 }
 
-function normalizeTitle(title: string): string {
+export function normalizeTitle(title: string): string {
   return normalizeText(title).replace(/^(the|a|an) /, "");
 }
 
@@ -311,21 +311,32 @@ export function addNote(
   body: string,
   now: string,
   id: string,
+  chapter?: string,
 ): BookNote[] {
   const text = body.trim();
   if (!text) return notes;
-  return [...notes, { id, bookId, body: text, createdAt: now, updatedAt: now }];
+  const tag = chapter?.trim() || undefined;
+  return [...notes, { id, bookId, body: text, ...(tag ? { chapter: tag } : {}), createdAt: now, updatedAt: now }];
 }
 
+/** A chapter left out keeps the note's chapter as it was; a blank one clears it. */
 export function updateNote(
   notes: BookNote[],
   id: string,
   body: string,
   now: string,
+  chapter?: string,
 ): BookNote[] {
   const text = body.trim();
   if (!text) return notes;
-  return notes.map((n) => (n.id === id ? { ...n, body: text, updatedAt: now } : n));
+  return notes.map((n) => {
+    if (n.id !== id) return n;
+    const next = { ...n, body: text, updatedAt: now };
+    if (chapter === undefined) return next;
+    const { chapter: _old, ...rest } = next;
+    void _old;
+    return chapter.trim() ? { ...rest, chapter: chapter.trim() } : rest;
+  });
 }
 
 export function deleteNote(notes: BookNote[], id: string): BookNote[] {

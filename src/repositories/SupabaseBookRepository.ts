@@ -3,9 +3,11 @@ import {
   type Book,
   type BookEdit,
   type BookNote,
+  type BookTake,
   type InboxNote,
   type InboxStatus,
   type NewBookInput,
+  type NextItem,
   type ReadingStatus,
   type ReadRow,
 } from "@/domain/book";
@@ -41,6 +43,7 @@ interface BookRow {
   removed_at: string | null;
   page_count: number | null;
   asin: string | null;
+  started_on: string | null;
   finished_on: string | null;
   my_rating: number | null;
   source_note: string | null;
@@ -59,11 +62,14 @@ interface MyDataRow {
   lists: { id: string; name: string; position: number; created_at: string }[];
   items: { list_id: string; book_id: string; position: number }[];
   inbox: { id: string; body: string; status: InboxStatus; book_id: string | null; created_at: string }[];
+  next?: { book_id: string; position: number }[];
+  takes?: { book_id: string; body: string; updated_at: string }[];
 }
 interface NoteRow {
   id: string;
   book_id: string;
   body: string;
+  chapter?: string | null;
   created_at: string;
   updated_at: string;
 }
@@ -84,6 +90,7 @@ const toNote = (r: NoteRow): BookNote => ({
   id: r.id,
   bookId: r.book_id,
   body: r.body,
+  ...(r.chapter ? { chapter: r.chapter } : {}),
   createdAt: r.created_at,
   updatedAt: r.updated_at,
 });
@@ -156,6 +163,7 @@ export class SupabaseBookRepository implements BookRepository {
       removedAt: r.removed_at ?? undefined,
       pageCount: r.page_count ?? undefined,
       asin: r.asin ?? undefined,
+      startedOn: r.started_on ? r.started_on.slice(0, 10) : undefined,
       finishedOn: r.finished_on ? r.finished_on.slice(0, 10) : undefined, // a date, however the service writes it
       myRating: r.my_rating ?? undefined,
       sourceNote: r.source_note ?? undefined,
@@ -237,7 +245,7 @@ export class SupabaseBookRepository implements BookRepository {
   }
 
   async listMyData(): Promise<MyData> {
-    const empty: MyData = { lists: [], items: [], inbox: [] };
+    const empty: MyData = { lists: [], items: [], inbox: [], next: [], takes: [] };
     if (!this.hasPasscode()) return empty;
     try {
       const row = await this.call<MyDataRow>("list_my_data", {});
@@ -251,6 +259,8 @@ export class SupabaseBookRepository implements BookRepository {
           bookId: n.book_id ?? undefined,
           createdAt: n.created_at,
         })),
+        next: (row.next ?? []).map<NextItem>((x) => ({ bookId: x.book_id, position: x.position })),
+        takes: (row.takes ?? []).map<BookTake>((t) => ({ bookId: t.book_id, body: t.body, updatedAt: t.updated_at })),
       };
     } catch (e) {
       if (e instanceof PasscodeRequiredError) return empty; // the saved sign-in no longer works
@@ -321,13 +331,47 @@ export class SupabaseBookRepository implements BookRepository {
     await this.call("restore_book", { p_id: bookId });
   }
 
-  async addNote(bookId: string, body: string): Promise<BookNote> {
-    const row = await this.call<NoteRow>("add_note", { p_id: newId("note"), p_book_id: bookId, p_body: body });
+  async addToNext(bookId: string): Promise<void> {
+    await this.call("add_to_next", { p_book_id: bookId });
+  }
+
+  async removeFromNext(bookId: string): Promise<void> {
+    await this.call("remove_from_next", { p_book_id: bookId });
+  }
+
+  async reorderNext(bookIds: string[]): Promise<void> {
+    await this.call("reorder_next", { p_book_ids: bookIds });
+  }
+
+  async startReading(bookId: string, on: string): Promise<void> {
+    await this.call("start_reading", { p_id: bookId, p_on: on });
+  }
+
+  async finishReading(bookId: string, details: { on: string; rating?: number; take?: string }): Promise<void> {
+    await this.call("finish_reading", {
+      p_id: bookId,
+      p_on: details.on,
+      p_my_rating: details.rating ?? null,
+      p_take: details.take?.trim() || null,
+    });
+  }
+
+  async setTake(bookId: string, body: string): Promise<void> {
+    await this.call("set_my_take", { p_id: bookId, p_take: body.trim() || null });
+  }
+
+  async addNote(bookId: string, body: string, chapter?: string): Promise<BookNote> {
+    const row = await this.call<NoteRow>("add_note", {
+      p_id: newId("note"),
+      p_book_id: bookId,
+      p_body: body,
+      p_chapter: chapter?.trim() || null,
+    });
     return toNote(row);
   }
 
-  async updateNote(noteId: string, body: string): Promise<void> {
-    await this.call("update_note", { p_id: noteId, p_body: body });
+  async updateNote(noteId: string, body: string, chapter?: string): Promise<void> {
+    await this.call("update_note", { p_id: noteId, p_body: body, p_chapter: chapter === undefined ? null : chapter.trim() });
   }
 
   async deleteNote(noteId: string): Promise<void> {

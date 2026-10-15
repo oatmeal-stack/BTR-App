@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, House, ListChecks, Search, User } from "lucide-react";
+import { BookMarked, BookOpen, House, ListChecks, Search, User } from "lucide-react";
 import { NAV_TABS } from "@/routes";
 
 const ICONS = {
   home: House,
   browse: Search,
+  reading: BookMarked,
   library: BookOpen,
   lists: ListChecks,
   profile: User,

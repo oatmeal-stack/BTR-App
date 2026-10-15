@@ -151,7 +151,7 @@ describe("lists and drafts on this device", () => {
 
   it("start empty, and survive a reload", async () => {
     const storage = memoryStorage();
-    expect(await newRepo(storage).listMyData()).toEqual({ lists: [], items: [], inbox: [] });
+    expect(await newRepo(storage).listMyData()).toEqual({ lists: [], items: [], inbox: [], next: [], takes: [] });
     const repo = newRepo(storage);
     await repo.createList({ id: "l1", name: "Couples Book Club" });
     await repo.addToList("l1", a.id);
@@ -184,7 +184,7 @@ describe("lists and drafts on this device", () => {
     delete saved.items;
     delete saved.inbox;
     storage.setItem("book-archive:v1", JSON.stringify(saved));
-    expect(await newRepo(storage).listMyData()).toEqual({ lists: [], items: [], inbox: [] });
+    expect(await newRepo(storage).listMyData()).toEqual({ lists: [], items: [], inbox: [], next: [], takes: [] });
     const repo = newRepo(storage);
     await repo.createList({ id: "l1", name: "New" });
     expect((await newRepo(storage).listMyData()).lists).toHaveLength(1);

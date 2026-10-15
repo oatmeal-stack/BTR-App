@@ -1,4 +1,4 @@
-// Reads an Amazon book link for the Book Archive app: follows a short share link (a.co/..., amzn.to/...) to the
+// Reads an Amazon book link for the Bookshelf app: follows a short share link (a.co/..., amzn.to/...) to the
 // product page and returns what Amazon says about the book (title, author, pages, cover, ISBN).
 //
 // Why this is a server-side helper: a web page can't read Amazon pages or follow Amazon's short-link

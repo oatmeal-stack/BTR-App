@@ -29,6 +29,8 @@ export interface Book {
   status: ReadingStatus;
   /** Amazon's product id, when the book was added from an Amazon link. Lets the Amazon button go straight to the book. */
   asin?: string;
+  /** The day you pressed Start on it (YYYY-MM-DD). Only the Start button sets this. */
+  startedOn?: string;
   /** When you finished it (YYYY-MM-DD), if you said. */
   finishedOn?: string;
   /** Your own rating, 1 to 5 stars. Not the Man Book Club score (that is `rating`). */
@@ -102,7 +104,22 @@ export interface BookNote {
   id: string;
   bookId: string;
   body: string;
+  /** The chapter (or part, or page) the note is about, if you said. */
+  chapter?: string;
   createdAt: string;
+  updatedAt: string;
+}
+
+/** A place in the Next books queue. `position` 0 is first. */
+export interface NextItem {
+  bookId: string;
+  position: number;
+}
+
+/** "My Take": the short verdict written when a book is finished. One per book, private. */
+export interface BookTake {
+  bookId: string;
+  body: string;
   updatedAt: string;
 }
 

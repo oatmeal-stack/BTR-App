@@ -1,4 +1,4 @@
--- Book Archive: database setup.
+-- Bookshelf: database setup.
 -- Run order in the Supabase SQL editor:
 --   1. this file (schema.sql)
 --   2. set_passcode.sql  (after you put your own passcode in it)
@@ -56,6 +56,9 @@ alter table books add column if not exists asin text;
 alter table books add column if not exists finished_on date;
 alter table books add column if not exists my_rating int check (my_rating is null or my_rating between 1 and 5);
 
+-- The day you pressed Start on a book you're reading. Only the Start button sets it (see start_reading).
+alter table books add column if not exists started_on date;
+
 create table if not exists removed_keys (
   key text primary key,
   book_id text,
@@ -76,6 +79,9 @@ create table if not exists book_notes (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+-- A note can be tagged with the chapter (or part, or page) it is about, so reading notes stay in order.
+alter table book_notes add column if not exists chapter text;
 
 -- Wrong passcode tries (so guessing can be stopped) and signed-in devices. Only the functions below
 -- touch these; nobody can read them.
@@ -120,6 +126,21 @@ create table if not exists inbox_notes (
   updated_at timestamptz not null default now()
 );
 
+-- Next books: the ranked queue of what to read next (position 0 is first). A book leaves it by itself the
+-- moment it is being read or is read (see the trigger below). Private, like your lists.
+create table if not exists next_books (
+  book_id text primary key references books (id),
+  position int not null default 0,
+  added_at timestamptz not null default now()
+);
+
+-- "My Take": the short verdict written when a book is finished. One per book, private like notes.
+create table if not exists book_takes (
+  book_id text primary key references books (id),
+  body text not null check (length(trim(body)) > 0),
+  updated_at timestamptz not null default now()
+);
+
 create index if not exists books_status_idx on books (status);
 create index if not exists book_sources_source_idx on book_sources (source);
 create index if not exists book_notes_book_idx on book_notes (book_id);
@@ -131,6 +152,8 @@ alter table removed_keys enable row level security;   -- no policy: nobody can r
 alter table my_lists enable row level security;       -- no policy: private
 alter table my_list_books enable row level security;
 alter table inbox_notes enable row level security;
+alter table next_books enable row level security;
+alter table book_takes enable row level security;
 alter table login_failures enable row level security;
 alter table app_sessions enable row level security;
 alter table books enable row level security;
@@ -148,6 +171,8 @@ revoke all on removed_keys from anon, authenticated;
 revoke all on my_lists from anon, authenticated;
 revoke all on my_list_books from anon, authenticated;
 revoke all on inbox_notes from anon, authenticated;
+revoke all on next_books from anon, authenticated;
+revoke all on book_takes from anon, authenticated;
 revoke all on login_failures from anon, authenticated;
 revoke all on app_sessions from anon, authenticated;
 revoke all on book_notes from anon, authenticated;
@@ -300,8 +325,14 @@ begin
   select p_keep, source, rank from book_sources where book_id = p_drop
   on conflict do nothing;
   update book_notes set book_id = p_keep where book_id = p_drop;
+  insert into book_takes (book_id, body, updated_at)
+  select p_keep, body, updated_at from book_takes where book_id = p_drop
+  on conflict do nothing;
+  delete from book_takes where book_id = p_drop;
+  delete from next_books where book_id = p_drop;
   update books k
-     set year = coalesce(k.year, d.year),
+     set started_on = coalesce(k.started_on, d.started_on),
+         year = coalesce(k.year, d.year),
          page_count = coalesce(k.page_count, d.page_count),
          cover_url = coalesce(k.cover_url, d.cover_url),
          rating = coalesce(k.rating, d.rating),
@@ -332,6 +363,126 @@ as $$
 begin
   perform require_code(p_code);
   update books set finished_on = p_finished_on, my_rating = p_my_rating, updated_at = now() where id = p_id;
+end;
+$$;
+
+/* ---------- reading now, next books, and finishing ---------- */
+
+-- A book that is being read, or read, is no longer "next", whichever door it went through (the Start button,
+-- the status chips, Mark as read, the Already Read import).
+create or replace function leave_next_when_started()
+returns trigger
+language plpgsql
+as $$
+begin
+  if new.status in ('reading', 'read') then
+    delete from next_books where book_id = new.id;
+  end if;
+  return new;
+end;
+$$;
+
+drop trigger if exists books_leave_next on books;
+create trigger books_leave_next
+  after update of status on books
+  for each row
+  when (new.status is distinct from old.status)
+  execute function leave_next_when_started();
+
+-- Put a book at the end of the Next books queue. Books already being read, or read, can't be in it.
+create or replace function add_to_next(p_code text, p_book_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  insert into next_books (book_id, position)
+  select b.id, coalesce((select max(position) from next_books), -1) + 1
+    from books b
+   where b.id = p_book_id and b.status not in ('reading', 'read')
+  on conflict do nothing;
+end;
+$$;
+
+create or replace function remove_from_next(p_code text, p_book_id text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  delete from next_books where book_id = p_book_id;
+end;
+$$;
+
+-- Put the queue in this order. Books not named keep their relative order after these.
+create or replace function reorder_next(p_code text, p_book_ids text[])
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update next_books m
+     set position = o.ord - 1
+    from unnest(p_book_ids) with ordinality as o(book_id, ord)
+   where m.book_id = o.book_id;
+  update next_books m
+     set position = m.position + coalesce(array_length(p_book_ids, 1), 0)
+   where not (m.book_id = any (p_book_ids));
+end;
+$$;
+
+-- The Start button: the book is being read, from this day. The day comes from the phone (its own calendar
+-- day), not the server's clock.
+create or replace function start_reading(p_code text, p_id text, p_on date)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books set status = 'reading', started_on = p_on, updated_at = now() where id = p_id;
+end;
+$$;
+
+-- The Finish button: read, on this day, with an optional rating (1 to 5) and an optional take. A blank take
+-- removes any earlier one. The start date is left exactly as it was.
+create or replace function finish_reading(p_code text, p_id text, p_on date, p_my_rating int, p_take text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  update books
+     set status = 'read', finished_on = p_on, my_rating = p_my_rating, updated_at = now()
+   where id = p_id;
+  perform set_my_take(p_code, p_id, p_take);
+end;
+$$;
+
+-- Write or clear the take on a finished book. Private.
+create or replace function set_my_take(p_code text, p_id text, p_take text)
+returns void
+language plpgsql
+security definer
+set search_path = public, extensions
+as $$
+begin
+  perform require_code(p_code);
+  if p_take is null or length(trim(p_take)) = 0 then
+    delete from book_takes where book_id = p_id;
+  elsif exists (select 1 from books where id = p_id) then
+    insert into book_takes (book_id, body) values (p_id, trim(p_take))
+    on conflict (book_id) do update set body = excluded.body, updated_at = now();
+  end if;
 end;
 $$;
 
@@ -504,7 +655,11 @@ begin
     'lists', coalesce((select jsonb_agg(to_jsonb(l) order by l.position, l.created_at) from my_lists l), '[]'::jsonb),
     'items', coalesce((select jsonb_agg(jsonb_build_object('list_id', i.list_id, 'book_id', i.book_id, 'position', i.position)
                                          order by i.list_id, i.position) from my_list_books i), '[]'::jsonb),
-    'inbox', coalesce((select jsonb_agg(to_jsonb(n) order by n.created_at desc) from inbox_notes n), '[]'::jsonb)
+    'inbox', coalesce((select jsonb_agg(to_jsonb(n) order by n.created_at desc) from inbox_notes n), '[]'::jsonb),
+    'next', coalesce((select jsonb_agg(jsonb_build_object('book_id', x.book_id, 'position', x.position)
+                                        order by x.position, x.added_at) from next_books x), '[]'::jsonb),
+    'takes', coalesce((select jsonb_agg(jsonb_build_object('book_id', t.book_id, 'body', t.body, 'updated_at', t.updated_at))
+                         from book_takes t), '[]'::jsonb)
   );
 end;
 $$;
@@ -656,7 +811,12 @@ begin
 end;
 $$;
 
-create or replace function add_note(p_code text, p_id text, p_book_id text, p_body text)
+-- A new parameter list is a new function to Postgres, so the old ones are dropped first: two overloads
+-- would be ambiguous through the REST interface.
+drop function if exists add_note(text, text, text, text);
+drop function if exists update_note(text, text, text);
+
+create or replace function add_note(p_code text, p_id text, p_book_id text, p_body text, p_chapter text default null)
 returns book_notes
 language plpgsql
 security definer
@@ -665,13 +825,15 @@ as $$
 declare saved book_notes;
 begin
   perform require_code(p_code);
-  insert into book_notes (id, book_id, body) values (p_id, p_book_id, trim(p_body))
+  insert into book_notes (id, book_id, body, chapter)
+  values (p_id, p_book_id, trim(p_body), nullif(trim(coalesce(p_chapter, '')), ''))
   returning * into saved;
   return saved;
 end;
 $$;
 
-create or replace function update_note(p_code text, p_id text, p_body text)
+-- No chapter given leaves the chapter as it was; a blank chapter clears it.
+create or replace function update_note(p_code text, p_id text, p_body text, p_chapter text default null)
 returns void
 language plpgsql
 security definer
@@ -679,7 +841,11 @@ set search_path = public, extensions
 as $$
 begin
   perform require_code(p_code);
-  update book_notes set body = trim(p_body), updated_at = now() where id = p_id;
+  update book_notes
+     set body = trim(p_body),
+         chapter = case when p_chapter is null then chapter else nullif(trim(p_chapter), '') end,
+         updated_at = now()
+   where id = p_id;
 end;
 $$;
 

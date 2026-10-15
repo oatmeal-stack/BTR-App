@@ -3,6 +3,7 @@ export const ROUTES = {
   home: "/",
   browse: "/browse",
   library: "/library",
+  reading: "/reading",
   lists: "/lists",
   profile: "/profile",
   add: "/add",
@@ -23,6 +24,7 @@ export const ROUTES = {
 export const NAV_TABS = [
   { key: "home", label: "Home", href: ROUTES.home },
   { key: "browse", label: "Browse", href: ROUTES.browse },
+  { key: "reading", label: "Reading", href: ROUTES.reading },
   { key: "library", label: "Library", href: ROUTES.library },
   { key: "lists", label: "Lists", href: ROUTES.lists },
   { key: "profile", label: "Profile", href: ROUTES.profile },

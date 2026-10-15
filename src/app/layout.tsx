@@ -8,9 +8,9 @@ import { DEFAULT_SKIN_ID, getSkin, skinBootScript } from "@/skins/registry";
 import { skinToCssVars } from "@/skins/skin.schema";
 
 export const metadata: Metadata = {
-  title: "Book Archive",
+  title: "Bookshelf",
   description: "A personal library of books worth reading.",
-  applicationName: "Book Archive",
+  applicationName: "Bookshelf",
 };
 
 export const viewport: Viewport = {
